@@ -11,10 +11,10 @@ class Autoloader
         $maClasse = lcfirst($maClasse);
 
         $repertoires = array(
-            'mod_accueil/',
-            'mod_accueil/controleur/',
-            'mod_accueil/modele/',
-            'mod_accueil/vue/'
+            'mod_invite/',
+            'mod_invite/controleur/',
+            'mod_invite/modele/',
+            'mod_invite/vue/'
         );
 
         foreach($repertoires as $repertoire){

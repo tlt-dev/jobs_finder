@@ -1,1 +1,2 @@
-https://www.cv.fr/app/resumes/14f7c3b1-979f-4bb0-ab04-30df4dff0da2/edit template config cv
+https://www.cv.fr/app/resumes/14f7c3b1-979f-4bb0-ab04-30df4dff0da2/edit     ==== template config cv
+https://developer.mozilla.org/fr/docs/Web/HTTP/Status     ==== Code status HTTP
