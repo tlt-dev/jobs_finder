@@ -1,6 +1,6 @@
 <?php
 
-class OffreEmploiObjet
+class OffreObjet
 {
     private $off_id;
     private $off_intitule;

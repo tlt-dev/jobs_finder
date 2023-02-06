@@ -23,4 +23,13 @@ class OffreControleur
 
     }
 
+    public function genererListeOffre()
+    {
+
+        $listeOffres = $this->offreModele->getListeOffres();
+
+        $this->offreVue->afficherListeOffres($listeOffres);
+
+    }
+
 }

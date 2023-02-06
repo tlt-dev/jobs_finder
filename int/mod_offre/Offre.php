@@ -32,7 +32,7 @@ class Offre
         {
 
             //Action par défaut
-            $this->offreControleur->genererFormulaireOffre();
+            $this->offreControleur->genererListeOffre();
 
         }
 
