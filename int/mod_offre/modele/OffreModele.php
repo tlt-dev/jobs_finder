@@ -21,8 +21,22 @@ class OffreModele extends Modele
 
         $listeOffres = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        return $listeOffres;
+        foreach($listeOffres as $offre){
+            $listeOffresObjet[] = new OffreObjet($offre);
+        }
+        
+        return $listeOffresObjet;
+    }
 
+    public function getOffreFromId($id){
+
+        $sql = "SELECT * FROM t_offre where off_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $id
+        ));
+
+        return new OffreObjet($resultat->fetch(PDO::FETCH_ASSOC));
     }
 
 }

@@ -41,7 +41,7 @@ class OffreObjet
     }
 
     public function setOff_id($off_id){
-        $this->$off_id = $off_id;
+        $this->off_id = $off_id;
     }
 
     public function getOff_intitule(){
@@ -53,7 +53,7 @@ class OffreObjet
             self::setMessageErreur("Intitulé trop long !");
             $this->setAutorisationBD(false);
         }else{
-            $this->$off_intitule = $off_intitule;
+            $this->off_intitule = $off_intitule;
         }
     }
 
@@ -62,7 +62,7 @@ class OffreObjet
     }
 
     public function setOff_ville($off_ville){
-        $this->$off_ville = $off_ville;
+        $this->off_ville = $off_ville;
     }
 
     public function getOff_cp_ville(){
@@ -70,7 +70,7 @@ class OffreObjet
     }
 
     public function setOff_cp_ville($off_cp_ville){
-        $this->$off_cp_ville = $off_cp_ville;
+        $this->off_cp_ville = $off_cp_ville;
     }
 
     public function getOff_date_prise_poste(){
@@ -78,7 +78,7 @@ class OffreObjet
     }
 
     public function setOff_date_prise_poste($off_date_prise_poste){
-        $this->$off_date_prise_poste = $off_date_prise_poste;
+        $this->off_date_prise_poste = $off_date_prise_poste;
     }
 
     public function getOff_salaire(){
@@ -90,7 +90,7 @@ class OffreObjet
             self::setMessageErreur("Salaire négatif !");
             $this->setAutorisationBD(false);
         }else{
-            $this->$off_salaire = $off_salaire;
+            $this->off_salaire = $off_salaire;
         }
     }
 
@@ -99,7 +99,7 @@ class OffreObjet
     }
 
     public function setOff_duree($off_duree){
-        $this->$off_duree = $off_duree;
+        $this->off_duree = $off_duree;
     }
 
     public function getOff_secteur_activite(){
@@ -107,7 +107,7 @@ class OffreObjet
     }
 
     public function setOff_secteur_activite($off_secteur_activite){
-        $this->$off_secteur_activite = $off_secteur_activite;
+        $this->off_secteur_activite = $off_secteur_activite;
     }
 
     public function getOff_entreprise(){
@@ -115,7 +115,7 @@ class OffreObjet
     }
 
     public function setOff_entreprise($off_entreprise){
-        $this->$off_entreprise = $off_entreprise;
+        $this->off_entreprise = $off_entreprise;
     }
 
     public function getOff_descriptif(){
@@ -127,7 +127,7 @@ class OffreObjet
             self::setMessageErreur("Descriptif trop long !");
             $this->setAutorisationBD(false);
         }else{
-            $this->$off_descriptif = $off_descriptif;
+            $this->off_descriptif = $off_descriptif;
         }
     }
 

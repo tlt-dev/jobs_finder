@@ -23,7 +23,9 @@ class Offre
             switch($this->parametres['action'])
             {
 
-
+                case 'form_modifier_offre':
+                    $this->offreControleur->genererFormulaireoffre();
+                    break;
 
             }
 

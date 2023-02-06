@@ -19,7 +19,9 @@ class OffreControleur
     public function genererFormulaireoffre()
     {
 
-        $this->offreVue->afficherFormulaireoffre();
+        $offre = $this->offreModele->getOffreFromId($_POST['id']);
+        
+        $this->offreVue->afficherFormulaireModificationOffre($offre);
 
     }
 

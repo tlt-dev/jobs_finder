@@ -34,8 +34,10 @@
         <thead>
         <th>ID</th>
         <th>Intitulé</th>
-        <th></th>
-        <th></th>
+        <th>Ville</th>
+        <th>Secteur</th>
+        <th>Date début</th>
+        <th>Durée</th>
         <th></th>
         </thead>
         <tbody>
@@ -43,6 +45,19 @@
             <tr>
                 <td>{$offre->getOff_id()}</td>
                 <td>{$offre->getOff_intitule()}</td>
+                <td>{$offre->getOff_ville()}</td>
+                <td>{$offre->getOff_secteur_activite()}</td>
+                <td>{$offre->getOff_date_prise_poste()}</td>
+                <td>{$offre->getOff_duree()} mois</td>
+                <td>
+                    <form method="post" action="index.php">
+                        <input type="hidden" name="gestion" value="offre">
+                        <input type="hidden" name="action" value="form_modifier_offre">
+                        <input type="hidden" name="id" value="{$offre->getOff_id()}">
+
+                        <button type="submit" class="btn btn-primary" value="Modifier">Modifier</button>
+                    </form>
+                </td>
             </tr>
         {/foreach}
         </tbody>

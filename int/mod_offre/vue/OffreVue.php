@@ -14,17 +14,29 @@ class OffreVue
 
     }
 
-    public function afficherFormulaireOffre()
+    public function afficherFormulaireModificationOffre($offre)
     {
 
-        $this->tpl->display('mod_offre/vue/modalOffre.tpl');
+        $this->tpl->assign('titre', "Modifier offre d'emploi");
+        $this->tpl->assign('offre',$offre);
+
+        $this->tpl->assign('action', 'modifier_offre');
+        
+        if(OffreObjet::getMessageSucces() != "")
+        {
+            $this->tpl->assign('messageSucces', OffreObjet::getMessageSucces());
+        }else{
+            $this->tpl->assign('messageSucces', '');
+        }
+
+        $this->tpl->display('mod_offre/vue/formulaireModifierOffre.tpl');
 
     }
 
     public function afficherListeOffres($listeOffres){
 
         $this->tpl->assign('titre', "Liste offres d'emplois");
-        $this->tpl->assign('listeOffress', $listeOffres);
+        $this->tpl->assign('listeOffres', $listeOffres);
 
         if(OffreObjet::getMessageSucces() != "")
         {
