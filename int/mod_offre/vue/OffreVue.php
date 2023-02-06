@@ -1,6 +1,6 @@
 <?php
 
-class OffreEmploiVue
+class OffreVue
 {
 
     private $parametres = array();
@@ -14,10 +14,10 @@ class OffreEmploiVue
 
     }
 
-    public function afficherFormulaireOffreEmploi()
+    public function afficherFormulaireOffre()
     {
 
-        $this->tpl->display('mod_offre_emploi/vue/formOffreEmploi.tpl');
+        $this->tpl->display('mod_offre/vue/formOffre.tpl');
 
     }
 

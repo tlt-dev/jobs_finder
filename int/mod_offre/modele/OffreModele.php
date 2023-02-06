@@ -1,6 +1,6 @@
 <?php
 
-class OffreEmploiModele extends Modele
+class OffreModele extends Modele
 {
 
     private $parametres;

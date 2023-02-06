@@ -11,8 +11,8 @@ class OffreControleur
     {
 
         $this->parametres = $parametres;
-        $this->offreModele = new offreModele($this->parametres);
-        $this->offreVue = new offreVue($this->parametres);
+        $this->offreModele = new OffreModele($this->parametres);
+        $this->offreVue = new OffreVue($this->parametres);
 
     }
 
