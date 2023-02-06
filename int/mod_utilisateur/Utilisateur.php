@@ -35,6 +35,7 @@ class Utilisateur
             {
 
                 //Action par défaut
+                $this->utilisateurControleur->genererAccueil();
 
             }
 

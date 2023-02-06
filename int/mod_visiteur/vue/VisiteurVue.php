@@ -1,6 +1,6 @@
 <?php
 
-class EntrepriseVue
+class VisiteurVue
 {
 
     private $parametres = array();
@@ -17,7 +17,7 @@ class EntrepriseVue
     public function afficherAccueil()
     {
 
-        $this->tpl->display('mod_entreprise/vue/accueilEntreprise.tpl');
+        $this->tpl->display('mod_visiteur/vue/accueil.tpl');
 
     }
 

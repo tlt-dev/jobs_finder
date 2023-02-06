@@ -1,16 +1,14 @@
 <?php
 
-class InviteVue
+class VisiteurModele extends Modele
 {
 
     private $parametres = array();
-    private $tpl;
 
     public function __construct($parametres)
     {
 
         $this->parametres = $parametres;
-        $this->tpl = new Smarty();
 
     }
 

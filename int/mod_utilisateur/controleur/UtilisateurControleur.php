@@ -16,4 +16,11 @@ class UtilisateurControleur
 
     }
 
+    public function genererAccueil()
+    {
+
+        $this->utilisateurVue->afficherAccueil();
+
+    }
+
 }

@@ -14,4 +14,11 @@ class AuthentificationVue
 
     }
 
+    public function afficherFormulaireAuthentification()
+    {
+
+        $this->tpl->display('mod_authentification/vue/formAuthentification.tpl');
+
+    }
+
 }

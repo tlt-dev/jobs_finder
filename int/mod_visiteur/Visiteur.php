@@ -1,16 +1,16 @@
 <?php
 
-class Invite
+class Visiteur
 {
 
     private $parametres = array();
-    private $inviteControleur;
+    private $visiteurControleur;
 
     public function __construct($parametres)
     {
 
         $this->parametres = $parametres;
-        $this->inviteControleur = new InviteControleur($this->parametres);
+        $this->visiteurControleur = new VisiteurControleur($this->parametres);
 
     }
 
@@ -32,6 +32,7 @@ class Invite
         {
 
             //Action par défaut
+            $this->visiteurControleur->genererAccueil();
 
         }
 

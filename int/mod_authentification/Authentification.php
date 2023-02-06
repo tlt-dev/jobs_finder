@@ -32,6 +32,7 @@ class Authentification
         {
 
             //Action par défaut
+            $this->authentificationControleur->genererFormulaireAuthentification();
 
         }
 

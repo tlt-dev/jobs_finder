@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 06 fév. 2023 à 08:23
+-- Généré le : lun. 06 fév. 2023 à 09:39
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -411,14 +411,23 @@ CREATE TABLE `T_Entreprise` (
   `ent_statut` int(11) NOT NULL,
   `ent_chiffre_affaires` float DEFAULT NULL,
   `ent_date_creation` date NOT NULL,
-  `ent_complement_adresse` varchar(100) DEFAULT NULL,
-  `ent_libelle_voie` varchar(100) NOT NULL,
-  `ent_mention_speciale_distribution` varchar(100) DEFAULT NULL,
+  `ent_adresse1` varchar(38) NOT NULL,
+  `ent_adresse2` varchar(38) DEFAULT NULL,
+  `ent_adresse3` varchar(38) DEFAULT NULL,
+  `ent_adresse4` varchar(38) DEFAULT NULL,
   `ent_ville` int(11) NOT NULL,
   `ent_secteur_activite` int(11) NOT NULL,
   `ent_descriptif` varchar(1000) NOT NULL,
   `ent_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `T_Entreprise`
+--
+
+INSERT INTO `T_Entreprise` (`ent_id`, `ent_nom`, `ent_siret`, `ent_siren`, `ent_statut`, `ent_chiffre_affaires`, `ent_date_creation`, `ent_adresse1`, `ent_adresse2`, `ent_adresse3`, `ent_adresse4`, `ent_ville`, `ent_secteur_activite`, `ent_descriptif`, `ent_user`) VALUES
+(1, 'Courbon Software', 987654321, 123456789, 1, 7000000, '2016-01-01', '18 avenue de la Loire', NULL, NULL, NULL, 16124, 9, 'test', 5),
+(2, 'Astronics PGA', 76545689, 12343215, 2, 29000000, '1989-10-12', 'Z.I. La Malterie', NULL, NULL, NULL, 13969, 4, 'jozdiajdozajodza\r\n', 6);
 
 -- --------------------------------------------------------
 
@@ -1012,7 +1021,9 @@ CREATE TABLE `T_User` (
 
 INSERT INTO `T_User` (`usr_id`, `usr_est_chercheur_emploi`, `usr_mot_de_passe`, `usr_email`) VALUES
 (1, 1, 'mdpuser1', 'user1@gmail.com'),
-(2, 1, 'mdpuser2', 'user2@gmail.com\r\n');
+(2, 1, 'mdpuser2', 'user2@gmail.com\r\n'),
+(5, 0, 'mdpent1', 'ent1@gmail.com'),
+(6, 0, 'mdpent2', 'ent2@gmail.com\r\n');
 
 -- --------------------------------------------------------
 
@@ -38059,7 +38070,7 @@ ALTER TABLE `T_Departement`
 -- AUTO_INCREMENT pour la table `T_Entreprise`
 --
 ALTER TABLE `T_Entreprise`
-  MODIFY `ent_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `T_Entretien`
@@ -38203,7 +38214,7 @@ ALTER TABLE `T_Type_Contrat`
 -- AUTO_INCREMENT pour la table `T_User`
 --
 ALTER TABLE `T_User`
-  MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `T_Ville`
@@ -38262,7 +38273,8 @@ ALTER TABLE `T_CV`
 ALTER TABLE `T_Entreprise`
   ADD CONSTRAINT `T_Entreprise_FK` FOREIGN KEY (`ent_statut`) REFERENCES `T_Statut_Juridique` (`stj_id`),
   ADD CONSTRAINT `T_Entreprise_FK_2` FOREIGN KEY (`ent_secteur_activite`) REFERENCES `T_Secteur_Activite` (`sea_id`),
-  ADD CONSTRAINT `T_Entreprise_FK_3` FOREIGN KEY (`ent_user`) REFERENCES `T_User` (`usr_id`);
+  ADD CONSTRAINT `T_Entreprise_FK_3` FOREIGN KEY (`ent_user`) REFERENCES `T_User` (`usr_id`),
+  ADD CONSTRAINT `T_Entreprise_FK_4` FOREIGN KEY (`ent_ville`) REFERENCES `T_Ville` (`vil_id`);
 
 --
 -- Contraintes pour la table `T_Entretien`

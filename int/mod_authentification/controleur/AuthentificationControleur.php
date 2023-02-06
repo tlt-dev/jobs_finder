@@ -16,4 +16,11 @@ class AuthentificationControleur
 
     }
 
+    public function genererFormulaireAuthentification()
+    {
+
+        $this->authentificationVue->afficherFormulaireAuthentification();
+
+    }
+
 }

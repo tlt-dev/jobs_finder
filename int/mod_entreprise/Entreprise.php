@@ -36,6 +36,7 @@ class Entreprise
             {
 
                 //Action par défaut
+                $this->entrepriseControleur->genererAccueil();
 
             }
 

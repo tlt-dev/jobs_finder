@@ -16,4 +16,11 @@ class EntrepriseControleur
 
     }
 
+    public function genererAccueil()
+    {
+
+        $this->entrepriseVue->afficherAccueil();
+
+    }
+
 }
