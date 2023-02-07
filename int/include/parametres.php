@@ -2,9 +2,9 @@
 ini_set("display_errors", 1);
 //Pour connexion à la base de donnée
 define('NOM', 'root');
-define('PASSE', 'root');
+define('PASSE', '');
 define('SERVEUR', 'localhost');
-define('BASE', 'db_coopemploi');
+define('BASE', 'jobs_finder');
 define('P', 'x19v_');
 
 //$typeUser = GLOBALS['type'];
