@@ -1,0 +1,65 @@
+/*# Empty CSS file for your own CSS*/
+
+
+.navbar{
+
+    background-color: #363640;
+	padding: 1px;
+}
+
+#little_profil{
+	margin-top: -5px;
+}
+
+a.nav-color{
+
+	color:white !important;
+}
+
+a.nav-color:hover{
+
+    color:#999 !important;
+}
+
+.space{
+
+    padding-top: 65px;
+
+}
+
+.navbar-nav>li>a{
+	padding-bottom: 5px !important;
+}
+
+.navbar-default .navbar-nav > .active > a{
+
+    background-color: #9e0a0f !important;
+}
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover{
+
+	background-color: #9e0a0f !important;
+	border-top-color: #337ab7;
+	border-right-color: #337ab7;
+	border-bottom-color: #337ab7;
+	border-left-color: #337ab7;
+}
+
+.navbar-right {
+	margin-right: 0px !important;
+}
+
+.dropdown-menu > li > a:hover{
+
+	font-weight: bold;
+}
+
+sup{
+	color: red !important;
+	font-size: 12px;
+}
+
+label{
+	margin-top: 1.25rem;
+}
+

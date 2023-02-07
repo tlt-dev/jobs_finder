@@ -1,0 +1,5 @@
+==== GET ===
+/api/offres/
+/api/offres/secteur/{id_secteur}
+/api/offres/ville/{id_ville}
+/api/offres/poste/{id_poste}
