@@ -46,7 +46,7 @@
                 <td>{$offre->getOff_id()}</td>
                 <td>{$offre->getOff_intitule()}</td>
                 <td>{$listeVilles[$offre->getOff_ville()]['vil_nom']}</td>
-                <td>{$offre->getOff_secteur_activite()}</td>
+                <td>{$listeSecteurActivite[$offre->getOff_secteur_activite()]}</td>
                 <td>{$offre->getOff_date_prise_poste()}</td>
                 <td>{$offre->getOff_duree()} mois</td>
                 <td>

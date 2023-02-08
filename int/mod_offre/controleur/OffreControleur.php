@@ -30,8 +30,9 @@ class OffreControleur
 
         $listeOffres = $this->offreModele->getListeOffres();
         $listeVilles = $this->offreModele->getAllVille();
+        $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
 
-        $this->offreVue->afficherListeOffres($listeOffres,$listeVilles);
+        $this->offreVue->afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite);
 
     }
 

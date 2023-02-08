@@ -44,6 +44,7 @@ class OffreModele extends Modele
         $sql = "SELECT * FROM t_ville";
 
         $resultat = $this->executeRequete($sql)->fetchAll();
+
         foreach($resultat as $ville){
             $listeVilles[$ville['vil_id']] = array(
                 'vil_nom' => $ville['vil_nom'],
@@ -52,6 +53,20 @@ class OffreModele extends Modele
         }
 
         return $listeVilles;
+    }
+
+    public function getAllSecteurActivite(){
+
+        $sql = "SELECT * FROM t_secteur_activite";
+
+        $resultat = $this->executeRequete($sql)->fetchAll();
+
+        foreach($resultat as $secteurActivite){
+            $listeSecteurActivite[$secteurActivite['sea_id']] = $secteurActivite['sea_libelle'];
+        }
+
+        return $listeSecteurActivite;
+
     }
 
 }
