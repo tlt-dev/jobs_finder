@@ -40,6 +40,12 @@ class Entreprise
                     case 'afficher_fiche':
                         $this->entrepriseControleur->genererFicheEntreprise();
                         break;
+                    case 'generer_dashboard':
+                        $this->entrepriseControleur->genererDashboard();
+                        break;
+                    case 'consulter_profil':
+                        $this->entrepriseControleur->consulterProfil();
+                        break;
 
 
 

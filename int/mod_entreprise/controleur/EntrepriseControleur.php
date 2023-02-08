@@ -16,12 +16,32 @@ class EntrepriseControleur
 
     }
 
-    /*public function genererAccueil()
+
+    public function genererDashboard() 
     {
+        $entreprise =  $this->entrepriseModele->getEntreprise();
 
-        $this->entrepriseVue->afficherAccueil();
+        $this->entrepriseVue->afficherDashboard($entreprise);
 
-    }*/
+    }
+
+    public function consulterProfil() 
+    {
+        $entreprise =  $this->entrepriseModele->getEntreprise();
+
+        $listeStatuts = $this->entrepriseModele->getListeStatuts();
+        
+        $listeVilles = $this->entrepriseModele->getListeVilles();
+
+        $userName = $this->entrepriseModele->getUserMail($entreprise->getEnt_user());
+
+        $listeSecteurAct = $this->entrepriseModele->getListeSecteurAct();
+ 
+        $this->entrepriseVue->afficherProfil($entreprise, $listeStatuts, $listeVilles, $userName, $listeSecteurAct);
+
+                
+
+    }
 
     public function genererListe()
     {
@@ -54,7 +74,7 @@ class EntrepriseControleur
 
     }
 
-    public function formModifierEntrepriseModal()
+    /*public function formModifierEntrepriseModal()
     {
 
         $entreprise = $this->entrepriseModele->getEntreprise();
@@ -67,20 +87,19 @@ class EntrepriseControleur
             "ent_nom"=>$entreprise->getEnt_nom()
         )));
 
-    }
+    }*/
 
 
     public function modifierEntreprise()
     {
         $entreprise = new EntrepriseObjet($this->parametres);
-        var_dump($entreprise);
-
+        
         if(!$entreprise->getAutorisationBD()){
-            $this->entrepriseVue->afficherFicheEntreprise($entreprise);
-        }else{
+            echo 'MARCHE PO';
+            }else{
             $this->entrepriseModele->editEntreprise($entreprise);
             EntrepriseObjet::setMessageSucces("Entreprise modifiée avec succès !");
-            $this->genererListe();
+            $this->genererDashboard();
         }
 
     }

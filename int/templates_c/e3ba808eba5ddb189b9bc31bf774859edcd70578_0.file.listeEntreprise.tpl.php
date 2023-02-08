@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-07 13:53:09
+/* Smarty version 4.2.1, created on 2023-02-08 12:28:34
   from 'C:\wamp64\www\jobs_finder\int\mod_entreprise\vue\listeEntreprise.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e257c557d932_94478221',
+  'unifunc' => 'content_63e39572441766_13341404',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e3ba808eba5ddb189b9bc31bf774859edcd70578' => 
     array (
       0 => 'C:\\wamp64\\www\\jobs_finder\\int\\mod_entreprise\\vue\\listeEntreprise.tpl',
-      1 => 1675777948,
+      1 => 1675859309,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./modalEntreprise.tpl' => 1,
   ),
 ),false)) {
-function content_63e257c557d932_94478221 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63e39572441766_13341404 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,16 +65,14 @@ $_smarty_tpl->tpl_vars['entreprise']->do_else = false;
                         <button type="submit" class="btn btn-primary" value="Modifier">Modifier</button>
                     </form>
                 </td>
-            </form>
                 <td>
-                    <form method="post" action="index.php" name="formModifierEntrepriseModal" id="toto">
-
+                    <form method="post" action="index.php" name="formModifierEntreprise">
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="form_modifier_entreprise_modal">
-                        <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+                        <input type="hidden" name="ent_id" id="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
 ">
 
-                        <input type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEntreprise" value="Modifier modal">
+                        <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEntreprise" value="Modifier">
                     </form>
                 </td>
                 <td>
@@ -104,31 +102,29 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <?php echo '<script'; ?>
 >
-    $("form[name='formModifierEntrepriseModal']").submit(function (e) {
+    $("form[name='formModifierEntreprise']").submit(function(e){
         e.preventDefault();
-        var formData = new FormData($("#toto").get(0));
-        console.log(formData);
-         $.ajax({
-            type:'POST',
-            url:'index.php',
-            contentType: !1,
-            cache: !1,
-            processData: !1,
-            data: formData,
-            success:function(data){
-                 $('#modal-item').html(data);
-                    var isValid = $('#isFormValid').val() == 'True';
-                    if (isValid) {
-                        $('#modal-item').modal('toggle');
-                        $('#formPopup').trigger("reset");
-                        location.reload();
-                        //refreshAlert();
-                    } else {
-                         $("#buttonValidate").click(function(){
-                    Update(id);
-            });
-                    }
-        }});
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+
+        $.ajax({
+            url: form_url,
+            method: form_method,
+            data:form_data,
+            dataType: 'JSON'
+        }).done(function(response) {
+            console.log("toto");
+            console.log(response);
+            $("#action_modal").val(response.action);
+            $("#id_modal").val(response.ent_id);
+            $("#titre_modal").val(response.ent_nom);
+            $("#modalEntrepriseLabel").text(response.titre);
+            $("#button_modal").val(response.button);
+        })
+
     });
 <?php echo '</script'; ?>
 >

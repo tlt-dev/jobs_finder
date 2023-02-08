@@ -76,6 +76,7 @@
             data:form_data,
             dataType: 'JSON'
         }).done(function(response) {
+            console.log("toto");
             console.log(response);
             $("#action_modal").val(response.action);
             $("#id_modal").val(response.ent_id);

@@ -21,6 +21,27 @@ class EntrepriseVue
 
     }
 
+    public function afficherDashboard($entreprise) 
+    {
+
+        $this->tpl->assign("entreprise", $entreprise);
+        $this->tpl->display('mod_entreprise/vue/dashboardEntreprise.tpl');
+
+    }
+
+    public function afficherProfil($entreprise, $listeStatuts, $listeVilles, $userName, $listeSecteurs) 
+    {
+        
+        $this->tpl->assign("entreprise", $entreprise);
+        $this->tpl->assign("listeVilles", $listeVilles);
+        $this->tpl->assign("listeStatuts", $listeStatuts);
+        $this->tpl->assign("listeSecteurs", $listeSecteurs);
+        $this->tpl->assign("userName", $userName);        
+        $this->tpl->display('mod_entreprise/vue/profilEntrepriseV1.tpl');
+        
+
+    }
+
     public function afficherListe($listeEntreprises)
     {
 

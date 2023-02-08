@@ -23,6 +23,8 @@
 </form>
 <form method="post" action="index.php">
     <input type="hidden" name="gestion" value="entreprise">
+    <input type="hidden" name="action" value="generer_dashboard">
+    <input type="text" name="ent_id" value="">
     <input type="submit" class="btn btn-danger" value="Entreprise">
 </form>
 

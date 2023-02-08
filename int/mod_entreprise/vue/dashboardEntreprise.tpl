@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <title>Entreprise</title>
 
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -11,7 +11,12 @@
 </head>
 <body>
 
-<h1>entreprise</h1>
+<form method="post" action="index.php">
+    <input type="hidden" name="gestion" value="entreprise">
+    <input type="hidden" name="action" value="consulter_profil">
+    <input type="hidden" name="ent_id"  value="{$entreprise->getEnt_id()}">
+    <input type="submit" class="btn btn-danger" value="Profil">
+</form>
 
 
 </body>
