@@ -39,4 +39,19 @@ class OffreModele extends Modele
         return new OffreObjet($resultat->fetch(PDO::FETCH_ASSOC));
     }
 
+    public function getAllVille(){
+
+        $sql = "SELECT * FROM t_ville";
+
+        $resultat = $this->executeRequete($sql)->fetchAll();
+        foreach($resultat as $ville){
+            $listeVilles[$ville['vil_id']] = array(
+                'vil_nom' => $ville['vil_nom'],
+                'vil_code_postal' => $ville['vil_code_postal']
+            );
+        }
+
+        return $listeVilles;
+    }
+
 }

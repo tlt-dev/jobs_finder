@@ -33,10 +33,11 @@ class OffreVue
 
     }
 
-    public function afficherListeOffres($listeOffres){
+    public function afficherListeOffres($listeOffres,$listeVilles){
 
         $this->tpl->assign('titre', "Liste offres d'emplois");
         $this->tpl->assign('listeOffres', $listeOffres);
+        $this->tpl->assign('listeVilles', $listeVilles);
 
         if(OffreObjet::getMessageSucces() != "")
         {
