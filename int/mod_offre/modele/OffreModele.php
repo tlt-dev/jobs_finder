@@ -69,4 +69,17 @@ class OffreModele extends Modele
 
     }
 
+    public function getAllSalaire(){
+
+        $sql = "SELECT * FROM t_salaire";
+
+        $resultat = $this->executeRequete($sql)->fetchAll();
+
+        foreach($resultat as $salaire){
+            $listeSalaire[$salaire['sal_id']] = $salaire['sal_libelle'];
+        }
+
+        return $listeSalaire;
+    }
+
 }

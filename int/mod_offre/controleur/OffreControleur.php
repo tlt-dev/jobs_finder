@@ -20,8 +20,11 @@ class OffreControleur
     {
 
         $offre = $this->offreModele->getOffreFromId($_POST['id']);
+        $listeVilles = $this->offreModele->getAllVille();
+        $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+        $listeSalaire = $this->offreModele->getAllSalaire();
         
-        $this->offreVue->afficherFormulaireModificationOffre($offre);
+        $this->offreVue->afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire);
 
     }
 

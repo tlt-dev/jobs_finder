@@ -14,11 +14,14 @@ class OffreVue
 
     }
 
-    public function afficherFormulaireModificationOffre($offre)
+    public function afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire)
     {
 
-        $this->tpl->assign('titre', "Modifier offre d'emploi");
+        $this->tpl->assign('titre', "Modifier votre offre d'emploi");
         $this->tpl->assign('offre',$offre);
+        $this->tpl->assign('listeVilles', $listeVilles);
+        $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
+        $this->tpl->assign('listeSalaire', $listeSalaire);
 
         $this->tpl->assign('action', 'modifier_offre');
         
