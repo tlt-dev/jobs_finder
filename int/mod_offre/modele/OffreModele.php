@@ -82,4 +82,24 @@ class OffreModele extends Modele
         return $listeSalaire;
     }
 
+    public function modifierOffre($offre){
+        $sql = "UPDATE t_offre SET off_intitule = ?,
+            off_secteur_activite = ?,
+            off_ville = ?,
+            off_date_prise_poste = ?,
+            off_salaire = ?,
+            off_duree = ?,
+            off_descriptif = ?
+            WHERE off_id = ?";
+
+        $this->executeRequete($sql, array($offre->getOff_intitule(),
+        $offre->getOff_secteur_activite(),
+        $offre->getOff_ville(),
+        $offre->getOff_date_prise_poste(),
+        $offre->getOff_salaire(),
+        $offre->getOff_duree(),
+        $offre->getOff_descriptif(),
+        $offre->getOff_id()));
+    }
+
 }

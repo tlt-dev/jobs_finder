@@ -27,6 +27,10 @@ class Offre
                     $this->offreControleur->genererFormulaireoffre();
                     break;
 
+                case 'modifier_offre':
+                    $this->offreControleur->modifierOffre();
+                    break;
+
             }
 
         }

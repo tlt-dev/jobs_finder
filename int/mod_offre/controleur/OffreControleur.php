@@ -39,4 +39,15 @@ class OffreControleur
 
     }
 
+    public function modifierOffre(){
+
+        $offre = new OffreObjet($_POST);
+
+        if(!$offre->getAutorisationBD()){
+            $this->offreModele->modifierOffre($offre);
+            OffreObjet::setMessageSucces("Offre modifiée avec succès !");
+            $this->genererListeOffre();
+        }
+    }
+
 }

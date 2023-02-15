@@ -26,10 +26,10 @@
                                 class="bi bi-arrow-left-square me-2"></i></a> {$titre}</h2>
                     <div class="hstack gap-3">
                         <form method="post" action="index.php">
-                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="gestion" value="offre">
                             <input type="hidden" name="action" value="{$action}">
                             <input type="hidden" name="off_id" value="{$offre->getOff_id()}">
-                            <button type="submit" class="btn btn-primary" value="Modifier">Sauvegarder </button>
+                            <button type="submit" class="btn btn-primary" value="Sauvegarder">Sauvegarder </button>
                         </form>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h3 class="h6">Description</h3>
-                                <textarea class="form-control" rows="3">
+                                <textarea name="off_descriptif" class="form-control" rows="3">
                                     {$offre->getOff_descriptif()}
                                     </textarea>
                             </div>
