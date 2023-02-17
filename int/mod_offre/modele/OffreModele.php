@@ -103,4 +103,26 @@ class OffreModele extends Modele
         $offre->getOff_id()));
     }
 
+    public function creerOffre($offre){
+
+        $sql = "INSERT INTO t_offre (
+            off_intitule,
+            off_secteur_activite,
+            off_ville,
+            off_date_prise_poste ,
+            off_salaire,
+            off_duree,
+            off_descriptif
+        ) VALUES (?,?,?,?,?,?,?)
+        ";
+
+        $this->executeRequete($sql, array($offre->getOff_intitule(),
+        $offre->getOff_secteur_activite(),
+        $offre->getOff_ville(),
+        $offre->getOff_date_prise_poste(),
+        $offre->getOff_salaire(),
+        $offre->getOff_duree(),
+        $offre->getOff_descriptif()));
+    }
+
 }

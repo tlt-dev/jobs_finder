@@ -18,13 +18,21 @@ class OffreControleur
 
     public function genererFormulaireoffre()
     {
-
-        $offre = $this->offreModele->getOffreFromId($_POST['id']);
-        $listeVilles = $this->offreModele->getAllVille();
-        $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
-        $listeSalaire = $this->offreModele->getAllSalaire();
+        if(!isset($_POST['id']) || empty($_POST['id'])){
+            $listeVilles = $this->offreModele->getAllVille();
+            $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+            $listeSalaire = $this->offreModele->getAllSalaire();
+            
+            $this->offreVue->afficherFormulaireCreationOffre($listeVilles,$listeSecteurActivite,$listeSalaire);
+        }else{
+            $offre = $this->offreModele->getOffreFromId($_POST['id']);
+            $listeVilles = $this->offreModele->getAllVille();
+            $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+            $listeSalaire = $this->offreModele->getAllSalaire();
+            
+            $this->offreVue->afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire);
+        }
         
-        $this->offreVue->afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire);
 
     }
 
@@ -50,4 +58,14 @@ class OffreControleur
         }
     }
 
+    public function creerOffre(){
+
+        $offre = new OffreObjet($this->parametres);
+
+        if($offre->getAutorisationBD()){
+            $this->offreModele->creerOffre($offre);
+            OffreObjet::setMessageSucces("Offre créée avec succès !");
+            $this->genererListeOffre();
+        }
+    }
 }

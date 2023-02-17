@@ -53,4 +53,25 @@ class OffreVue
         $this->tpl->display('mod_offre/vue/listeOffre.tpl');
     }
 
+    public function afficherFormulaireCreationOffre($listeVilles,$listeSecteurActivite,$listeSalaire)
+    {
+
+        $this->tpl->assign('titre', "Créer votre offre d'emploi");
+        $this->tpl->assign('listeVilles', $listeVilles);
+        $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
+        $this->tpl->assign('listeSalaire', $listeSalaire);
+
+        $this->tpl->assign('action', 'creer_offre');
+        
+        if(OffreObjet::getMessageSucces() != "")
+        {
+            $this->tpl->assign('messageSucces', OffreObjet::getMessageSucces());
+        }else{
+            $this->tpl->assign('messageSucces', '');
+        }
+
+        $this->tpl->display('mod_offre/vue/formulaireCreerOffre.tpl');
+
+    }
+
 }
