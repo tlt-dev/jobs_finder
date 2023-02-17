@@ -83,6 +83,7 @@ class OffreModele extends Modele
     }
 
     public function modifierOffre($offre){
+
         $sql = "UPDATE t_offre SET off_intitule = ?,
             off_secteur_activite = ?,
             off_ville = ?,
