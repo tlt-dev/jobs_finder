@@ -68,4 +68,11 @@ class OffreControleur
             $this->genererListeOffre();
         }
     }
+
+    public function supprimerOffre(){
+
+        $this->offreModele->supprimerOffre($_POST['id']);
+        OffreObjet::setMessageSucces("Offre supprimée avec succès !");
+        $this->genererListeOffre();
+    }
 }

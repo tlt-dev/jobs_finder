@@ -125,4 +125,12 @@ class OffreModele extends Modele
         $offre->getOff_descriptif()));
     }
 
+    public function supprimerOffre($id){
+
+        $sql = "DELETE FROM t_offre 
+        where off_id = ?";
+
+        $this->executeRequete($sql,array($id));
+    }
+
 }

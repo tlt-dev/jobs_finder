@@ -59,6 +59,15 @@
                             <button type="submit" class="btn btn-primary" value="Modifier">Modifier</button>
                         </form>
                     </td>
+                    <td>
+                        <form method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="offre">
+                            <input type="hidden" name="action" value="supprimer_offre">
+                            <input type="hidden" name="id" value="{$offre->getOff_id()}">
+
+                            <button type="submit" class="btn btn-primary" value="Supprimer">Supprimer</button>
+                        </form>
+                    </td>
                 </tr>
             {/foreach}
         </tbody>

@@ -32,6 +32,8 @@ class Offre
                 case 'creer_offre':
                     $this->offreControleur->creerOffre();
                     break;
+                case 'supprimer_offre':
+                    $this->offreControleur->supprimerOffre();
             }
 
         }
