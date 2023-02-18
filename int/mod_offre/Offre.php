@@ -30,7 +30,7 @@ class Offre
                     $this->offreControleur->genererFormulaireoffre();
                     break;
                 case 'creer_offre':
-                    $this->offreController->creerOffre();
+                    $this->offreControleur->creerOffre();
                     break;
             }
 
