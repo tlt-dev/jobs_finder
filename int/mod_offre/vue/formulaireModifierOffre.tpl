@@ -46,7 +46,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Intitulé</label>
                                                 <input type="text" name="off_intitule" class="form-control"
-                                                    value="{$offre->getOff_intitule()}" placeholder="intitule">
+                                                    value="{$offre->getOff_intitule()}" placeholder="Intitule du poste" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -110,7 +110,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Date de prise de fonction</label>
                                     <input type="date" name="off_date_prise_poste" class="form-control"
-                                        value="{$offre->getOff_date_prise_poste()}" placeholder="date_prise_poste">
+                                        value="{$offre->getOff_date_prise_poste()}" placeholder="Date de prise du poste" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Salaire</label>
@@ -127,7 +127,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Durée du contrat en mois</label>
                                     <input type="number" name="off_duree" class="form-control"
-                                        value="{$offre->getOff_duree()}" placeholder="duree">
+                                        value="{$offre->getOff_duree()}" placeholder="Durée du poste" required>
                                 </div>
                             </div>
                             <!-- Notes -->

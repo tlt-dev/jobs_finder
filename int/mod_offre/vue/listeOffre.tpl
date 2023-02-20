@@ -40,6 +40,7 @@
             <th>Date début</th>
             <th>Durée</th>
             <th></th>
+            <th></th>
         </thead>
         <tbody>
             {foreach $listeOffres as $offre}
