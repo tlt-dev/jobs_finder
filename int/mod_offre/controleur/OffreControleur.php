@@ -18,19 +18,16 @@ class OffreControleur
 
     public function genererFormulaireoffre()
     {
+        $listeVilles = $this->offreModele->getAllVille();
+        $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+        $listeSalaire = $this->offreModele->getAllSalaire();
+        $listeTypeContrat = $this->offreModele->getAllTypeContrat();
+
         if(!isset($_POST['id']) || empty($_POST['id'])){
-            $listeVilles = $this->offreModele->getAllVille();
-            $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
-            $listeSalaire = $this->offreModele->getAllSalaire();
-            
-            $this->offreVue->afficherFormulaireCreationOffre($listeVilles,$listeSecteurActivite,$listeSalaire);
+            $this->offreVue->afficherFormulaireCreationOffre($listeVilles,$listeSecteurActivite,$listeSalaire,$listeTypeContrat);
         }else{
             $offre = $this->offreModele->getOffreFromId($_POST['id']);
-            $listeVilles = $this->offreModele->getAllVille();
-            $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
-            $listeSalaire = $this->offreModele->getAllSalaire();
-            
-            $this->offreVue->afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire);
+            $this->offreVue->afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire,$listeTypeContrat);
         }
         
 

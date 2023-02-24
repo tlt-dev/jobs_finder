@@ -11,7 +11,8 @@ class OffreObjet
     private $off_duree; 	
     private $off_secteur_activite;
     private $off_entreprise;
-    private $off_descriptif; 	
+    private $off_descriptif;
+    private $off_type_contrat;
 
     private $autorisationBD = true;
     private static $messageErreur = "";
@@ -129,6 +130,14 @@ class OffreObjet
         }else{
             $this->off_descriptif = $off_descriptif;
         }
+    }
+
+    public function getOff_type_contrat(){
+        return $this->off_type_contrat;
+    }
+
+    public function setOff_type_contrat($off_type_contrat){
+        $this->off_type_contrat = $off_type_contrat;
     }
 
     public function getAutorisationBD()

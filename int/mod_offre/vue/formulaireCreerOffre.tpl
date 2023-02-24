@@ -90,21 +90,31 @@
                                     {/foreach}
                                 </select>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Durée du contrat en mois</label>
-                                <input type="number" name="off_duree" class="form-control" placeholder="Durée du poste" required>
+                            <div class="row mb-3">
+                                <div class="col-lg-6">
+                                    <label class="form-label">Type de contrat</label>
+                                    <select name="off_type_contrat" class="form-control">
+                                        {foreach $listeTypeContrat as $typeContratId => $typeContrat}
+                                                <option value="{$typeContratId}">{$typeContrat}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="form-label">Durée du contrat en mois</label>
+                                    <input type="number" name="off_duree" class="form-control"
+                                        placeholder="Durée du poste" required>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Notes -->
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h3 class="h6">Description</h3>
-                                <textarea name="off_descriptif" class="form-control" rows="3">
+                            <!-- Notes -->
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h3 class="h6">Description</h3>
+                                    <textarea name="off_descriptif" class="form-control" rows="3">
                                             </textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </body>

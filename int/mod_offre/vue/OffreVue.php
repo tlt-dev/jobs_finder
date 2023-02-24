@@ -14,7 +14,7 @@ class OffreVue
 
     }
 
-    public function afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire)
+    public function afficherFormulaireModificationOffre($offre,$listeVilles,$listeSecteurActivite,$listeSalaire,$listeTypeContrat)
     {
 
         $this->tpl->assign('titre', "Modifier votre offre d'emploi");
@@ -22,6 +22,7 @@ class OffreVue
         $this->tpl->assign('listeVilles', $listeVilles);
         $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
         $this->tpl->assign('listeSalaire', $listeSalaire);
+        $this->tpl->assign('listeTypeContrat',$listeTypeContrat);
 
         $this->tpl->assign('action', 'modifier_offre');
         
@@ -53,13 +54,14 @@ class OffreVue
         $this->tpl->display('mod_offre/vue/listeOffre.tpl');
     }
 
-    public function afficherFormulaireCreationOffre($listeVilles,$listeSecteurActivite,$listeSalaire)
+    public function afficherFormulaireCreationOffre($listeVilles,$listeSecteurActivite,$listeSalaire,$listeTypeContrat)
     {
 
         $this->tpl->assign('titre', "Créer votre offre d'emploi");
         $this->tpl->assign('listeVilles', $listeVilles);
         $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
         $this->tpl->assign('listeSalaire', $listeSalaire);
+        $this->tpl->assign('listeTypeContrat',$listeTypeContrat);
 
         $this->tpl->assign('action', 'creer_offre');
         

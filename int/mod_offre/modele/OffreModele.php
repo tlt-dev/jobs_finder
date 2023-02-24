@@ -55,6 +55,19 @@ class OffreModele extends Modele
         return $listeVilles;
     }
 
+    public function getAllTypeContrat(){
+
+        $sql = "SELECT * FROM t_type_contrat";
+
+        $resultat = $this->executeRequete($sql)->fetchAll();
+
+        foreach($resultat as $typeContrat){
+            $listeTypeContrat[$typeContrat['tco_id']] = $typeContrat['tco_libelle'];
+        }
+
+        return $listeTypeContrat;
+    }
+
     public function getAllSecteurActivite(){
 
         $sql = "SELECT * FROM t_secteur_activite";
@@ -90,7 +103,8 @@ class OffreModele extends Modele
             off_date_prise_poste = ?,
             off_salaire = ?,
             off_duree = ?,
-            off_descriptif = ?
+            off_descriptif = ?,
+            off_type_contrat = ?
             WHERE off_id = ?";
 
         $this->executeRequete($sql, array($offre->getOff_intitule(),
@@ -100,6 +114,7 @@ class OffreModele extends Modele
         $offre->getOff_salaire(),
         $offre->getOff_duree(),
         $offre->getOff_descriptif(),
+        $offre->getOff_type_contrat(),
         $offre->getOff_id()));
     }
 
@@ -112,7 +127,8 @@ class OffreModele extends Modele
             off_date_prise_poste ,
             off_salaire,
             off_duree,
-            off_descriptif
+            off_descriptif,
+            off_type_contrat
         ) VALUES (?,?,?,?,?,?,?)
         ";
 
@@ -122,7 +138,8 @@ class OffreModele extends Modele
         $offre->getOff_date_prise_poste(),
         $offre->getOff_salaire(),
         $offre->getOff_duree(),
-        $offre->getOff_descriptif()));
+        $offre->getOff_descriptif(),
+        $offre->getOff_type_contrat()));
     }
 
     public function supprimerOffre($id){
