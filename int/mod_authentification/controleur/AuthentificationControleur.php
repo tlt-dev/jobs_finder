@@ -1,5 +1,8 @@
 <?php
 
+require_once('int/mod_entreprise/controleur/EntrepriseControleur.php');
+require_once('int/mod_utilisateur/controleur/UtilisateurControleur.php');
+
 class AuthentificationControleur
 {
 
