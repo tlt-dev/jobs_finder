@@ -14,6 +14,26 @@
             integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
     </head>
+    <script type="text/javascript">
+        function setDureeInput(){
+            var selection = document.getElementById("typeContratSelect").value;
+            document.getElementById("dureeInput").style.display = selection == 1 ? 'none' : 'block';
+        }
+
+        // Date aujourd'hui
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+        dd = '0' + dd;
+        }
+        if (mm < 10) {
+        mm = '0' + mm;
+        } 
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("datePrisePoste").setAttribute("min", today);
+    </script>
 
     <body>
 
@@ -79,7 +99,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Date de prise de fonction</label>
-                                <input type="date" name="off_date_prise_poste" class="form-control"
+                                <input type="date" name="off_date_prise_poste" class="form-control" id="datePrisePoste"
                                     placeholder="Date de prise du poste" required>
                             </div>
                             <div class="mb-3">
@@ -93,7 +113,7 @@
                             <div class="row mb-3">
                                 <div class="col-lg-6">
                                     <label class="form-label">Type de contrat</label>
-                                    <select name="off_type_contrat" class="form-control">
+                                    <select name="off_type_contrat" class="form-control" onchange="setDureeInput()">
                                         {foreach $listeTypeContrat as $typeContratId => $typeContrat}
                                                 <option value="{$typeContratId}">{$typeContrat}</option>
                                         {/foreach}

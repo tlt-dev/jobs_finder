@@ -129,7 +129,7 @@ class OffreModele extends Modele
             off_duree,
             off_descriptif,
             off_type_contrat
-        ) VALUES (?,?,?,?,?,?,?)
+        ) VALUES (?,?,?,?,?,?,?,?)
         ";
 
         $this->executeRequete($sql, array($offre->getOff_intitule(),
