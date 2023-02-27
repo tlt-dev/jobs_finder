@@ -26,6 +26,9 @@ class Authentification
                 case 'verifier_utilisateur':
                     $this->authentificationControleur->verifierUtilisateur();
                     break;
+                case 'inscription':
+                    $this->authentificationControleur->inscription();
+                    break;
 
             }
 

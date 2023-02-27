@@ -26,7 +26,7 @@ class AuthentificationControleur
     public function verifierUtilisateur()
     {
 
-        $user = new AuthentificationObjet($this->parametres);
+        $user = new UserObjet($this->parametres);
 
         if($user = $this->authentificationModele->checkUser($user))
         {
@@ -50,16 +50,51 @@ class AuthentificationControleur
 
                 $new_parametres = array();
                 $new_parametres['ent_id'] = $user->getUsr_id();
-                $_REQUEST['gestion'] = 'utilisateur';
 
                 $entrepriseControleur = new EntrepriseControleur($new_parametres);
 
-                $entrepriseControleur->genererAccueil();
+                $entrepriseControleur->genererDashboard();
 
             }
 
         }else{
             echo "mauvais mot de passe";
+        }
+
+    }
+
+    public function inscription()
+    {
+
+        $user = new UserObjet($this->parametres);
+
+        $user->setUsr_id($this->authentificationModele->createUser($user));
+
+        if($user->getUsr_est_chercheur_emploi())
+        {
+
+            $this->authentificationModele->createChercheurEmploi($user->getUsr_id());
+
+            $new_parametres = array();
+            $new_parametres['ent_id'] = $user->getUsr_id();
+
+            $utilisateurControleur = new UtilisateurControleur($new_parametres);
+
+            $utilisateurControleur->genererDashboard();
+
+        }
+        else
+        {
+
+            $this->authentificationModele->createEntreprise($user->getUsr_id());
+
+            $new_parametres = array();
+            $new_parametres['ent_id'] = $user->getUsr_id();
+
+            $entrepriseControleur = new EntrepriseControleur($new_parametres);
+
+            $entrepriseControleur->genererDashboard();
+
         }
 
     }

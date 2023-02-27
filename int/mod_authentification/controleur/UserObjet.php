@@ -1,6 +1,6 @@
 <?php
 
-class AuthentificationObjet
+class UserObjet
 {
 
     private $usr_id;

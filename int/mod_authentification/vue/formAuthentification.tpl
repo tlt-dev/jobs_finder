@@ -36,17 +36,20 @@
     <fieldset>
         <legend>Qui êtes-vous ?</legend>
 
-        <input type="radio" id="type" name="type_utilisateur" value="1" checked>
-        <label for="type">Chercheur d'emploi</label>
+        <input type="radio" id="type_1" name="usr_est_chercheur_emploi" value="1" checked>
+        <label for="type_1">Chercheur d'emploi</label>
 
-        <input type="radio" id="type" name="type_utilisateur" value="0">
-        <label for="type">Entreprise</label>
+        <input type="radio" id="type_2" name="usr_est_chercheur_emploi" value="0">
+        <label for="type_2">Entreprise</label>
     </fieldset>
 
-    <label for="che_nom">Nom :</label>
+    <label for="che_nom" id="label_che_nom">Nom :</label>
     <input type="text" name="che_nom" id="che_nom" value="">
 
-    <label for="che_prenom">Prénom</label>
+    <label for="ent_nom" id="label_ent_nom">Nom :</label>
+    <input type="text" name="ent_nom" id="ent_nom" value="">
+
+    <label for="che_prenom" id="label_prenom">Prénom</label>
     <input type="text" name="che_prenom" id="che_prenom" value="">
 
     <label for="usr_email">Adresse mail :</label>
@@ -54,6 +57,8 @@
 
     <label for="usr_mot_de_passe">Mot de passe :</label>
     <input type="password" name="usr_mot_de_passe" id="usr_mot_de_passe" value="">
+
+    <input type="submit" class="btn btn-success" value="S'inscrire">
 
 </form>
 
@@ -65,18 +70,24 @@
 </script>
 
 <script>
-    $("#type").on('click', function(e){
-       if($("#type").val() == 1)
+    $("input[name='usr_est_chercheur_emploi']").on('click', function(e){
+       if($("#type_1").is(":checked"))
            {
-
+               $("#ent_nom").addClass("d-none");
+               $("#label_ent_nom").addClass("d-none");
                $("#che_prenom").removeClass("d-none");
-
+               $("#label_prenom").removeClass("d-none");
+               $("#che_nom").removeClass("d-none");
+               $("#label_che_nom").removeClass("d-none");
            }
        else
            {
-
                $("#che_prenom").addClass("d-none");
-
+               $("#label_prenom").addClass("d-none");
+               $("#che_nom").addClass("d-none");
+               $("#label_che_nom").addClass("d-none");
+               $("#ent_nom").removeClass("d-none");
+               $("#label_ent_nom").removeClass("d-none");
            }
     });
 </script>

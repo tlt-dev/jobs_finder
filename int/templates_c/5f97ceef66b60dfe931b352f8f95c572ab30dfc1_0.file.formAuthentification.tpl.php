@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2023-02-06 18:11:59
+/* Smarty version 3.1.29, created on 2023-02-08 13:44:56
   from "/Applications/MAMP/htdocs/jobs_finder/int/mod_authentification/vue/formAuthentification.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_63e142ef3a3224_41633175',
+  'unifunc' => 'content_63e3a758942ed3_00701913',
   'file_dependency' => 
   array (
     '5f97ceef66b60dfe931b352f8f95c572ab30dfc1' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_authentification/vue/formAuthentification.tpl',
-      1 => 1675707112,
+      1 => 1675863893,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_63e142ef3a3224_41633175 ($_smarty_tpl) {
+function content_63e3a758942ed3_00701913 ($_smarty_tpl) {
 ?>
 
 <!DOCTYPE html>
@@ -59,17 +59,20 @@ function content_63e142ef3a3224_41633175 ($_smarty_tpl) {
     <fieldset>
         <legend>Qui êtes-vous ?</legend>
 
-        <input type="radio" id="type" name="type_utilisateur" value="1" checked>
-        <label for="type">Chercheur d'emploi</label>
+        <input type="radio" id="type_1" name="usr_est_chercheur_emploi" value="1" checked>
+        <label for="type_1">Chercheur d'emploi</label>
 
-        <input type="radio" id="type" name="type_utilisateur" value="0">
-        <label for="type">Entreprise</label>
+        <input type="radio" id="type_2" name="usr_est_chercheur_emploi" value="0">
+        <label for="type_2">Entreprise</label>
     </fieldset>
 
-    <label for="che_nom">Nom :</label>
+    <label for="che_nom" id="label_che_nom">Nom :</label>
     <input type="text" name="che_nom" id="che_nom" value="">
 
-    <label for="che_prenom">Prénom</label>
+    <label for="ent_nom" id="label_ent_nom">Nom :</label>
+    <input type="text" name="ent_nom" id="ent_nom" value="">
+
+    <label for="che_prenom" id="label_prenom">Prénom</label>
     <input type="text" name="che_prenom" id="che_prenom" value="">
 
     <label for="usr_email">Adresse mail :</label>
@@ -77,6 +80,8 @@ function content_63e142ef3a3224_41633175 ($_smarty_tpl) {
 
     <label for="usr_mot_de_passe">Mot de passe :</label>
     <input type="password" name="usr_mot_de_passe" id="usr_mot_de_passe" value="">
+
+    <input type="submit" class="btn btn-success" value="S'inscrire">
 
 </form>
 
@@ -91,18 +96,24 @@ function content_63e142ef3a3224_41633175 ($_smarty_tpl) {
 
 <?php echo '<script'; ?>
 >
-    $("#type").on('click', function(e){
-       if($("#type").val() == 1)
+    $("input[name='usr_est_chercheur_emploi']").on('click', function(e){
+       if($("#type_1").is(":checked"))
            {
-
+               $("#ent_nom").addClass("d-none");
+               $("#label_ent_nom").addClass("d-none");
                $("#che_prenom").removeClass("d-none");
-
+               $("#label_prenom").removeClass("d-none");
+               $("#che_nom").removeClass("d-none");
+               $("#label_che_nom").removeClass("d-none");
            }
        else
            {
-
                $("#che_prenom").addClass("d-none");
-
+               $("#label_prenom").addClass("d-none");
+               $("#che_nom").addClass("d-none");
+               $("#label_che_nom").addClass("d-none");
+               $("#ent_nom").removeClass("d-none");
+               $("#label_ent_nom").removeClass("d-none");
            }
     });
 <?php echo '</script'; ?>

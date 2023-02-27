@@ -1,3 +1,27 @@
+<?php
+/* Smarty version 3.1.29, created on 2023-02-22 10:34:59
+  from "/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.29',
+  'unifunc' => 'content_63f5efd3d70076_38091747',
+  'file_dependency' => 
+  array (
+    'b7a4ea0637f602b8b66e61e3611fc471b4ca0cd8' => 
+    array (
+      0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl',
+      1 => 1677062098,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../../mod_authentification/vue/modalAuthentification.tpl' => 1,
+  ),
+),false)) {
+function content_63f5efd3d70076_38091747 ($_smarty_tpl) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,25 +169,34 @@
     </div>
 </div>
 
-{include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+<?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:../../mod_authentification/vue/modalAuthentification.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
 
 </body>
 
 
 
 <!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"><?php echo '</script'; ?>
+>
 
 <!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formAuthentificationModal']").submit(function (e) {
         e.preventDefault(); //empêcher une action par défaut
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-</html>
+</html><?php }
+}

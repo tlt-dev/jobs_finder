@@ -19,7 +19,20 @@ class UtilisateurControleur
     public function genererAccueil()
     {
 
-        $this->utilisateurVue->afficherAccueil();
+        //Infos du profil
+        $utilisateur = $this->utilisateurModele->getUtilisateur();
+
+        //Liste Villes
+        $listeVilles = $this->utilisateurModele->getListeVilles();
+
+        //Liste Sexes
+        $listeSexes = $this->utilisateurModele->getListeSexes();
+
+        //Email
+        $mail = $this->utilisateurModele->getMail($utilisateur->getChe_user());
+
+        //Vue
+        $this->utilisateurVue->afficherProfil($utilisateur, $listeVilles, $listeSexes, $mail);
 
     }
 
