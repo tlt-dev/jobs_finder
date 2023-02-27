@@ -25,6 +25,35 @@ class UtilisateurModele extends Modele
 
     }
 
+    public function getChercheursEmploiByCompetences($listeCompetences)
+    {
+
+        $listeChercheursEmploi = array();
+
+        foreach($listeCompetences as $competence)
+        {
+
+            $sql = "SELECT * FROM T_Chercheur_Emploi as che" .
+                " INNER JOIN T_Competence_Chercheur_Emploi AS cce ON cce.cce_id = ?" .
+                " WHERE che.che_id = cce._che_id";
+
+            $resultat = $this->executeRequete($sql, array(
+                $competence["cce_id"]
+            ));
+
+            foreach($resultat->fetchAll(PDO::FETCH_ASSOC) as $chercheurEmploi)
+            {
+
+                array_push($listeChercheursEmploi, new UtilisateurObjet($chercheurEmploi));
+
+            }
+
+        }
+
+        return $listeChercheursEmploi;
+
+    }
+
 
     public function getListeVilles()
     {
