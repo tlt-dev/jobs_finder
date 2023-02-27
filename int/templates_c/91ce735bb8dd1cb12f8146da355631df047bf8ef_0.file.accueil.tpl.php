@@ -1,4 +1,28 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2023-02-27 13:55:54
+  from '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63fcb66a1babe1_62709184',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '91ce735bb8dd1cb12f8146da355631df047bf8ef' => 
+    array (
+      0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl',
+      1 => 1677506073,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../../mod_authentification/vue/modalAuthentification.tpl' => 1,
+  ),
+),false)) {
+function content_63fcb66a1babe1_62709184 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -153,18 +177,24 @@
     </div>
 </div>
 
-{include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+<?php $_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalAuthentification.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 </body>
 
 
 <!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"><?php echo '</script'; ?>
+>
 
 <!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
 
-</html>
+</html><?php }
+}

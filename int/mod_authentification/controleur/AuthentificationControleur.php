@@ -26,9 +26,14 @@ class AuthentificationControleur
     public function verifierUtilisateur()
     {
 
-        $user = new UserObjet($this->parametres);
+        //$user = new UserObjet($this->parametres);
 
-        if($user = $this->authentificationModele->checkUser($user))
+        //var_dump($user);
+
+        $email = $this->parametres['usr_email'];
+        $mdp = $this->parametres['usr_mot_de_passe'];
+
+        if($user = $this->authentificationModele->checkUser($email, $mdp))
         {
 
             $_SESSION['login'] = $user->getUsr_email();

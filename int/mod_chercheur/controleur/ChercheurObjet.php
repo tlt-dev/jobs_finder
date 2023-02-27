@@ -1,6 +1,6 @@
 <?php
 
-class UtilisateurObjet
+class ChercheurObjet
 {
 
     private $che_id;

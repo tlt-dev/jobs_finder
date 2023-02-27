@@ -12,17 +12,19 @@ class AuthentificationModele extends Modele
 
     }
 
-    public function checkUser(UserObjet $user)
+    public function checkUser($email, $mdp)
     {
 
-        $sql = 'SELECT * FROM T_user WHERE usr_email = ? AND usr_mot_de_passe = ?';
+        $sql = 'SELECT * FROM T_User WHERE usr_email = ? AND usr_mot_de_passe = ?';
 
         $resultat = $this->executeRequete($sql, array(
-            $user->getUsr_email(),
-            $user->getUsr_mot_de_passe()
+            $email,
+            $mdp
         ));
 
-        if($resultat)
+        $user = new UserObjet($resultat->fetch(PDO::FETCH_ASSOC));
+
+        if($user->getUsr_id() != NULL)
         {
             return new UserObjet($resultat->fetch(PDO::FETCH_ASSOC));
         }

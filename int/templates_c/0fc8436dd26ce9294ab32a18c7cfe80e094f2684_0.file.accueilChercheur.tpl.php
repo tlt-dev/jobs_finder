@@ -1,17 +1,18 @@
 <?php
-/* Smarty version 3.1.29, created on 2023-02-06 13:03:23
-  from "/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/accueilChercheur.tpl" */
+/* Smarty version 4.2.1, created on 2023-02-27 09:48:44
+  from '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/accueilChercheur.tpl' */
 
-if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63fc7c7c008e69_57971635',
   'has_nocache_code' => false,
-  'version' => '3.1.29',
-  'unifunc' => 'content_63e0fa9beb3124_87210929',
   'file_dependency' => 
   array (
-    '827999944db605f42b9e751e68b646a4848f5d1b' => 
+    '0fc8436dd26ce9294ab32a18c7cfe80e094f2684' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/accueilChercheur.tpl',
-      1 => 1675676746,
+      1 => 1677485052,
       2 => 'file',
     ),
   ),
@@ -19,9 +20,8 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_63e0fa9beb3124_87210929 ($_smarty_tpl) {
-?>
-<!DOCTYPE html>
+function content_63fc7c7c008e69_57971635 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

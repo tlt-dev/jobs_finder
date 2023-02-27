@@ -1,4 +1,28 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2023-02-27 10:00:49
+  from '/Applications/MAMP/htdocs/jobs_finder-matthieu/int/mod_visiteur/vue/accueil.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_63fc7f51a389f1_51666058',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'b0091b1ce44c1eb882b9e4de577c04668d97fc7d' => 
+    array (
+      0 => '/Applications/MAMP/htdocs/jobs_finder-matthieu/int/mod_visiteur/vue/accueil.tpl',
+      1 => 1677491335,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../../mod_authentification/vue/modalAuthentification.tpl' => 1,
+  ),
+),false)) {
+function content_63fc7f51a389f1_51666058 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -153,18 +177,47 @@
     </div>
 </div>
 
-{include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+<?php $_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalAuthentification.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 </body>
 
 
 <!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"><?php echo '</script'; ?>
+>
 
 <!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
 
-</html>
+<?php echo '<script'; ?>
+>
+    $("form[name='formAuthentificationModal']").submit(function (e) {
+        e.preventDefault(); //empêcher une action par défaut
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function (response) {
+            console.log(response);
+        });
+    });
+    })
+    ;
+<?php echo '</script'; ?>
+>
+
+</html><?php }
+}
