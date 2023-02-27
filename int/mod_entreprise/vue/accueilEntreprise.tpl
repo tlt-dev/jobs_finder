@@ -25,4 +25,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
 
+<form method="post" action="index.php">
+    <input type="hidden" name="gestion" value="offre">
+    <input type="submit" class="btn btn-danger" value="Offre">
+</form>
+
 </html>
