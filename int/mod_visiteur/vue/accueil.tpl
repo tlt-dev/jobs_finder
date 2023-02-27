@@ -5,9 +5,18 @@
     <meta charset="UTF-8">
     <title>Accueil</title>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
 </head>
 
@@ -105,13 +114,18 @@
                 <div class="card text-dark bg-light mb-3">
                     <div class="card-header">Recherche</div>
                     <div class="card-body">
-                        <form method="post" action="index.php">
+                        <form method="post" action="index.php" name="rechercheOffre">
                             <input type="hidden" name="gestion" value="visiteur">
                             <input type="hidden" name="action" value="recherche_poste">
 
                             <label for="poste_recherche">Poste recherché</label>
-                            <input type="text" class="form-control" placeholder="Futur select recherchable" value="">
-
+                            <select class="form-select" name="off_poste" id="multiple-select-field" data-placeholder="Choose anything"
+                                multiple>
+                                {foreach $listePoste as $poste}
+                                    <option value="{$poste['pos_id']}">{$poste['pos_libelle']}
+                                    </option>
+                                {/foreach}
+                            </select>
                             <input type="submit" class="btn btn-primary" value="Rechercher">
                         </form>
                     </div>
@@ -166,13 +180,43 @@
 </body>
 
 
+<!--AJAX-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 <!--Bootstrap JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+<script>
+    $('#multiple-select-field').select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        closeOnSelect: false,
+    });
+</script>
 
-<!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<script>
+    $("form[name='rechercheOffre']").submit(function(e) {
+        e.preventDefault(); //empêcher une action par défaut
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+        console.log(form_data);
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function(response) {
+            console.log("test");
+        });
+    });
 </script>
 
 </html>

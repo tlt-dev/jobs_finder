@@ -21,4 +21,11 @@ class VisiteurModele extends Modele
         return $this->executeRequete($sql)->fetchAll();
     }
 
+    public function getAllPoste(){
+
+        $sql = "SELECT * FROM t_poste";
+
+        return $this->executeRequete($sql)->fetchAll();
+    }
+
 }

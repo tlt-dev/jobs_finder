@@ -19,9 +19,13 @@ class VisiteurControleur
     public function genererAccueil()
     {
         $listeOffre = $this->visiteurModele->getAllOffre();
+        $listePoste = $this->visiteurModele->getAllPoste();
 
-        $this->visiteurVue->afficherAccueil($listeOffre);
+        $this->visiteurVue->afficherAccueil($listeOffre,$listePoste);
 
     }
 
+    public function rechercheOffre(){
+        
+    }
 }
