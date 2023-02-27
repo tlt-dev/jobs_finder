@@ -14,24 +14,23 @@
 </head>
 
 <body>
-
+<form method="post" action="index.php">
     <div class="container-fluid">
 
         <div class="container">
             <!-- Title -->
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
                 <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i
-                            class="bi bi-arrow-left-square me-2"></i></a> Personaliser votre entreprise</h2>
+                            class="bi bi-arrow-left-square me-2"></i></a> Personnaliser votre entreprise</h2>
                 <div class="hstack gap-3">
-                    <form method="post" action="index.php">
+                    
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="modifier_entreprise">
                         <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
                         <button type="submit" class="btn btn-primary" value="Modifier">Sauvegarder </button>
-                    </form>
+                    
                 </div>
             </div>
-
             <!-- Main content -->
             <div class="row">
                 <!-- Left side -->
@@ -66,7 +65,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">SIREN *</label>
-                                        <input type="text" class="form-control" name="ent_siret"
+                                        <input type="text" class="form-control" name="ent_siren"
                                             value="{$entreprise->getEnt_siren()}">
                                     </div>
                                 </div>
@@ -163,7 +162,7 @@
                             </select>
                             <div class="mb-3">
                                 <label class="form-label">CA *</label>
-                                <input type="text" class="form-control" name="ent_siret" value="{$entreprise->getEnt_chiffre_affaires()}">
+                                <input type="text" class="form-control" name="ent_chiffre_affaires" value="{$entreprise->getEnt_chiffre_affaires()}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Date de création *</label>
@@ -182,7 +181,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h3 class="h6">Description *</h3>
-                            <textarea class="form-control" rows="3">
+                            <textarea class="form-control" name="ent_descriptif" rows="3">
                             {$entreprise->getEnt_descriptif()}
                             </textarea>
                         </div>
@@ -191,10 +190,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
+</form>
 </body>
 
 </html>

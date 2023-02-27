@@ -20,8 +20,10 @@ class EntrepriseControleur
     public function genererDashboard() 
     {
         $entreprise =  $this->entrepriseModele->getEntreprise();
+        $listeChercheurEmploi = $this->entrepriseModele->getListeChercheureEmploi();
+        $listeCompetence = $this->entrepriseModele->getListeCompetence();
 
-        $this->entrepriseVue->afficherDashboard($entreprise);
+        $this->entrepriseVue->afficherDashboard($entreprise, $listeChercheurEmploi, $listeCompetence);
 
     }
 

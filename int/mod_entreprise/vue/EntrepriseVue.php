@@ -21,10 +21,12 @@ class EntrepriseVue
 
     }
 
-    public function afficherDashboard($entreprise) 
+    public function afficherDashboard($entreprise, $listeChercheurEmploi, $listeCompetence) 
     {
 
         $this->tpl->assign("entreprise", $entreprise);
+        $this->tpl->assign("listeCompetence", $listeCompetence);
+        $this->tpl->assign("listeChercheurEmploi", $listeChercheurEmploi);
         $this->tpl->display('mod_entreprise/vue/dashboardEntreprise.tpl');
 
     }

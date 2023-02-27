@@ -82,6 +82,32 @@ class EntrepriseModele extends Modele
         return $listeSecteurAct;
     }
 
+
+    public function getListeChercheureEmploi ()
+    {
+
+        $sql = 'SELECT * FROM t_chercheur_emploi';
+
+        $resultat = $this->executeRequete($sql);
+
+        $listeChercheurEmploi = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listeChercheurEmploi;
+    }
+
+
+    public function getListeCompetence ()
+    {
+        $sql ='SELECT * FROM t_competence';
+
+        $resultat = $this->executeRequete($sql);
+
+        $listeCompetence = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listeCompetence;
+
+    }
+
     public function getUserMail($usrId)
     {
 

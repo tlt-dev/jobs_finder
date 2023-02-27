@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-08 21:42:26
+/* Smarty version 4.2.1, created on 2023-02-21 15:19:35
   from 'C:\wamp64\www\jobs_finder\int\mod_entreprise\vue\profilEntrepriseV1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63e4174233e607_80420902',
+  'unifunc' => 'content_63f4e107704dd5_51488115',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd0455d267153c5f045089d3f8d1299391291aeb7' => 
     array (
       0 => 'C:\\wamp64\\www\\jobs_finder\\int\\mod_entreprise\\vue\\profilEntrepriseV1.tpl',
-      1 => 1675892539,
+      1 => 1676992766,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_63e4174233e607_80420902 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63f4e107704dd5_51488115 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -38,25 +38,24 @@ function content_63e4174233e607_80420902 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 
 <body>
-
+<form method="post" action="index.php">
     <div class="container-fluid">
 
         <div class="container">
             <!-- Title -->
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
                 <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i
-                            class="bi bi-arrow-left-square me-2"></i></a> Personaliser votre entreprise</h2>
+                            class="bi bi-arrow-left-square me-2"></i></a> Personnaliser votre entreprise</h2>
                 <div class="hstack gap-3">
-                    <form method="post" action="index.php">
+                    
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="modifier_entreprise">
                         <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
 ">
                         <button type="submit" class="btn btn-primary" value="Modifier">Sauvegarder </button>
-                    </form>
+                    
                 </div>
             </div>
-
             <!-- Main content -->
             <div class="row">
                 <!-- Left side -->
@@ -94,7 +93,7 @@ function content_63e4174233e607_80420902 (Smarty_Internal_Template $_smarty_tpl)
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">SIREN *</label>
-                                        <input type="text" class="form-control" name="ent_siret"
+                                        <input type="text" class="form-control" name="ent_siren"
                                             value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_siren();?>
 ">
                                     </div>
@@ -229,7 +228,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             </select>
                             <div class="mb-3">
                                 <label class="form-label">CA *</label>
-                                <input type="text" class="form-control" name="ent_siret" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_chiffre_affaires();?>
+                                <input type="text" class="form-control" name="ent_chiffre_affaires" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_chiffre_affaires();?>
 ">
                             </div>
                             <div class="mb-3">
@@ -250,7 +249,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div class="card mb-4">
                         <div class="card-body">
                             <h3 class="h6">Description *</h3>
-                            <textarea class="form-control" rows="3">
+                            <textarea class="form-control" name="ent_descriptif" rows="3">
                             <?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_descriptif();?>
 
                             </textarea>
@@ -260,10 +259,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
             </div>
         </div>
-
     </div>
-
-
+</form>
 </body>
 
 </html><?php }
