@@ -14,8 +14,10 @@ class VisiteurVue
 
     }
 
-    public function afficherAccueil()
+    public function afficherAccueil($listeOffre)
     {
+
+        $this->tpl->assign("listeOffre",$listeOffre);
 
         $this->tpl->display('mod_visiteur/vue/accueil.tpl');
 
