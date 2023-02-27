@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 3.1.29, created on 2023-02-06 09:40:47
-  from "C:\wamp64\www\jobs_finder\int\mod_utilisateur\vue\accueilChercheur.tpl" */
+  from "C:\wamp64\www\jobs_finder\int\mod_chercheur\vue\accueilChercheur.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
@@ -10,7 +10,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
     '05c34d8ac9aee6351dc41de1080627ac9d45cc75' => 
     array (
-      0 => 'C:\\wamp64\\www\\jobs_finder\\int\\mod_utilisateur\\vue\\accueilChercheur.tpl',
+      0 => 'C:\\wamp64\\www\\jobs_finder\\int\\mod_chercheur\\vue\\accueilChercheur.tpl',
       1 => 1675676435,
       2 => 'file',
     ),

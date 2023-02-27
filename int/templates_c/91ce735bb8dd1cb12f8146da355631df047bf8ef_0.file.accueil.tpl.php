@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-27 09:48:56
+/* Smarty version 4.2.1, created on 2023-02-27 13:55:54
   from '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63fc7c88ebf325_94722281',
+  'unifunc' => 'content_63fcb66a1babe1_62709184',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '91ce735bb8dd1cb12f8146da355631df047bf8ef' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl',
-      1 => 1677491335,
+      1 => 1677506073,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalAuthentification.tpl' => 1,
   ),
 ),false)) {
-function content_63fc7c88ebf325_94722281 (Smarty_Internal_Template $_smarty_tpl) {
+function content_63fcb66a1babe1_62709184 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,29 +193,6 @@ function content_63fc7c88ebf325_94722281 (Smarty_Internal_Template $_smarty_tpl)
 <!--AJAX-->
 <?php echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-<?php echo '</script'; ?>
->
-
-<?php echo '<script'; ?>
->
-    $("form[name='formAuthentificationModal']").submit(function (e) {
-        e.preventDefault(); //empêcher une action par défaut
-
-        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
-        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
-        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-
-        $.ajax({
-            url: form_url,
-            type: form_method,
-            data: form_data,
-            dataType: 'JSON'
-        }).done(function (response) {
-            console.log(response);
-        });
-    });
-    })
-    ;
 <?php echo '</script'; ?>
 >
 

@@ -1,6 +1,6 @@
 <?php
 
-class UtilisateurVue
+class ChercheurVue
 {
 
     private $parametres = array();
@@ -22,7 +22,7 @@ class UtilisateurVue
         $this->tpl->assign('listeSexes', $listeSexes);
         $this->tpl->assign('mail', $mail);
 
-        $this->tpl->display('mod_utilisateur/vue/accueilChercheur.tpl');
+        $this->tpl->display('mod_chercheur/vue/accueilChercheur.tpl');
 
     }
 

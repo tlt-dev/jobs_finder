@@ -1,6 +1,6 @@
 <?php
 
-class UtilisateurModele extends Modele
+class ChercheurModele extends Modele
 {
 
     private $parametres = array();
@@ -12,7 +12,7 @@ class UtilisateurModele extends Modele
 
     }
 
-    public function getUtilisateur()
+    public function getChercheur()
     {
 
         $sql = "SELECT * FROM T_Chercheur_Emploi WHERE che_id = ?";
@@ -21,7 +21,7 @@ class UtilisateurModele extends Modele
             $this->parametres['che_id']
         ));
 
-        return new UtilisateurObjet($resultat->fetch(PDO::FETCH_ASSOC));
+        return new ChercheurObjet($resultat->fetch(PDO::FETCH_ASSOC));
 
     }
 
@@ -34,8 +34,8 @@ class UtilisateurModele extends Modele
         {
 
             $sql = "SELECT * FROM T_Chercheur_Emploi as che" .
-                " INNER JOIN T_Competence_Chercheur_Emploi AS cce ON cce.cce_id = ?" .
-                " WHERE che.che_id = cce._che_id";
+                " INNER JOIN T_Competence_Chercheur_Emploi AS cce ON cce.cce_competence = ?" .
+                " WHERE che.che_id = cce.chercheur_emploi";
 
             $resultat = $this->executeRequete($sql, array(
                 $competence["cce_id"]
@@ -44,13 +44,24 @@ class UtilisateurModele extends Modele
             foreach($resultat->fetchAll(PDO::FETCH_ASSOC) as $chercheurEmploi)
             {
 
-                array_push($listeChercheursEmploi, new UtilisateurObjet($chercheurEmploi));
+                array_push($listeChercheursEmploi, new ChercheurObjet($chercheurEmploi));
 
             }
 
         }
 
         return $listeChercheursEmploi;
+
+    }
+
+    public function getListeChercheursEmploi()
+    {
+
+        $sql = "SELECT * FROM " . P . "T_Chercheur_Emploi";
+
+        $resultat = $this->executeRequete($sql);
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
 
     }
 

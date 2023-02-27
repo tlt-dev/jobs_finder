@@ -1,16 +1,16 @@
 <?php
 
-class Utilisateur
+class Chercheur
 {
 
     private $parametres = array();
-    private $utilisateurControleur;
+    private $chercheurControleur;
 
     public function __construct($parametres)
     {
 
         $this->parametres = $parametres;
-        $this->utilisateurControleur = new UtilisateurControleur($this->parametres);
+        $this->chercheurControleur = new ChercheurControleur($this->parametres);
 
     }
 

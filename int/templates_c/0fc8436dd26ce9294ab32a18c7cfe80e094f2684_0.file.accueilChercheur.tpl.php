@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 4.2.1, created on 2023-02-27 09:48:44
-  from '/Applications/MAMP/htdocs/jobs_finder/int/mod_utilisateur/vue/accueilChercheur.tpl' */
+  from '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/accueilChercheur.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
@@ -11,7 +11,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     '0fc8436dd26ce9294ab32a18c7cfe80e094f2684' => 
     array (
-      0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_utilisateur/vue/accueilChercheur.tpl',
+      0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/accueilChercheur.tpl',
       1 => 1677485052,
       2 => 'file',
     ),
