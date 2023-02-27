@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="jobs-finder@jobs-finder.czfyzb4tdpnz.us-east-1.rds.amazonaws.com" uuid="abf70602-8b59-4bb2-8f6c-5ef072a44483">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://jobs-finder.czfyzb4tdpnz.us-east-1.rds.amazonaws.com:3306/jobs-finder</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

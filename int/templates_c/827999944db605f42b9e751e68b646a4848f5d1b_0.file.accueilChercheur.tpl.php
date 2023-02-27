@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2023-02-06 08:58:13
+/* Smarty version 3.1.29, created on 2023-02-06 13:03:23
   from "/Applications/MAMP/htdocs/jobs_finder/int/mod_utilisateur/vue/accueilChercheur.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_63e0c125f16132_75364959',
+  'unifunc' => 'content_63e0fa9beb3124_87210929',
   'file_dependency' => 
   array (
     '827999944db605f42b9e751e68b646a4848f5d1b' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_utilisateur/vue/accueilChercheur.tpl',
-      1 => 1675673808,
+      1 => 1675676746,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_63e0c125f16132_75364959 ($_smarty_tpl) {
+function content_63e0fa9beb3124_87210929 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +34,9 @@ function content_63e0c125f16132_75364959 ($_smarty_tpl) {
 </head>
 <body>
 
-<h1>UTILISATEUR</h1>
+<h1>Espace Chercheur d'emploi</h1>
+
+
 
 
 </body>

@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2023-02-06 08:35:17
-  from "/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl" */
+/* Smarty version 3.1.29, created on 2023-02-06 10:53:00
+  from "C:\wamp64\www\jobs_finder\int\mod_offre\vue\formOffre.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_63e0bbc5209c29_70380626',
+  'unifunc' => 'content_63e0dc0c3a4ab9_94424134',
   'file_dependency' => 
   array (
-    '06717f8ba803471256418fc2bdc0ff8e0dfcd940' => 
+    '9c22e01b68ec6c335c068b58dd2585aa57fcb95e' => 
     array (
-      0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl',
-      1 => 1675672512,
+      0 => 'C:\\wamp64\\www\\jobs_finder\\int\\mod_offre\\vue\\formOffre.tpl',
+      1 => 1675680045,
       2 => 'file',
     ),
   ),
@@ -19,13 +19,14 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_63e0bbc5209c29_70380626 ($_smarty_tpl) {
+function content_63e0dc0c3a4ab9_94424134 ($_smarty_tpl) {
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Accueil</title>
+    <title>Offre d'emploi</title>
 
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -34,7 +35,7 @@ function content_63e0bbc5209c29_70380626 ($_smarty_tpl) {
 </head>
 <body>
 
-<h1>Accueil</h1>
+<h1>Offre d'emploi</h1>
 
 
 </body>

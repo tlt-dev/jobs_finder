@@ -23,7 +23,12 @@ class Authentification
             switch($this->parametres['action'])
             {
 
-
+                case 'verifier_utilisateur':
+                    $this->authentificationControleur->verifierUtilisateur();
+                    break;
+                case 'inscription':
+                    $this->authentificationControleur->inscription();
+                    break;
 
             }
 
