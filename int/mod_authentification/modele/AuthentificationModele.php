@@ -15,26 +15,34 @@ class AuthentificationModele extends Modele
     public function checkUser($email, $mdp)
     {
 
-        $sql = 'SELECT * FROM T_User WHERE usr_email = ? AND usr_mot_de_passe = ?';
+        $sql = 'SELECT * FROM T_User WHERE usr_email = ?';
 
         $resultat = $this->executeRequete($sql, array(
-            $email,
-            $mdp
+            $email
         ));
 
-        $user = new UserObjet($resultat->fetch(PDO::FETCH_ASSOC));
+        $user = $resultat->fetch(PDO::FETCH_ASSOC);
 
-        if($user->getUsr_id() != NULL)
+        if(password_verify($mdp, $user['usr_mot_de_passe']))
         {
-            return new UserObjet($resultat->fetch(PDO::FETCH_ASSOC));
+
+            return $user;
+
         }
+        else
+        {
 
-        return false;
+            return false;
 
+        }
+        
     }
 
     public function createUser(UserObjet $user)
     {
+        $_SESSION['mdp'] = $user->getUsr_mot_de_passe();
+        //Hashage du mot de passe
+        $user->setUsr_mot_de_passe(password_hash($user->getUsr_mot_de_passe(), PASSWORD_DEFAULT));
 
         $sql = "INSERT INTO T_User (usr_email, usr_mot_de_passe, usr_est_chercheur_emploi) VALUES(?,?,?)";
 
@@ -63,6 +71,12 @@ class AuthentificationModele extends Modele
             $usr_id
         ));
 
+        $sql = "SELECT LAST_INSERT_ID()";
+
+        $resultat = $this->executeRequete($sql);
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['LAST_INSERT_ID()'];
+
     }
 
     public function createEntreprise($usr_id)
@@ -74,6 +88,38 @@ class AuthentificationModele extends Modele
             $this->parametres['ent_nom'],
             $usr_id
         ));
+
+        $sql = "SELECT LAST_INSERT_ID()";
+
+        $resultat = $this->executeRequete($sql);
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['LAST_INSERT_ID()'];
+
+    }
+
+    public function getIdChercheurEmploi($user_id)
+    {
+
+        $sql = "SELECT che_id FROM T_Chercheur_Emploi WHERE che_user = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $user_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['che_id'];
+
+    }
+
+    public function getIdEntreprise($ent_id)
+    {
+
+        $sql = 'SELECT ent_id FROM T_entreprise WHERE ent_id = ?';
+
+        $resultat = $this->executeRequete($sql , array(
+            $ent_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['ent_id'];
 
     }
 

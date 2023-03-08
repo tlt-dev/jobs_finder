@@ -26,12 +26,60 @@ class AuthentificationControleur
     public function verifierUtilisateur()
     {
 
+        $email = $this->parametres['usr_email'];
+        $mdp = $this->parametres['usr_mot_de_passe'];
+
+        if($user = $this->authentificationModele->checkUser($email,$mdp)){
+
+            $_SESSION["login"] = $user['usr_email'];
+
+            if($user['usr_est_chercheur_emploi'])
+            {
+                $_SESSION["type_user"] = "chercheur";
+
+                echo(json_encode(array(
+                    "gestion"=>"chercheur",
+                    "action"=>"generer_dashboard",
+                    "user_login"=>$user['usr_email'],
+                    "message"=>""
+                )));
+
+            }
+            else
+            {
+                $_SESSION["type_user"] = 'entreprise';
+
+                echo(json_encode(array(
+                    "gestion"=>"entreprise",
+                    "action"=>"generer_dashboard",
+                    "user_login"=>$user['usr_email'],
+                    "message"=>""
+                )));
+
+            }
+
+        }else{
+            echo(json_encode(array(
+                "usr_email"=>$email,
+                "usr_mot_de_passe"=>password_hash($mdp,PASSWORD_DEFAULT),
+                "message"=>"Email ou Mot de passe invalide !"
+            )));
+        }
+
+
+
+    }
+
+    /*public function verifierUtilisateur()
+    {
+
         //$user = new UserObjet($this->parametres);
 
         //var_dump($user);
-
         $email = $this->parametres['usr_email'];
         $mdp = $this->parametres['usr_mot_de_passe'];
+
+        var_dump($email);
 
         if($user = $this->authentificationModele->checkUser($email, $mdp))
         {
@@ -63,10 +111,14 @@ class AuthentificationControleur
             }
 
         }else{
-            echo "mauvais mot de passe";
+            echo(json_encode(array(
+                "message"=>"Le login ou le mot de passe est incorrect !",
+                "email"=>$email,
+                "mdp"=>$mdp
+            )));
         }
 
-    }
+    }*/
 
     public function inscription()
     {
@@ -78,29 +130,39 @@ class AuthentificationControleur
         if($user->getUsr_est_chercheur_emploi())
         {
 
-            $this->authentificationModele->createChercheurEmploi($user->getUsr_id());
+            $che_id = $this->authentificationModele->createChercheurEmploi($user->getUsr_id());
 
             $new_parametres = array();
-            $new_parametres['ent_id'] = $user->getUsr_id();
+            $new_parametres['che_id'] = $che_id;
 
-            $utilisateurControleur = new UtilisateurControleur($new_parametres);
+            $chercheurControleur = new ChercheurControleur($new_parametres);
 
-            $utilisateurControleur->genererDashboard();
+            $chercheurControleur->genererDashboard();
 
         }
         else
         {
 
-            $this->authentificationModele->createEntreprise($user->getUsr_id());
+            $ent_id = $this->authentificationModele->createEntreprise($user->getUsr_id());
 
             $new_parametres = array();
-            $new_parametres['ent_id'] = $user->getUsr_id();
+            $new_parametres['ent_id'] = $ent_id;
 
             $entrepriseControleur = new EntrepriseControleur($new_parametres);
 
             $entrepriseControleur->genererDashboard();
 
         }
+
+    }
+
+    public function deconnexion()
+    {
+
+        session_destroy();
+
+        $visiteurModele = new VisiteurControleur(NULL);
+        $visiteurModele->genererAccueil();
 
     }
 
