@@ -43,6 +43,9 @@ class Entreprise
                     case 'consulter_profil':
                         $this->entrepriseControleur->consulterProfil();
                         break;
+                    case 'generer_liste_offre':
+                        $this->entrepriseControleur->genererListeOffre();
+                        break;
 
 
                 }

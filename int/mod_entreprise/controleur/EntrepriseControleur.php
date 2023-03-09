@@ -6,14 +6,16 @@ class EntrepriseControleur
     private $parametres = array();
     private $entrepriseModele;
     private $entrepriseVue;
+    private $offreControleur;
+    private $offreModele;
 
     public function __construct($parametres)
     {
-
         $this->parametres = $parametres;
         $this->entrepriseModele = new EntrepriseModele($this->parametres);
         $this->entrepriseVue = new EntrepriseVue($this->parametres);
-
+        $this->offreControleur = new OffreControleur($this->parametres);
+        $this->offreModele = new OffreModele($this->parametres);
     }
 
 
@@ -114,6 +116,14 @@ class EntrepriseControleur
 
         $this->genererListe();
 
+    }
+
+    public function genererListeOffre(){
+        $listeOffres = $this->offreModele->getListeOffres($_SESSION["login"]);
+        $listeVilles = $this->offreModele->getAllVille();
+        $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+
+        $this->entrepriseVue->afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite);
     }
 
 }

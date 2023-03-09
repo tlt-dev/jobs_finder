@@ -48,6 +48,11 @@
                         </li>
                     </ul>
                 {/if}
+                {if $entrepriseConnected}
+                    <li class="nav-item pe-4">
+                        <a class="nav-link active" aria-current="page" href="index.php?gestion=entreprise&action=generer_liste_offre">Offres</a>
+                    </li>
+                {/if}
                 {if $chercheurConnected || $entrepriseConnected}
                     <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
                         data-bs-target="#modalDeconnexion">Déconnexion</button>
@@ -317,8 +322,8 @@
                     row.append($('<td>').text(offre.sea_libelle));
                     row.append($('<td>').text(offre.off_date_prise_poste));
                     row.append($('<td>').text(offre.tco_libelle));
-				    $('#tableOffre > tbody').append(row);
-			});
+                    $('#tableOffre > tbody').append(row);
+                });
             }
         });
     });

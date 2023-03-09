@@ -12,40 +12,48 @@ class OffreModele extends Modele
 
     }
 
-    public function getListeOffres()
+    public function getListeOffres($login = null)
     {
 
         $sql = "SELECT * FROM t_offre";
+        if (!is_null($login)) {
+            $sql .= "JOIN t_entreprise ON t_entreprise.ent_id=t_offre.off_entreprise
+            JOIN t_user ON t_user.user_id=t_entreprise.ent_user
+            WHERE usr_email=$login";
+        }
 
         $resultat = $this->executeRequete($sql);
 
         $listeOffres = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach($listeOffres as $offre){
+        foreach ($listeOffres as $offre) {
             $listeOffresObjet[] = new OffreObjet($offre);
         }
-        
+
         return $listeOffresObjet;
     }
 
-    public function getOffreFromId($id){
+    public function getOffreFromId($id)
+    {
 
         $sql = "SELECT * FROM t_offre where off_id = ?";
 
         $resultat = $this->executeRequete($sql, array(
             $id
-        ));
+        )
+        );
 
         return new OffreObjet($resultat->fetch(PDO::FETCH_ASSOC));
     }
 
-    public function getAllVille(){
+    public function getAllVille()
+    {
 
         $sql = "SELECT * FROM t_ville";
 
         $resultat = $this->executeRequete($sql)->fetchAll();
 
-        foreach($resultat as $ville){
+        foreach ($resultat as $ville) {
             $listeVilles[$ville['vil_id']] = array(
                 'vil_nom' => $ville['vil_nom'],
                 'vil_code_postal' => $ville['vil_code_postal']
@@ -55,26 +63,28 @@ class OffreModele extends Modele
         return $listeVilles;
     }
 
-    public function getAllTypeContrat(){
+    public function getAllTypeContrat()
+    {
 
         $sql = "SELECT * FROM t_type_contrat";
 
         $resultat = $this->executeRequete($sql)->fetchAll();
 
-        foreach($resultat as $typeContrat){
+        foreach ($resultat as $typeContrat) {
             $listeTypeContrat[$typeContrat['tco_id']] = $typeContrat['tco_libelle'];
         }
 
         return $listeTypeContrat;
     }
 
-    public function getAllSecteurActivite(){
+    public function getAllSecteurActivite()
+    {
 
         $sql = "SELECT * FROM t_secteur_activite";
 
         $resultat = $this->executeRequete($sql)->fetchAll();
 
-        foreach($resultat as $secteurActivite){
+        foreach ($resultat as $secteurActivite) {
             $listeSecteurActivite[$secteurActivite['sea_id']] = $secteurActivite['sea_libelle'];
         }
 
@@ -82,20 +92,22 @@ class OffreModele extends Modele
 
     }
 
-    public function getAllSalaire(){
+    public function getAllSalaire()
+    {
 
         $sql = "SELECT * FROM t_salaire";
 
         $resultat = $this->executeRequete($sql)->fetchAll();
 
-        foreach($resultat as $salaire){
+        foreach ($resultat as $salaire) {
             $listeSalaire[$salaire['sal_id']] = $salaire['sal_libelle'];
         }
 
         return $listeSalaire;
     }
 
-    public function modifierOffre($offre){
+    public function modifierOffre($offre)
+    {
 
         $sql = "UPDATE t_offre SET off_intitule = ?,
             off_secteur_activite = ?,
@@ -107,18 +119,22 @@ class OffreModele extends Modele
             off_type_contrat = ?
             WHERE off_id = ?";
 
-        $this->executeRequete($sql, array($offre->getOff_intitule(),
-        $offre->getOff_secteur_activite(),
-        $offre->getOff_ville(),
-        $offre->getOff_date_prise_poste(),
-        $offre->getOff_salaire(),
-        $offre->getOff_duree(),
-        $offre->getOff_descriptif(),
-        $offre->getOff_type_contrat(),
-        $offre->getOff_id()));
+        $this->executeRequete($sql, array(
+            $offre->getOff_intitule(),
+            $offre->getOff_secteur_activite(),
+            $offre->getOff_ville(),
+            $offre->getOff_date_prise_poste(),
+            $offre->getOff_salaire(),
+            $offre->getOff_duree(),
+            $offre->getOff_descriptif(),
+            $offre->getOff_type_contrat(),
+            $offre->getOff_id()
+        )
+        );
     }
 
-    public function creerOffre($offre){
+    public function creerOffre($offre)
+    {
 
         $sql = "INSERT INTO t_offre (
             off_intitule,
@@ -132,22 +148,26 @@ class OffreModele extends Modele
         ) VALUES (?,?,?,?,?,?,?,?)
         ";
 
-        $this->executeRequete($sql, array($offre->getOff_intitule(),
-        $offre->getOff_secteur_activite(),
-        $offre->getOff_ville(),
-        $offre->getOff_date_prise_poste(),
-        $offre->getOff_salaire(),
-        $offre->getOff_duree(),
-        $offre->getOff_descriptif(),
-        $offre->getOff_type_contrat()));
+        $this->executeRequete($sql, array(
+            $offre->getOff_intitule(),
+            $offre->getOff_secteur_activite(),
+            $offre->getOff_ville(),
+            $offre->getOff_date_prise_poste(),
+            $offre->getOff_salaire(),
+            $offre->getOff_duree(),
+            $offre->getOff_descriptif(),
+            $offre->getOff_type_contrat()
+        )
+        );
     }
 
-    public function supprimerOffre($id){
+    public function supprimerOffre($id)
+    {
 
         $sql = "DELETE FROM t_offre 
         where off_id = ?";
 
-        $this->executeRequete($sql,array($id));
+        $this->executeRequete($sql, array($id));
     }
 
 }
