@@ -16,6 +16,24 @@ class VisiteurVue
 
     public function afficherAccueil()
     {
+        if(isset($_SESSION['type_user']))
+        {
+            if($_SESSION['type_user'] == 'chercheur')
+            {
+                $this->tpl->assign("chercheurConnected", 1);
+                $this->tpl->assign('entrepriseConnected', 0);
+            }
+            else
+            {
+                $this->tpl->assign("chercheurConnected", 0);
+                $this->tpl->assign('entrepriseConnected', 1);
+            }
+        }
+        else
+        {
+            $this->tpl->assign('chercheurConnected', 0);
+            $this->tpl->assign('entrepriseConnected', 0);
+        }
 
         $this->tpl->display('mod_visiteur/vue/accueil.tpl');
 

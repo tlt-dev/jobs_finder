@@ -57,8 +57,26 @@ class Entreprise
 
             } else {
 
-                //Action par défaut
-                $this->entrepriseControleur->genererDashboard();
+
+                if(!isset($this->parametres["ent_id"]))
+                {
+
+                    $entrepriseModele = new EntrepriseModele(NULL);
+                    $ent_id = $entrepriseModele->getEntId($_SESSION["login"]);
+
+                    $this->parametres["ent_id"] = $ent_id;
+                    $entrepriseControleur = new EntrepriseControleur($this->parametres);
+
+                    $entrepriseControleur->genererDashboard();
+
+                }
+                else
+                {
+
+                    $this->entrepriseControleur->genererDashboard();
+
+                }
+
 
             }
 

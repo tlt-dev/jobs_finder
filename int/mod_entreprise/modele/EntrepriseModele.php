@@ -65,6 +65,7 @@ class EntrepriseModele extends Modele
 
     }
 
+<<<<<<< HEAD
     public function getOffreByEntrepriseId() 
     { 
         $sql = 'SELECT off_id, off_intitule FROM `t_offre` where off_entreprise = ?';
@@ -76,6 +77,18 @@ class EntrepriseModele extends Modele
         $listeOffres = $resultat->fetchAll(PDO::FETCH_ASSOC);
         return $listeOffres;
 
+=======
+    public function getEntId($login)
+    {
+
+        $sql = "SELECT ent_id FROM T_Entreprise INNER JOIN T_User ON usr_email = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $login
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)["ent_id"];
+>>>>>>> fb722be152b28ad1e689a4ea9e2de5306fe7f480
 
     }
 

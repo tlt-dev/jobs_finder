@@ -18,20 +18,34 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            {if $chercheurConnected}
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-4">
+                        <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                    </li>
+                </ul>
+            {/if}
+            {if $chercheurConnected || $entrepriseConnected}
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+                        data-bs-target="#modalDeconnexion">Déconnexion</button>
+            {else}
+                <button class="btn btn-outline-light" data-bs-toggle="modal" id="btnLogin"
+                        data-bs-target="#modalAuthentification" value="Login">Login</button>
+            {/if}
 
-                <button class="btn btn-outline-light" data-bs-toggle="modal"
-                       data-bs-target="#modalAuthentification" value="Login">Login</button>
 
         </div>
     </div>
-
-    <form method="post" action="index.php">
-        <input type="hidden" name="gestion" value="entreprise">
-
-        <input type="text" name="ent_id" value="">
-        <input type="submit" class="btn btn-danger" value="Entreprise">
-    </form>
 </nav>
 
 <div class="row">
@@ -154,6 +168,8 @@
 </div>
 
 {include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+{include file="../../mod_authentification/vue/modalInscription.tpl"}
+{include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 
 </body>
 
@@ -168,21 +184,62 @@
 </script>
 
 <script>
-    $("form[name='formAuthentificationModal']").submit(function (e) {
-        e.preventDefault(); //empêcher une action par défaut
+    $("form[name='formAuthentification']").submit(function(e){
+        e.preventDefault();
 
         var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
         var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
 
+
         $.ajax({
             url: form_url,
             type: form_method,
-            data: form_data,
+            data:form_data,
             dataType: 'JSON'
-        }).done(function (response) {
+        }).done(function(response) {
             console.log(response);
+
+            if(response.message != '')
+                {
+
+                    $("#messageContent").text(response.message);
+                    $("#message").removeClass("d-none");
+
+                }
+            else if(response.gestion == 'entreprise')
+                {
+                    window.location.replace("index.php?gestion=" + response.gestion);
+                }
+            else
+                {
+                    window.location.replace("index.php?gestion=visiteur");
+                }
         });
+
+    });
+</script>
+
+<script>
+    $("input[name='usr_est_chercheur_emploi']").on('click', function(e){
+        if($("#type_1").is(":checked"))
+        {
+            $("#ent_nom").addClass("d-none");
+            $("#label_ent_nom").addClass("d-none");
+            $("#che_prenom").removeClass("d-none");
+            $("#label_prenom").removeClass("d-none");
+            $("#che_nom").removeClass("d-none");
+            $("#label_che_nom").removeClass("d-none");
+        }
+        else
+        {
+            $("#che_prenom").addClass("d-none");
+            $("#label_prenom").addClass("d-none");
+            $("#che_nom").addClass("d-none");
+            $("#label_che_nom").addClass("d-none");
+            $("#ent_nom").removeClass("d-none");
+            $("#label_ent_nom").removeClass("d-none");
+        }
     });
 </script>
 
