@@ -22,42 +22,44 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            {if $chercheurConnected}
-                <ul class="navbar-nav">
-                    <li class="nav-item pe-4">
-                        <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
-                    </li>
-                    <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
-                    </li>
-                </ul>
-            {/if}
-            {if $chercheurConnected || $entrepriseConnected}
-                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                {if $chercheurConnected}
+                    <ul class="navbar-nav">
+                        <li class="nav-item pe-4">
+                            <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de
+                                bord</a>
+                        </li>
+                        <li class="nav-item px-4">
+                            <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                        </li>
+                    </ul>
+                {/if}
+                {if $chercheurConnected || $entrepriseConnected}
+                    <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
                         data-bs-target="#modalDeconnexion">Déconnexion</button>
-            {else}
-                <button class="btn btn-outline-light" data-bs-toggle="modal" id="btnLogin"
+                {else}
+                    <button class="btn btn-outline-light" data-bs-toggle="modal" id="btnLogin"
                         data-bs-target="#modalAuthentification" value="Login">Login</button>
-            {/if}
+                {/if}
 
 
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <div class="row">
         <div class="col-2">
@@ -132,8 +134,8 @@
                             <input type="hidden" name="action" value="recherche_poste">
 
                             <label for="poste_recherche">Poste recherché</label>
-                            <select class="form-select" name="off_poste" id="multiple-select-field" data-placeholder="Choose anything"
-                                multiple>
+                            <select class="form-select" name="off_poste" id="multiple-select-field"
+                                data-placeholder="Choose anything" multiple>
                                 {foreach $listePoste as $poste}
                                     <option value="{$poste['pos_id']}">{$poste['pos_libelle']}
                                     </option>
@@ -184,13 +186,23 @@
                     </button>
                 </div>
             </div>
-
+            <table class="table" id="tableOffre" style="display:none">
+                <thead>
+                    <th>ID</th>
+                    <th>Intitulé</th>
+                    <th>Ville</th>
+                    <th>Secteur</th>
+                    <th>Date début</th>
+                    <th>Type Contrat</th>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
 
-{include file="../../mod_authentification/vue/modalAuthentification.tpl"}
-{include file="../../mod_authentification/vue/modalInscription.tpl"}
-{include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
+    {include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+    {include file="../../mod_authentification/vue/modalInscription.tpl"}
+    {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 
 </body>
 
@@ -201,9 +213,13 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<!--Bootstrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
 
 <script>
-    $("form[name='formAuthentification']").submit(function(e){
+    $("form[name='formAuthentification']").submit(function(e) {
         e.preventDefault();
 
         var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
@@ -214,44 +230,36 @@
         $.ajax({
             url: form_url,
             type: form_method,
-            data:form_data,
+            data: form_data,
             dataType: 'JSON'
         }).done(function(response) {
             console.log(response);
 
-            if(response.message != '')
-                {
+            if (response.message != '') {
 
-                    $("#messageContent").text(response.message);
-                    $("#message").removeClass("d-none");
+                $("#messageContent").text(response.message);
+                $("#message").removeClass("d-none");
 
-                }
-            else if(response.gestion == 'entreprise')
-                {
-                    window.location.replace("index.php?gestion=" + response.gestion);
-                }
-            else
-                {
-                    window.location.replace("index.php?gestion=visiteur");
-                }
+            } else if (response.gestion == 'entreprise') {
+                window.location.replace("index.php?gestion=" + response.gestion);
+            } else {
+                window.location.replace("index.php?gestion=visiteur");
+            }
         });
 
     });
 </script>
 
 <script>
-    $("input[name='usr_est_chercheur_emploi']").on('click', function(e){
-        if($("#type_1").is(":checked"))
-        {
+    $("input[name='usr_est_chercheur_emploi']").on('click', function(e) {
+        if ($("#type_1").is(":checked")) {
             $("#ent_nom").addClass("d-none");
             $("#label_ent_nom").addClass("d-none");
             $("#che_prenom").removeClass("d-none");
             $("#label_prenom").removeClass("d-none");
             $("#che_nom").removeClass("d-none");
             $("#label_che_nom").removeClass("d-none");
-        }
-        else
-        {
+        } else {
             $("#che_prenom").addClass("d-none");
             $("#label_prenom").addClass("d-none");
             $("#che_nom").addClass("d-none");
@@ -276,15 +284,42 @@
         e.preventDefault(); //empêcher une action par défaut
         var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
-        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-        console.log(form_data);
+        // Récupérer toutes les valeurs sélectionnées dans le champ de formulaire multiple
+        var off_poste = $('select[name="off_poste"]').val();
+
+        // Sérialiser les champs de formulaire en une chaîne de requête
+        var form_data = $(this).serialize();
+
+        // Ajouter les valeurs sélectionnées dans la chaîne de requête
+        $.each(off_poste, function(index, value) {
+            form_data += '&off_poste[]=' + encodeURIComponent(value);
+        });
+
         $.ajax({
             url: form_url,
             type: form_method,
             data: form_data,
             dataType: 'JSON'
         }).done(function(response) {
-            console.log("test");
+            console.log(response);
+            if (response.length === 0) {
+                $("#carouselExampleControls").hide();
+                $("#tableOffre").hide();
+            } else {
+                $("#carouselExampleControls").hide();
+                $("#tableOffre").show();
+                $('#tableOffre tbody > tr').remove();
+                $.each(response, function(index, offre) {
+                    var row = $('<tr>');
+                    row.append($('<td>').text(offre.off_id));
+                    row.append($('<td>').text(offre.off_intitule));
+                    row.append($('<td>').text(offre.vil_nom));
+                    row.append($('<td>').text(offre.sea_libelle));
+                    row.append($('<td>').text(offre.off_date_prise_poste));
+                    row.append($('<td>').text(offre.tco_libelle));
+				    $('#tableOffre > tbody').append(row);
+			});
+            }
         });
     });
 </script>

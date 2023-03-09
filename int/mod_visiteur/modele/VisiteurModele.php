@@ -32,13 +32,15 @@ class VisiteurModele extends Modele
         
         $sql = "SELECT * from t_offre toff
         JOIN t_poste tp ON toff.off_poste=tp.pos_id
-        JOIN t_ville tv ON toff.off_ville=tv.vil_id";
+        JOIN t_ville tv ON toff.off_ville=tv.vil_id
+        JOIN t_secteur_activite sa ON toff.off_secteur_activite=sa.sea_id
+        JOIN t_type_contrat tc ON toff.off_type_contrat=tc.tco_id";
 
         if (!empty($off_poste)){
             if (is_array($off_poste)){
                 $sql .= " WHERE ";
                 foreach($off_poste as $offre){
-                    $sql .= " off_poste=$offre AND";
+                    $sql .= " off_poste=$offre OR";
                 }
                 $sql = substr($sql, 0, -3);
             }else{

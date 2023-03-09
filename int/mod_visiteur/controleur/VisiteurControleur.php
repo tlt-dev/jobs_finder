@@ -26,9 +26,9 @@ class VisiteurControleur
     }
 
     public function rechercheOffre(){
-        print_r($this->parametres);
+
         $listeOffre = $this->visiteurModele->rechercheOffre($this->parametres["off_poste"]);
 
-        echo json_encode($listeOffre);
+        echo(json_encode($listeOffre));
     }
 }
