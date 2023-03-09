@@ -198,6 +198,9 @@
 <!--AJAX-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
 <script>
     $("form[name='formAuthentification']").submit(function(e){
@@ -256,6 +259,33 @@
             $("#ent_nom").removeClass("d-none");
             $("#label_ent_nom").removeClass("d-none");
         }
+    });
+</script>
+
+<script>
+    $('#multiple-select-field').select2({
+        theme: "bootstrap-5",
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        closeOnSelect: false,
+    });
+</script>
+
+<script>
+    $("form[name='rechercheOffre']").submit(function(e) {
+        e.preventDefault(); //empêcher une action par défaut
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+        console.log(form_data);
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function(response) {
+            console.log("test");
+        });
     });
 </script>
 
