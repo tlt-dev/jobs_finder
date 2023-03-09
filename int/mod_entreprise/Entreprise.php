@@ -43,9 +43,17 @@ class Entreprise
                     case 'consulter_profil':
                         $this->entrepriseControleur->consulterProfil();
                         break;
+                    case 'recherche_chercheur_emploi':
+                        $this->entrepriseControleur->rechercheChercheurEmploi();
+                        break;
+                    case 'consulter_suivi':
+                        $this->entrepriseControleur->genererSuivi();
+                        break;
 
 
                 }
+
+                
 
             } else {
 

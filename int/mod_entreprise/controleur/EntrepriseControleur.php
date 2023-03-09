@@ -20,8 +20,13 @@ class EntrepriseControleur
     public function genererDashboard()
     {
         $entreprise = $this->entrepriseModele->getEntreprise();
+
         $listeChercheurEmploi = $this->entrepriseModele->getListeChercheureEmploi();
+
         $listeCompetence = $this->entrepriseModele->getListeCompetence();
+
+        $utilisateurModel = new UtilisateurModele($this->parametres);
+
 
         $this->entrepriseVue->afficherDashboard($entreprise, $listeChercheurEmploi, $listeCompetence);
 
@@ -44,6 +49,14 @@ class EntrepriseControleur
 
     }
 
+    public function genererSuivi()  
+    {
+        $listeOffres = $this->entrepriseModele->getOffreByEntrepriseId();
+
+        $this->entrepriseVue->afficherSuivi($listeOffres);
+
+    }
+
     public function genererListe()
     {
 
@@ -53,40 +66,18 @@ class EntrepriseControleur
 
     }
 
-    public function genererFicheEntreprise()
+
+    public function rechercheChercheurEmploi()
     {
 
-        $entreprise = $this->entrepriseModele->getEntreprise();
+        $chercheurEmploiModel = new UtilisateurModele($this->parametres);
 
-        $this->entrepriseVue->afficherFicheEntreprise($entreprise);
-
-    }
-
-
-    public function formModifierEntreprise()
-    {
-
-        $entreprise = $this->entrepriseModele->getEntreprise();
-
-        $this->entrepriseVue->afficherFicheEntreprise($entreprise);
-
-
-    }
-
-    /*public function formModifierEntrepriseModal()
-    {
-
-        $entreprise = $this->entrepriseModele->getEntreprise();
+        $listeChercheurEmploiFilter = $chercheurEmploiModel->getChercheursEmploiByCompetences($this->parametres['competenceMultiSelect']);
 
         echo(json_encode(array(
-            "action"=>"modifier_entreprise",
-            "titre"=>"Modifier l'entreprise",
-            "button"=>"Modifier",
-            "ent_id"=>$entreprise->getEnt_id(),
-            "ent_nom"=>$entreprise->getEnt_nom()
-        )));
+            "listeChercheurEmploiFilter"=>$listeChercheurEmploiFilter)));
 
-    }*/
+    }
 
 
     public function modifierEntreprise()
@@ -96,9 +87,18 @@ class EntrepriseControleur
         if (!$entreprise->getAutorisationBD()) {
             echo 'MARCHE PO';
         } else {
+            
+            if($_FILES['source_logo']['size'] != 0)
+            {
+                $this->entrepriseModele->addDocument($entreprise->getEnt_id());
+            }
+                
             $this->entrepriseModele->editEntreprise($entreprise);
             EntrepriseObjet::setMessageSucces("Entreprise modifiée avec succès !");
             $this->genererDashboard();
+
+
+
         }
 
     }

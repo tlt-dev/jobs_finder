@@ -12,6 +12,25 @@ class EntrepriseModele extends Modele
 
     }
 
+    public function addDocument($ent_id)
+    {
+
+        //Défini le chemin d'enregistrement
+        $path = "documents/" . $ent_id;
+        //Répertoire de l'entreprise existe ?
+        if(!file_exists($path))
+        {
+
+            mkdir($path, 0777, true);
+
+        }
+        
+        $filename = $path . '/logo.png' ;
+
+        //On déplace le fichier de son emplacement temporaire à son emplacement final
+        move_uploaded_file($_FILES['source_logo']['tmp_name'], $filename);
+    }
+
 
     public function getListeEntreprises()
     {
@@ -43,6 +62,20 @@ class EntrepriseModele extends Modele
         ));
 
         return new EntrepriseObjet($resultat->fetch(PDO::FETCH_ASSOC));
+
+    }
+
+    public function getOffreByEntrepriseId() 
+    { 
+        $sql = 'SELECT off_id, off_intitule FROM `t_offre` where off_entreprise = ?';
+
+        $resultat = $this->executeRequete($sql, array( 
+            $this->parametres['ent_id']
+        ));
+
+        $listeOffres = $resultat->fetchAll(PDO::FETCH_ASSOC);
+        return $listeOffres;
+
 
     }
 

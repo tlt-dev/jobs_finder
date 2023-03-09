@@ -34,22 +34,22 @@ class UtilisateurModele extends Modele
         {
 
             $sql = "SELECT * FROM T_Chercheur_Emploi as che" .
-                " INNER JOIN T_Competence_Chercheur_Emploi AS cce ON cce.cce_id = ?" .
-                " WHERE che.che_id = cce._che_id";
+                " INNER JOIN T_Competence_Chercheur_Emploi AS cce ON cce.cce_competence = ?" .
+                " WHERE che.che_id = cce.cce_chercheur_emploi";
 
             $resultat = $this->executeRequete($sql, array(
-                $competence["cce_id"]
+                $competence
             ));
 
             foreach($resultat->fetchAll(PDO::FETCH_ASSOC) as $chercheurEmploi)
             {
 
-                array_push($listeChercheursEmploi, new UtilisateurObjet($chercheurEmploi));
-
+                //array_push($listeChercheursEmploi, new UtilisateurObjet($chercheurEmploi));
+                array_push($listeChercheursEmploi, $chercheurEmploi);
             }
+            
 
         }
-
         return $listeChercheursEmploi;
 
     }

@@ -184,8 +184,6 @@
             console.log(response);
         });
     });
-    })
-    ;
 </script>
 
 </html>

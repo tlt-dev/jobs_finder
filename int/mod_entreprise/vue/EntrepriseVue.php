@@ -44,6 +44,12 @@ class EntrepriseVue
 
     }
 
+    public function afficherSuivi($listeOffres)
+     {
+        $this->tpl->assign('listeOffres', $listeOffres);
+        $this->tpl->display('mod_entreprise/vue/suiviCandidat.tpl');
+    }
+
     public function afficherListe($listeEntreprises)
     {
 
