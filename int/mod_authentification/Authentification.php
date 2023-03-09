@@ -29,6 +29,9 @@ class Authentification
                 case 'inscription':
                     $this->authentificationControleur->inscription();
                     break;
+                case 'deconnexion':
+                    $this->authentificationControleur->deconnexion();
+                    break;
 
             }
 

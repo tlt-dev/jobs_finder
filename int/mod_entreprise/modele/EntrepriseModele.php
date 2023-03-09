@@ -46,6 +46,19 @@ class EntrepriseModele extends Modele
 
     }
 
+    public function getEntId($login)
+    {
+
+        $sql = "SELECT ent_id FROM T_Entreprise INNER JOIN T_User ON usr_email = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $login
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)["ent_id"];
+
+    }
+
     public function getListeVilles()
     {
         $sql = "SELECT * FROM t_ville";

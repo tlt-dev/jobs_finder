@@ -9,16 +9,19 @@ class ChercheurObjet
     private $che_sexe;
     private $che_date_naissance;
     private $che_telephone;
-    private $che_adresse1;
-    private $che_adresse2;
-    private $che_adresse3;
-    private $che_adresse4;
+    private $che_mail;
+    private $che_adresse;
     private $che_ville;
+    private $che_departement;
     private $che_photo;
     private $che_en_recherche;
     private $che_user;
 
-    private $autorisationSession = true;
+    private $comboVilles;
+    private $comboSexes;
+    private $comboDepartements;
+
+    private $autorisationBD = true;
     private static $messageErreur = "";
     private static $messageSucces = "";
 
@@ -27,6 +30,10 @@ class ChercheurObjet
         if($data!=NULL){
             $this->hydrater($data);
         }
+
+        $this->setComboVilles();
+        $this->setComboSexes();
+        $this->setComboDepartements();
 
     }
 
@@ -39,6 +46,13 @@ class ChercheurObjet
                 $this->$setter($v);
             }
         }
+    }
+
+    public function validation($donnees){
+        $donnees = trim($donnees);
+        $donnees = stripslashes($donnees);
+        $donnees = htmlspecialchars($donnees);
+        return $donnees;
     }
 
     public function getChe_id()
@@ -71,24 +85,14 @@ class ChercheurObjet
         return $this->che_telephone;
     }
 
-    public function getChe_adresse1()
+    public function getChe_mail()
     {
-        return $this->che_adresse1;
+        return $this->che_mail;
     }
 
-    public function getChe_adresse2()
+    public function getChe_adresse()
     {
-        return $this->che_adresse2;
-    }
-
-    public function getChe_adresse3()
-    {
-        return $this->che_adresse3;
-    }
-
-    public function getChe_adresse4()
-    {
-        return $this->che_adresse4;
+        return $this->che_adresse;
     }
 
     public function getChe_ville()
@@ -96,9 +100,9 @@ class ChercheurObjet
         return $this->che_ville;
     }
 
-    public function getChe_photo()
+    public function getChe_departement()
     {
-        return $this->che_photo;
+        return $this->che_departement;
     }
 
     public function getChe_en_recherche()
@@ -111,6 +115,21 @@ class ChercheurObjet
         return $this->che_user;
     }
 
+    public function getComboVilles()
+    {
+        return $this->comboVilles;
+    }
+
+    public function getComboSexes()
+    {
+        return $this->comboSexes;
+    }
+
+    public function getComboDepartements()
+    {
+        return $this->comboDepartements;
+    }
+
     public function setChe_id($che_id)
     {
         $this->che_id = $che_id;
@@ -118,11 +137,38 @@ class ChercheurObjet
 
     public function setChe_nom($che_nom)
     {
+        $che_nom = $this->validation($che_nom);
+
+        if(empty($che_nom)) {
+            self::setMessageErreur("Le nom doit être rempli !");
+            $this->setAutorisationBD(false);
+        }else if(strlen($che_nom) > 36){
+            self::setMessageErreur("Le nom ne doit pas dépasser 36 caractères !\n");
+            $this->setAutorisationBD(false);
+        }else if(!preg_match("/^[A-Za-z]+$/",$che_nom)){
+            self::setMessageErreur("Le nom ne doit contenir que des caractères alphabétiques et -\n");
+            $this->setAutorisationBD(false);
+        }
+
         $this->che_nom = $che_nom;
     }
 
     public function setChe_prenom($che_prenom)
     {
+
+        $che_prenom = $this->validation($che_prenom);
+
+        if(empty($che_prenom)) {
+            self::setMessageErreur("Le prénom doit être rempli !\n");
+            $this->setAutorisationBD(false);
+        }else if(strlen($che_prenom) > 32){
+            self::setMessageErreur("Le prénom ne doit pas dépasser 32 caractères !\n");
+            $this->setAutorisationBD(false);
+        }else if(!preg_match("/^[A-Za-z]+$/",$che_prenom)){
+            self::setMessageErreur("Le prénom ne doit contenir que des caractères alphabétiques et -\n");
+            $this->setAutorisationBD(false);
+        }
+
         $this->che_prenom = $che_prenom;
     }
 
@@ -133,32 +179,64 @@ class ChercheurObjet
 
     public function setChe_date_naissance($che_date_naissance)
     {
+
+        if(empty($che_date_naissance)){
+            self::setMessageErreur("La date de naissance doit être complétée !\n");
+            $this->setAutorisationBD(false);
+        }
+
         $this->che_date_naissance = $che_date_naissance;
     }
 
     public function setChe_telephone($che_telephone)
     {
+
+        $che_telephone = $this->validation($che_telephone);
+
+        if(empty($che_telephone)){
+            self::setMessageErreur("Le numéro de téléphone doit être complété");
+            $this->setAutorisationBD(false);
+        }else if(strlen($che_telephone) != 10){
+            self::setMessageErreur("Le numéro de téléphone doit faire 10 caractères\n");
+            $this->setAutorisationBD(false);
+        }else if(!ctype_digit($che_telephone)){
+            self::setMessageErreur("Le numéro de téléphone ne doit être composé que de caractères numériques\n");
+            $this->setAutorisationBD(false);
+        }
+
         $this->che_telephone = $che_telephone;
     }
 
-    public function setChe_adresse1($che_adresse1)
+    public function setChe_mail($che_mail)
     {
-        $this->che_adresse1 = $che_adresse1;
+        $che_mail = $this->validation($che_mail);
+        $che_mail = filter_var($che_mail, FILTER_SANITIZE_EMAIL);
+
+        if(empty($che_mail)){
+            self::setMessageErreur("L'adresse mail doit être complétée !");
+            $this->setAutorisationBD(false);
+        }else if (!filter_var($che_mail, FILTER_VALIDATE_EMAIL)){
+            self::setMessageErreur("Le format de l'adresse mail est invalide");
+            $this->setAutorisationBD(false);
+        }
+
+        $this->che_mail = $che_mail;
     }
 
-    public function setChe_adresse2($che_adresse2)
+    public function setChe_adresse($che_adresse)
     {
-        $this->che_adresse2 = $che_adresse2;
-    }
 
-    public function setChe_adresse3($che_adresse3)
-    {
-        $this->che_adresse3 = $che_adresse3;
-    }
+        $che_adresse = $this->validation($che_adresse);
 
-    public function setChe_adresse4($che_adresse4)
-    {
-        $this->che_adresse4 = $che_adresse4;
+        if(empty($che_adresse)){
+            self::setMessageErreur("L'adresse postale doit être complétée !");
+            $this->setAutorisationBD(false);
+        }else if(strlen($che_adresse > 38)){
+            self::setMessageErreur("L'adresse postale ne doit pas dépasser 38 caractères");
+            $this->setAutorisationBD(false);
+        }
+
+        $this->che_adresse = $che_adresse;
     }
 
     public function setChe_ville($che_ville)
@@ -166,9 +244,9 @@ class ChercheurObjet
         $this->che_ville = $che_ville;
     }
 
-    public function setChe_photo($che_photo)
+    public function setChe_departement($che_departement)
     {
-        $this->che_photo = $che_photo;
+        $this->che_departement = $che_departement;
     }
 
     public function setChe_en_recherche($che_en_recherche)
@@ -179,6 +257,24 @@ class ChercheurObjet
     public function setChe_user($che_user)
     {
         $this->che_user = $che_user;
+    }
+
+    public function setComboSexes()
+    {
+        $modele = new ChercheurModele(NULL);
+        $this->comboSexes = $modele->getListeSexes();
+    }
+
+    public function setComboVilles()
+    {
+        $modele = new ChercheurModele(NULL);
+        $this->comboVilles = $modele->getListeVilles();
+    }
+
+    public function setComboDepartements()
+    {
+        $modele = new ChercheurModele(NULL);
+        $this->comboDepartements = $modele->getListeDepartements();
     }
 
     public function getAutorisationBD()

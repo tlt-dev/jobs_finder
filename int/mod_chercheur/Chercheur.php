@@ -10,6 +10,14 @@ class Chercheur
     {
 
         $this->parametres = $parametres;
+
+        if(!isset($this->parametres['che_id'])) {
+            $chercheurModele = new ChercheurModele(NULL);
+            $che_id = $chercheurModele->getCheId($_SESSION["login"]);
+
+            $this->parametres["che_id"] = $che_id;
+        }
+
         $this->chercheurControleur = new ChercheurControleur($this->parametres);
 
     }
@@ -26,24 +34,28 @@ class Chercheur
                 switch($this->parametres['action'])
                 {
 
-                    case 'generer_dashboard':
-                        $this->utilisateurControleur->genererDashboard();
+
+                    case 'generer_profil':
+                        $this->chercheurControleur->genererProfil();
                         break;
-                    case 'form_modifier_profil':
-                        $this->utilisateurControleur->formModifierProfil();
+                    case 'generer_dashboard':
+                        $this->chercheurControleur->genererDashboard();
+                        break;
+                    case 'generer_fiche_cv':
+                        $this->chercheurControleur->genererFicheCv();
                         break;
                     case 'modifier_profil':
-                        $this->utilisateurControleur->modifierProfil();
+                        $this->chercheurControleur->modifierProfil();
+                        break;
+                    case 'upload_photo_profil':
+                        $this->chercheurControleur->uploadPhotoProfil();
+                        break;
+                    case 'update_parametres_identification':
+                        $this->chercheurControleur->updateParametresIdentification();
                         break;
 
+
                 }
-
-            }
-            else
-            {
-
-                //Action par défaut
-                $this->utilisateurControleur->genererAccueil();
 
             }
 

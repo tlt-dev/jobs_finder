@@ -1,27 +1,29 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-02-27 13:55:54
+/* Smarty version 4.2.1, created on 2023-03-08 23:01:58
   from '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_63fcb66a1babe1_62709184',
+  'unifunc' => 'content_640913e65273c7_48214729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '91ce735bb8dd1cb12f8146da355631df047bf8ef' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl',
-      1 => 1677506073,
+      1 => 1678099878,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:../../mod_authentification/vue/modalAuthentification.tpl' => 1,
+    'file:../../mod_authentification/vue/modalInscription.tpl' => 1,
+    'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_63fcb66a1babe1_62709184 (Smarty_Internal_Template $_smarty_tpl) {
+function content_640913e65273c7_48214729 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,20 +44,34 @@ function content_63fcb66a1babe1_62709184 (Smarty_Internal_Template $_smarty_tpl)
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <?php if ($_smarty_tpl->tpl_vars['chercheurConnected']->value) {?>
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-4">
+                        <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                    </li>
+                </ul>
+            <?php }?>
+            <?php if ($_smarty_tpl->tpl_vars['chercheurConnected']->value || $_smarty_tpl->tpl_vars['entrepriseConnected']->value) {?>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+                        data-bs-target="#modalDeconnexion">Déconnexion</button>
+            <?php } else { ?>
+                <button class="btn btn-outline-light" data-bs-toggle="modal" id="btnLogin"
+                        data-bs-target="#modalAuthentification" value="Login">Login</button>
+            <?php }?>
 
-                <button class="btn btn-outline-light" data-bs-toggle="modal"
-                       data-bs-target="#modalAuthentification" value="Login">Login</button>
 
         </div>
     </div>
-
-    <form method="post" action="index.php">
-        <input type="hidden" name="gestion" value="entreprise">
-
-        <input type="text" name="ent_id" value="">
-        <input type="submit" class="btn btn-danger" value="Entreprise">
-    </form>
 </nav>
 
 <div class="row">
@@ -178,6 +194,8 @@ function content_63fcb66a1babe1_62709184 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 
 <?php $_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalAuthentification.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+$_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalInscription.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+$_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalDeconnexion.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
 </body>
@@ -193,6 +211,70 @@ function content_63fcb66a1babe1_62709184 (Smarty_Internal_Template $_smarty_tpl)
 <!--AJAX-->
 <?php echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
+    $("form[name='formAuthentification']").submit(function(e){
+        e.preventDefault();
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data:form_data,
+            dataType: 'JSON'
+        }).done(function(response) {
+            console.log(response);
+
+            if(response.message != '')
+                {
+
+                    $("#messageContent").text(response.message);
+                    $("#message").removeClass("d-none");
+
+                }
+            else if(response.gestion == 'entreprise')
+                {
+                    window.location.replace("index.php?gestion=" + response.gestion);
+                }
+            else
+                {
+                    window.location.replace("index.php?gestion=visiteur");
+                }
+        });
+
+    });
+<?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
+    $("input[name='usr_est_chercheur_emploi']").on('click', function(e){
+        if($("#type_1").is(":checked"))
+        {
+            $("#ent_nom").addClass("d-none");
+            $("#label_ent_nom").addClass("d-none");
+            $("#che_prenom").removeClass("d-none");
+            $("#label_prenom").removeClass("d-none");
+            $("#che_nom").removeClass("d-none");
+            $("#label_che_nom").removeClass("d-none");
+        }
+        else
+        {
+            $("#che_prenom").addClass("d-none");
+            $("#label_prenom").addClass("d-none");
+            $("#che_nom").addClass("d-none");
+            $("#label_che_nom").addClass("d-none");
+            $("#ent_nom").removeClass("d-none");
+            $("#label_ent_nom").removeClass("d-none");
+        }
+    });
 <?php echo '</script'; ?>
 >
 

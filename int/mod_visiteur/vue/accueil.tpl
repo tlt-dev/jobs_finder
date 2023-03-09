@@ -22,29 +22,42 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            {if $chercheurConnected}
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-4">
+                        <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                    </li>
+                </ul>
+            {/if}
+            {if $chercheurConnected || $entrepriseConnected}
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+                        data-bs-target="#modalDeconnexion">Déconnexion</button>
+            {else}
+                <button class="btn btn-outline-light" data-bs-toggle="modal" id="btnLogin"
+                        data-bs-target="#modalAuthentification" value="Login">Login</button>
+            {/if}
 
-                <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#modalAuthentification"
-                    value="Login">Login</button>
 
-            </div>
         </div>
-
-        <form method="post" action="index.php">
-            <input type="hidden" name="gestion" value="entreprise">
-
-            <input type="text" name="ent_id" value="">
-            <input type="submit" class="btn btn-danger" value="Entreprise">
-        </form>
-    </nav>
+    </div>
+</nav>
 
     <div class="row">
         <div class="col-2">
@@ -175,7 +188,9 @@
         </div>
     </div>
 
-    {include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+{include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+{include file="../../mod_authentification/vue/modalInscription.tpl"}
+{include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 
 </body>
 
@@ -183,40 +198,64 @@
 <!--AJAX-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-<!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-<script>
-    $('#multiple-select-field').select2({
-        theme: "bootstrap-5",
-        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
-        placeholder: $(this).data('placeholder'),
-        closeOnSelect: false,
-    });
-</script>
 
 <script>
-    $("form[name='rechercheOffre']").submit(function(e) {
-        e.preventDefault(); //empêcher une action par défaut
+    $("form[name='formAuthentification']").submit(function(e){
+        e.preventDefault();
+
         var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
         var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
 
-        console.log(form_url);
-        console.log(form_data);
+
         $.ajax({
             url: form_url,
             type: form_method,
-            data: form_data,
+            data:form_data,
             dataType: 'JSON'
         }).done(function(response) {
             console.log(response);
+
+            if(response.message != '')
+                {
+
+                    $("#messageContent").text(response.message);
+                    $("#message").removeClass("d-none");
+
+                }
+            else if(response.gestion == 'entreprise')
+                {
+                    window.location.replace("index.php?gestion=" + response.gestion);
+                }
+            else
+                {
+                    window.location.replace("index.php?gestion=visiteur");
+                }
         });
+
+    });
+</script>
+
+<script>
+    $("input[name='usr_est_chercheur_emploi']").on('click', function(e){
+        if($("#type_1").is(":checked"))
+        {
+            $("#ent_nom").addClass("d-none");
+            $("#label_ent_nom").addClass("d-none");
+            $("#che_prenom").removeClass("d-none");
+            $("#label_prenom").removeClass("d-none");
+            $("#che_nom").removeClass("d-none");
+            $("#label_che_nom").removeClass("d-none");
+        }
+        else
+        {
+            $("#che_prenom").addClass("d-none");
+            $("#label_prenom").addClass("d-none");
+            $("#che_nom").addClass("d-none");
+            $("#label_che_nom").addClass("d-none");
+            $("#ent_nom").removeClass("d-none");
+            $("#label_ent_nom").removeClass("d-none");
+        }
     });
 </script>
 
