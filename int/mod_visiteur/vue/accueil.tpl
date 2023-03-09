@@ -207,6 +207,7 @@
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
         var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
 
+        console.log(form_url);
         console.log(form_data);
         $.ajax({
             url: form_url,
@@ -214,7 +215,7 @@
             data: form_data,
             dataType: 'JSON'
         }).done(function(response) {
-            console.log("test");
+            console.log(response);
         });
     });
 </script>
