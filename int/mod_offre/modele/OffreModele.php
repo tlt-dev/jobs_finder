@@ -17,15 +17,18 @@ class OffreModele extends Modele
 
         $sql = "SELECT * FROM t_offre";
         if (!is_null($login)) {
-            $sql .= "JOIN t_entreprise ON t_entreprise.ent_id=t_offre.off_entreprise
-            JOIN t_user ON t_user.user_id=t_entreprise.ent_user
-            WHERE usr_email=$login";
+            $sql .= " JOIN t_entreprise ON t_entreprise.ent_id=t_offre.off_entreprise
+            JOIN t_user ON t_user.usr_id=t_entreprise.ent_user
+            WHERE usr_email=?";
+            $resultat = $this->executeRequete($sql, array($login));
+        }else{
+            $resultat = $this->executeRequete($sql);
         }
-
-        $resultat = $this->executeRequete($sql);
 
         $listeOffres = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
+        $listeOffresObjet = array();
+        
         foreach ($listeOffres as $offre) {
             $listeOffresObjet[] = new OffreObjet($offre);
         }
