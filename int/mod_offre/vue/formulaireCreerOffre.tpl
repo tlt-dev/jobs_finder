@@ -113,13 +113,13 @@
                             <div class="row mb-3">
                                 <div class="col-lg-6">
                                     <label class="form-label">Type de contrat</label>
-                                    <select name="off_type_contrat" class="form-control" onchange="setDureeInput()">
+                                    <select id="typeContratSelect" name="off_type_contrat" class="form-control" onchange="setDureeInput()">
                                         {foreach $listeTypeContrat as $typeContratId => $typeContrat}
                                                 <option value="{$typeContratId}">{$typeContrat}</option>
                                         {/foreach}
                                     </select>
                                 </div>
-                                <div class="col-lg-6">
+                                <div id="dureeInput" class="col-lg-6" style="display: none">
                                     <label class="form-label">Durée du contrat en mois</label>
                                     <input type="number" name="off_duree" class="form-control"
                                         placeholder="Durée du poste" required>

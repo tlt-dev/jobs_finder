@@ -139,11 +139,19 @@
                                             {/foreach}
                                         </select>
                                     </div>
-                                    <div id="dureeInput" class="col-lg-6">
+                                    {if $offre->getOff_type_contrat() == 1}
+                                    <div id="dureeInput" class="col-lg-6" style="display: none">
                                         <label class="form-label">Durée du contrat en mois</label>
                                         <input type="number" name="off_duree" class="form-control" id="inputDuree" min="1"
-                                            value="{$offre->getOff_duree()}" placeholder="Durée du poste" required>
+                                            value="{$offre->getOff_duree()}" placeholder="Durée du poste">
                                     </div>
+                                    {else}
+                                        <div id="dureeInput" class="col-lg-6">
+                                        <label class="form-label">Durée du contrat en mois</label>
+                                        <input type="number" name="off_duree" class="form-control" id="inputDuree" min="1"
+                                            value="{$offre->getOff_duree()}" placeholder="Durée du poste">
+                                    </div>
+                                    {/if}
                                 </div>
                             </div>
                             <!-- Notes -->

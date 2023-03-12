@@ -111,7 +111,6 @@ class OffreModele extends Modele
 
     public function modifierOffre($offre)
     {
-
         $sql = "UPDATE t_offre SET off_intitule = ?,
             off_secteur_activite = ?,
             off_ville = ?,
@@ -128,7 +127,7 @@ class OffreModele extends Modele
             $offre->getOff_ville(),
             $offre->getOff_date_prise_poste(),
             $offre->getOff_salaire(),
-            $offre->getOff_duree(),
+            $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
             $offre->getOff_descriptif(),
             $offre->getOff_type_contrat(),
             $offre->getOff_id()
@@ -157,7 +156,7 @@ class OffreModele extends Modele
             $offre->getOff_ville(),
             $offre->getOff_date_prise_poste(),
             $offre->getOff_salaire(),
-            $offre->getOff_duree(),
+            $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
             $offre->getOff_descriptif(),
             $offre->getOff_type_contrat()
         )
