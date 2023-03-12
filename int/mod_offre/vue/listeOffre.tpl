@@ -50,7 +50,11 @@
                     <td>{$listeVilles[$offre->getOff_ville()]['vil_nom']}</td>
                     <td>{$listeSecteurActivite[$offre->getOff_secteur_activite()]}</td>
                     <td>{$offre->getOff_date_prise_poste()}</td>
-                    <td>{$offre->getOff_duree()} mois</td>
+                    {if $offre->getOff_type_contrat() == 1}
+                        <td>CDI</td>
+                    {else}
+                        <td>{$offre->getOff_duree()} mois</td>
+                    {/if}
                     <td>
                         <form method="post" action="index.php">
                             <input type="hidden" name="gestion" value="offre">
