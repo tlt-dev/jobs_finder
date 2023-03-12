@@ -30,7 +30,7 @@ class OffreModele extends Modele
 
     public function getOffreFromId($id){
 
-        $sql = "SELECT * FROM t_offre where off_id = ?";
+        $sql = "SELECT * FROM T_Offre where off_id = ?";
 
         $resultat = $this->executeRequete($sql, array(
             $id
@@ -149,5 +149,168 @@ class OffreModele extends Modele
 
         $this->executeRequete($sql,array($id));
     }
+
+    public function getOffresFavoriesChercheur($che_id)
+    {
+
+        $sql = "SELECT * FROM T_Offre INNER JOIN T_Favori_Chercheur_Emploi ON off_id = fce_offre WHERE fce_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $che_id
+        ));
+
+        $listeFavories = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        if($listeFavories)
+        {
+            foreach($listeFavories as $key => $value)
+            {
+                $listeFavories[$key]['ent_nom'] = $this->getNomEntreprise($listeFavories[$key]['off_entreprise']);
+                $listeFavories[$key]['vil_nom'] = $this->getNomVille($listeFavories[$key]['off_ville']);
+            }
+
+        }
+
+        return $listeFavories;
+
+    }
+
+    public function getCandidaturesChercheur($che_id)
+    {
+
+        $sql = "SELECT * FROM T_Offre INNER JOIN T_Candidature ON off_id = can_offre WHERE can_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $che_id
+        ));
+
+        $listeCandidatures = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        if($listeCandidatures)
+        {
+            foreach($listeCandidatures as $key => $value)
+            {
+                $listeCandidatures[$key]['ent_nom'] = $this->getNomEntreprise($listeCandidatures[$key]['off_entreprise']);
+                $listeCandidatures[$key]['vil_nom'] = $this->getNomVille($listeCandidatures[$key]['off_ville']);
+            }
+
+        }
+
+        return $listeCandidatures;
+
+    }
+
+    public function getEntretiensChercheur($che_id)
+    {
+        $sql = "SELECT * FROM T_Offre INNER JOIN T_Entretien ON off_id = ent_offre WHERE ent_chercheur = ? AND ent_statut = 1 OR ent_statut = 3";
+
+        $resultat = $this->executeRequete($sql, array(
+            $che_id
+        ));
+
+        $listeEntretiens = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        if($listeEntretiens)
+        {
+            foreach($listeEntretiens as $key => $value)
+            {
+                $listeEntretiens[$key]['ent_nom'] = $this->getNomEntreprise($listeEntretiens[$key]['off_entreprise']);
+                $listeEntretiens[$key]['vil_nom'] = $this->getNomVille($listeEntretiens[$key]['off_ville']);
+            }
+
+        }
+
+        return $listeEntretiens;
+    }
+
+    public function getResultatsEntretien($che_id)
+    {
+        $sql = "SELECT * FROM T_Offre INNER JOIN T_Entretien ON off_id = ent_offre WHERE ent_chercheur = ? AND ent_statut = 0 OR ent_statut = 2";
+
+        $resultat = $this->executeRequete($sql, array(
+            $che_id
+        ));
+
+        $listeResultats = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        if($listeResultats)
+        {
+            foreach($listeResultats as $key => $value)
+            {
+                $listeResultats[$key]['ent_nom'] = $this->getNomEntreprise($listeResultats[$key]['off_entreprise']);
+                $listeResultats[$key]['vil_nom'] = $this->getNomVille($listeResultats[$key]['off_ville']);
+            }
+
+        }
+
+        return $listeResultats;
+    }
+
+    public function getNomEntreprise($ent_id)
+    {
+
+        $sql = "SELECT ent_nom FROM T_Entreprise WHERE ent_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $ent_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['ent_nom'];
+
+    }
+
+    public function getNomVille($vil_id)
+    {
+
+        $sql = "SELECT vil_nom FROM T_Ville WHERE vil_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $vil_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['vil_nom'];
+
+    }
+
+    public function getSalaire($sal_id)
+    {
+
+        $sql = "SELECT sal_libelle FROM T_Salaire WHERE sal_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $sal_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['sal_libelle'];
+
+    }
+
+    public function getContrat($tco_id)
+    {
+
+        $sql = "SELECT tco_libelle FROM T_Type_Contrat WHERE tco_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $tco_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['tco_libelle'];
+
+    }
+
+    public function getSecteurActivite($sea_id)
+    {
+
+        $sql = "SELECT sea_libelle FROM T_Secteur_Activite WHERE sea_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $sea_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['sea_libelle'];
+
+    }
+
+
 
 }

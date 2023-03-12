@@ -188,4 +188,76 @@ class ChercheurModele extends Modele
 
     }
 
+    public function candidaterOffre()
+    {
+
+        $sql = "INSERT INTO T_Candidature (can_chercheur, can_offre) VALUES (?,?)";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['che_id'],
+            $this->parametres['off_id']
+        ));
+
+    }
+
+    public function retirerCandidatureOffre()
+    {
+
+        $sql = "DELETE FROM T_Candidature WHERE can_chercheur = ? AND can_offre = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['che_id'],
+            $this->parametres['off_id']
+        ));
+
+    }
+
+    public function getEntretien()
+    {
+
+        $sql = "SELECT * FROM T_Entretien WHERE ent_chercheur = ? AND ent_offre = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id'],
+            $this->parametres['off_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function updateStatutEntretien()
+    {
+
+        if($this->parametres['reponse'] == 1){
+            $statut = 2;
+        }else{
+            $statut = 3;
+        }
+
+        $sql = "UPDATE T_Entretien SET ent_statut = ?, ent_reponse = ? WHERE ent_chercheur = ? AND ent_offre = ?";
+
+        $this->executeRequete($sql, array(
+            $statut,
+            1,
+            $this->parametres['che_id'],
+            $this->parametres['off_id']
+        ));
+
+    }
+
+    public function getResultat()
+    {
+
+        $sql = "SELECT * FROM T_Entretien WHERE ent_chercheur = ? AND ent_offre = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id'],
+            $this->parametres['off_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
 }

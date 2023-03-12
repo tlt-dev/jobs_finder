@@ -21,10 +21,10 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item pe-4">
-                    <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    <a class="nav-link" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    <a class="nav-link active" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
                 </li>
                 <li class="nav-item px-4">
                     <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>

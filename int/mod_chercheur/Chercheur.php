@@ -53,6 +53,25 @@ class Chercheur
                     case 'update_parametres_identification':
                         $this->chercheurControleur->updateParametresIdentification();
                         break;
+                    case 'get_offre':
+                        $this->chercheurControleur->getOffre();
+                        break;
+                    case 'candidater_offre':
+                        $this->chercheurControleur->candidaterOffre();
+                        break;
+                    case 'retirer_candidature_offre':
+                        $this->chercheurControleur->retirerCandidatureOffre();
+                        break;
+                    case 'get_entretien':
+                        $this->chercheurControleur->getEntretien();
+                        break;
+                    case 'repondre_entretien':
+                        $this->chercheurControleur->repondreEntretien();
+                        break;
+                    case 'get_resultat':
+                        $this->chercheurControleur->getResultat();
+                        break;
+
 
 
                 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-08 23:01:37
+/* Smarty version 4.2.1, created on 2023-03-09 15:21:54
   from '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/profil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_640913d136ca11_34914823',
+  'unifunc' => 'content_6409f9925f86e2_02060692',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20779cc089e717da7cc5915acbfb1a3dd2c8edf1' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/profil.tpl',
-      1 => 1678316492,
+      1 => 1678375312,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_640913d136ca11_34914823 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6409f9925f86e2_02060692 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,10 +45,10 @@ function content_640913d136ca11_34914823 (Smarty_Internal_Template $_smarty_tpl)
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item pe-4">
-                    <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    <a class="nav-link" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    <a class="nav-link active" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
                 </li>
                 <li class="nav-item px-4">
                     <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>

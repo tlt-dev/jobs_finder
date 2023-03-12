@@ -40,4 +40,16 @@ class ChercheurVue
 
     }
 
+    public function afficherDashboard($offresFavories, $listeCandidatures, $listeEntretiens, $listeResultats)
+    {
+
+        $this->tpl->assign('offresFavories', $offresFavories);
+        $this->tpl->assign('listeCandidatures', $listeCandidatures);
+        $this->tpl->assign('listeEntretiens', $listeEntretiens);
+        $this->tpl->assign('listeResultats', $listeResultats);
+
+        $this->tpl->display('mod_chercheur/vue/dashboard.tpl');
+
+    }
+
 }
