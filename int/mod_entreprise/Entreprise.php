@@ -10,6 +10,14 @@ class Entreprise
     {
 
         $this->parametres = $parametres;
+
+        if(!isset($this->parametres['ent_id'])) {
+            $entrepriseModele = new EntrepriseModele(NULL);
+            $ent_id = $entrepriseModele->getEntId($_SESSION["login"]);
+
+            $this->parametres["ent_id"] = $ent_id;
+        }
+
         $this->entrepriseControleur = new EntrepriseControleur($this->parametres);
 
     }

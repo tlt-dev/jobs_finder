@@ -63,7 +63,7 @@
     </div>
 </nav>
 
-<div class="container-xl px-4 mt-4">
+<div class="container-fluid px-4 mt-4">
     {if $messageErreur neq ""}
         <div class="row justify-content-center mt-3">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -87,157 +87,49 @@
         </div>
     {/if}
 
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="row mt-3">
-            <div class="row">
-                <div class="col-xl-4">
-                    <div class="row justify-content-center text-center">
-                        <form method="post" enctype="multipart/form-data" action="index.php"
-                              name="uploadPhotoProfil">
-                            <input type="hidden" name="gestion" value="chercheur">
-                            <input type="hidden" name="action" value="upload_photo_profil">
-                            <input type="hidden" name="token" value="{$token}">
-
-                            <img class="img-account-profile rounded-circle mb-2 w-25"
-                                 src="mod_chercheur/documents/{$chercheur->getChe_id()}/logo.png" alt="">
-                            <input type="file" name="source_photo_profil" class="form-control">
-
-                            <div class="small font-italic text-muted mb-4">Format PNG inférieure à 5 Mo</div>
-
-                            <input type="submit" class="btn btn-primary" value="Modifier l'image">
-                        </form>
-                    </div>
-                    <div class="card mb-4 mt-4">
-                        <div class="card-header">Paramètres d'identification</div>
-                        <div class="card-body">
-                            <form method="post" action="index.php" name="formUpdateIdentification">
-                                <input type="hidden" name="gestion" value="chercheur">
-                                <input type="hidden" name="action" value="update_parametres_identification">
-                                <input type="hidden" name="token" value="{$token}">
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="usr_email">Email : </label>
-                                    <input class="form-control" id="usr_email" name="usr_email" type="text" value="{$user->getUsr_email()}">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="usr_mot_de_passe">Mot de passe : </label>
-                                    <input class="form-control" id="usr_mot_de_passe" name="usr_mot_de_passe" type="password" value="">
-                                </div>
-                                <!-- Save changes button-->
-                                <input type="submit" class="btn btn-primary" value="Modifier les paramètres">
-                            </form>
+    <div class="row">
+        <div class="col-6">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Accordion Item #1
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-8">
-                    <!-- Account details card-->
-                    <div class="card mb-4">
-                        <div class="card-header">Informations personnelles</div>
-                        <div class="card-body">
-                            <form method="post" action="index.php" name="formInfosPersonnelles">
-                                <input type="hidden" name="gestion" value="chercheur">
-                                <input type="hidden" name="action" value="modifier_profil">
-                                <input type="hidden" name="token" value="{$token}">
-                                <!-- Form Row-->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_nom">Nom</label>
-                                        <input class="form-control" id="che_nom" name="che_nom" type="text"
-                                               value="{$chercheur->getChe_nom()}">
-                                    </div>
-                                    <!-- Form Group (last name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_prenom">Prénom</label>
-                                        <input class="form-control" id="che_prenom" name="che_prenom" type="text"
-                                               value="{$chercheur->getChe_prenom()}">
-                                    </div>
-                                </div>
-                                <!-- Form Row        -->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (organization name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_sexe">Sexe</label>
-                                        <select class="form-control" name="che_sexe" id="che_sexe">
-                                            {foreach $chercheur->getComboSexes() as $sexe}
-                                                {if $chercheur->getChe_sexe() eq $sexe['sex_id']}
-                                                    <option value="{$sexe['sex_id']}"
-                                                            selected>{$sexe['sex_libelle']}</option>
-                                                {else}
-                                                    <option value="{$sexe['sex_id']}">{$sexe['sex_libelle']}</option>
-                                                {/if}
-                                            {/foreach}
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_date_naissance">Date de naissance</label>
-                                        <input class="form-control" id="che_date_naissance" type="date"
-                                               name="che_date_naissance"
-                                               value="{$chercheur->getChe_date_naissance()}">
-                                    </div>
-                                </div>
-
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_mail">Adresse mail :</label>
-                                        <input class="form-control" id="che_mail" name="che_mail" type="text"
-                                               value="{$chercheur->getChe_mail()}">
-                                    </div>
-                                    <!-- Form Group (last name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_telephone">Téléphone</label>
-                                        <input class="form-control" id="che_telephone" name="che_telephone" type="text"
-                                               value="{$chercheur->getChe_telephone()}">
-                                    </div>
-                                </div>
-
-                                <!-- Form Group (email address)-->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="che_adresse">N° et voie</label>
-                                    <input class="form-control" id="che_adresse" type="text" name="che_adresse"
-                                           value="{$chercheur->getChe_adresse()}">
-                                </div>
-                                <!-- Form Row-->
-                                <div class="row gx-3 mb-3">
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_departement">Département</label>
-                                        <select class="form-control" id="che_departement" name="che_departement">
-                                            {foreach $chercheur->getComboDepartements() as $departement}
-                                                {if $chercheur->getChe_departement() eq $departement['dep_id']}
-                                                    <option value="{$departement['dep_id']}"
-                                                            selected>{$departement['dep_nom']}</option>
-                                                {else}
-                                                    <option value="{$departement['dep_id']}">{$departement['dep_nom']}</option>
-                                                {/if}
-                                            {/foreach}
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="small mb-1" for="che_ville">Ville</label>
-                                        <select class="form-control" id="che_ville" name="che_ville">
-                                            {foreach $chercheur->getComboVilles() as $ville}
-                                                {if $chercheur->getChe_ville() eq $ville['vil_id']}
-                                                    <option value="{$ville['vil_id']}"
-                                                            selected>{$ville['vil_nom']}</option>
-                                                {else}
-                                                    <option value="{$ville['vil_id']}">{$ville['vil_nom']}</option>
-                                                {/if}
-                                            {/foreach}
-                                        </select>
-                                    </div>
-
-                                </div>
-                                <!-- Save changes button-->
-                                <input class="btn btn-primary" type="submit" value="Enregistrer">
-                            </form>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Accordion Item #2
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>
                     </div>
                 </div>
-
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Accordion Item #3
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
@@ -254,53 +146,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </script>
 
-<script>
-    $("form[name='formAuthentification']").submit(function (e) {
-        e.preventDefault();
 
-        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
-        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
-        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-
-
-        $.ajax({
-            url: form_url,
-            type: form_method,
-            data: form_data,
-            dataType: 'JSON'
-        }).done(function (response) {
-            console.log(response);
-
-
-        });
-
-    });
-</script>
-
-<script>
-    function submitFormNavOffres()
-    {
-        $("form[name='formNavOffres']").submit();
-    }
-</script>
-<script>
-    function submitFormNavProfil()
-    {
-        $("form[name='formNavProfil']").submit();
-    }
-</script>
-<script>
-    function submitFormNavDashboard()
-    {
-        $("form[name='formNavDashboard']").submit();
-    }
-</script>
-<script>
-    function submitFormNavCV()
-    {
-        $("form[name='formNavCV']").submit();
-    }
-</script>
 
 
 </html>
