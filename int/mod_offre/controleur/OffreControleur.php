@@ -72,4 +72,5 @@ class OffreControleur
         OffreObjet::setMessageSucces("Offre supprimée avec succès !");
         $this->genererListeOffre();
     }
+
 }

@@ -113,7 +113,7 @@ class AuthentificationModele extends Modele
     public function getIdEntreprise($ent_id)
     {
 
-        $sql = 'SELECT ent_id FROM T_entreprise WHERE ent_id = ?';
+        $sql = 'SELECT ent_id FROM T_entreprise WHERE ent_user = ?';
 
         $resultat = $this->executeRequete($sql , array(
             $ent_id

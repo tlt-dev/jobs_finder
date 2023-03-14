@@ -10,6 +10,14 @@ class Entreprise
     {
 
         $this->parametres = $parametres;
+
+        if(!isset($this->parametres['ent_id'])) {
+            $entrepriseModele = new EntrepriseModele(NULL);
+            $ent_id = $entrepriseModele->getEntId($_SESSION["login"]);
+
+            $this->parametres["ent_id"] = $ent_id;
+        }
+
         $this->entrepriseControleur = new EntrepriseControleur($this->parametres);
 
     }
@@ -45,10 +53,17 @@ class Entreprise
                         break;
                     case 'generer_liste_offre':
                         $this->entrepriseControleur->genererListeOffre();
+                    case 'recherche_chercheur_emploi':
+                        $this->entrepriseControleur->rechercheChercheurEmploi();
+                        break;
+                    case 'consulter_suivi':
+                        $this->entrepriseControleur->genererSuivi();
                         break;
 
 
                 }
+
+                
 
             } else {
 

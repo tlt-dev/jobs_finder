@@ -25,6 +25,8 @@ class EntrepriseObjet
     private static $messageErreur = "";
     private static $messageSucces = "";
 
+    private static $fileEmpty = "";
+
     public function __construct($data = NULL)
     {
         if ($data != NULL) {
@@ -220,6 +222,16 @@ class EntrepriseObjet
     public static function setMessageSucces($msg)
     {
         self::$messageSucces = $msg = self::$messageSucces . $msg;
+    }
+
+    public static function getFileEmpty()
+    {
+        return self::$fileEmpty;
+    }
+
+    public static function setFileEmpty($msg)
+    {
+        self::$fileEmpty = $msg = self::$fileEmpty . $msg;
     }
 
     public function setEnt_nom($ent_nom)

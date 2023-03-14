@@ -48,11 +48,6 @@
                         </li>
                     </ul>
                 {/if}
-                {if $entrepriseConnected}
-                    <li class="nav-item pe-4">
-                        <a class="nav-link active" aria-current="page" href="index.php?gestion=entreprise&action=generer_liste_offre">Offres</a>
-                    </li>
-                {/if}
                 {if $chercheurConnected || $entrepriseConnected}
                     <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
                         data-bs-target="#modalDeconnexion">Déconnexion</button>
@@ -291,15 +286,12 @@
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
         // Récupérer toutes les valeurs sélectionnées dans le champ de formulaire multiple
         var off_poste = $('select[name="off_poste"]').val();
-
         // Sérialiser les champs de formulaire en une chaîne de requête
         var form_data = $(this).serialize();
-
         // Ajouter les valeurs sélectionnées dans la chaîne de requête
         $.each(off_poste, function(index, value) {
             form_data += '&off_poste[]=' + encodeURIComponent(value);
         });
-
         $.ajax({
             url: form_url,
             type: form_method,

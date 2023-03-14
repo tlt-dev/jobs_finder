@@ -37,6 +37,7 @@ class VisiteurVue
 
         $this->tpl->assign("listeOffre",$listeOffre);
         $this->tpl->assign("listePoste",$listePoste);
+        $this->tpl->assign('token', $_SESSION['token']);
 
         $this->tpl->display('mod_visiteur/vue/accueil.tpl');
 
