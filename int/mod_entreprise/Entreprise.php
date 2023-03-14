@@ -53,6 +53,7 @@ class Entreprise
                         break;
                     case 'generer_liste_offre':
                         $this->entrepriseControleur->genererListeOffre();
+                        break;
                     case 'recherche_chercheur_emploi':
                         $this->entrepriseControleur->rechercheChercheurEmploi();
                         break;
