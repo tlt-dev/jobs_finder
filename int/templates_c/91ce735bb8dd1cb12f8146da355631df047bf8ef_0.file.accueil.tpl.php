@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-08 23:01:58
+/* Smarty version 4.2.1, created on 2023-03-14 10:38:25
   from '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_640913e65273c7_48214729',
+  'unifunc' => 'content_64104ea14d7d41_74876249',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '91ce735bb8dd1cb12f8146da355631df047bf8ef' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_visiteur/vue/accueil.tpl',
-      1 => 1678099878,
+      1 => 1678790266,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_640913e65273c7_48214729 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64104ea14d7d41_74876249 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,16 +48,43 @@ function content_640913e65273c7_48214729 (Smarty_Internal_Template $_smarty_tpl)
             <?php if ($_smarty_tpl->tpl_vars['chercheurConnected']->value) {?>
                 <ul class="navbar-nav">
                     <li class="nav-item pe-4">
-                        <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                        <form method="post" action="index.php" name="formNavOffres">
+                            <input type="hidden" name="gestion" value="visiteur">
+                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                            <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
+                        </form>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                        <form method="post" action="index.php" name="formNavProfil">
+                            <input type="hidden" name="gestion" value="chercheur">
+                            <input type="hidden" name="action" value="generer_profil">
+                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                            <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
+                        </form>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
+                        <form method="post" action="index.php" name="formNavDashboard">
+                            <input type="hidden" name="gestion" value="chercheur">
+                            <input type="hidden" name="action" value="generer_dashboard">
+                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                            <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
+                        </form>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                        <form method="post" action="index.php" name="formNavCV">
+                            <input type="hidden" name="gestion" value="chercheur">
+                            <input type="hidden" name="action" value="generer_fiche_cv">
+                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                            <p class="nav-link" onclick="submitFormNavCV()">CV</p>
+                        </form>
                     </li>
                 </ul>
             <?php }?>
@@ -275,6 +302,39 @@ $_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalDecon
             $("#label_ent_nom").removeClass("d-none");
         }
     });
+<?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
+    function submitFormNavOffres()
+    {
+        $("form[name='formNavOffres']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavProfil()
+    {
+        $("form[name='formNavProfil']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavDashboard()
+    {
+        $("form[name='formNavDashboard']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavCV()
+    {
+        $("form[name='formNavCV']").submit();
+    }
 <?php echo '</script'; ?>
 >
 

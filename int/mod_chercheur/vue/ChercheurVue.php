@@ -36,6 +36,8 @@ class ChercheurVue
             $this->tpl->assign('messageSucces', '');
         }
 
+        $this->tpl->assign('token', $_SESSION['token']);
+
         $this->tpl->display('mod_chercheur/vue/profil.tpl');
 
     }
@@ -47,6 +49,9 @@ class ChercheurVue
         $this->tpl->assign('listeCandidatures', $listeCandidatures);
         $this->tpl->assign('listeEntretiens', $listeEntretiens);
         $this->tpl->assign('listeResultats', $listeResultats);
+
+        $this->tpl->assign('token', $_SESSION['token']);
+
 
         $this->tpl->display('mod_chercheur/vue/dashboard.tpl');
 

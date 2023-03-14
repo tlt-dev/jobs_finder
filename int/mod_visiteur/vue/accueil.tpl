@@ -22,16 +22,39 @@
             {if $chercheurConnected}
                 <ul class="navbar-nav">
                     <li class="nav-item pe-4">
-                        <a class="nav-link active" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                        <form method="post" action="index.php" name="formNavOffres">
+                            <input type="hidden" name="gestion" value="visiteur">
+                            <input type="hidden" name="token" value="{$token}">
+
+                            <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
+                        </form>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                        <form method="post" action="index.php" name="formNavProfil">
+                            <input type="hidden" name="gestion" value="chercheur">
+                            <input type="hidden" name="action" value="generer_profil">
+                            <input type="hidden" name="token" value="{$token}">
+
+                            <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
+                        </form>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
+                        <form method="post" action="index.php" name="formNavDashboard">
+                            <input type="hidden" name="gestion" value="chercheur">
+                            <input type="hidden" name="action" value="generer_dashboard">
+                            <input type="hidden" name="token" value="{$token}">
+
+                            <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
+                        </form>
                     </li>
                     <li class="nav-item px-4">
-                        <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                        <form method="post" action="index.php" name="formNavCV">
+                            <input type="hidden" name="gestion" value="chercheur">
+                            <input type="hidden" name="action" value="generer_fiche_cv">
+                            <input type="hidden" name="token" value="{$token}">
+
+                            <p class="nav-link" onclick="submitFormNavCV()">CV</p>
+                        </form>
                     </li>
                 </ul>
             {/if}
@@ -241,6 +264,31 @@
             $("#label_ent_nom").removeClass("d-none");
         }
     });
+</script>
+
+<script>
+    function submitFormNavOffres()
+    {
+        $("form[name='formNavOffres']").submit();
+    }
+</script>
+<script>
+    function submitFormNavProfil()
+    {
+        $("form[name='formNavProfil']").submit();
+    }
+</script>
+<script>
+    function submitFormNavDashboard()
+    {
+        $("form[name='formNavDashboard']").submit();
+    }
+</script>
+<script>
+    function submitFormNavCV()
+    {
+        $("form[name='formNavCV']").submit();
+    }
 </script>
 
 </html>

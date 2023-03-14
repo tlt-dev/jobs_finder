@@ -25,7 +25,7 @@ class EntrepriseControleur
 
         $listeCompetence = $this->entrepriseModele->getListeCompetence();
 
-        $utilisateurModel = new UtilisateurModele($this->parametres);
+        $chercheurModele = new ChercheurModele($this->parametres);
 
 
         $this->entrepriseVue->afficherDashboard($entreprise, $listeChercheurEmploi, $listeCompetence);
@@ -70,7 +70,7 @@ class EntrepriseControleur
     public function rechercheChercheurEmploi()
     {
 
-        $chercheurEmploiModel = new UtilisateurModele($this->parametres);
+        $chercheurEmploiModel = new ChercheurModele($this->parametres);
 
         $listeChercheurEmploiFilter = $chercheurEmploiModel->getChercheursEmploiByCompetences($this->parametres['competenceMultiSelect']);
 

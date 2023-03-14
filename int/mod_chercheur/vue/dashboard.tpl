@@ -22,17 +22,39 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item pe-4">
-                    <a class="nav-link" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    <form method="post" action="index.php" name="formNavOffres">
+                        <input type="hidden" name="gestion" value="visiteur">
+                        <input type="hidden" name="token" value="{$token}">
+
+                        <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    <form method="post" action="index.php" name="formNavProfil">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_profil">
+                        <input type="hidden" name="token" value="{$token}">
+
+                        <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link active" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de
-                        bord</a>
+                    <form method="post" action="index.php" name="formNavDashboard">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_dashboard">
+                        <input type="hidden" name="token" value="{$token}">
+
+                        <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                    <form method="post" action="index.php" name="formNavCV">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_fiche_cv">
+                        <input type="hidden" name="token" value="{$token}">
+
+                        <p class="nav-link" onclick="submitFormNavCV()">CV</p>
+                    </form>
                 </li>
             </ul>
             <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
@@ -52,6 +74,7 @@
                 {foreach $offresFavories as $offre}
                     <div class="card-body" name="cardFavori">
                         <div class="border-radius highlight" onclick="showModalFavori({$offre['off_id']})">
+                            <input type="hidden" name="cardFavoriToken" value="{$token}">
                             <h5 class="text-center mb-0 pt-2">
                                 {$offre['off_intitule']}
                             </h5>
@@ -81,6 +104,7 @@
                 {foreach $listeCandidatures as $candidature}
                     <div class="card-body">
                         <div class="border-radius highlight" {if $candidature['can_statut'] eq 0}style="background-color: #f00020"{/if} onclick="showModalCandidature({$candidature['off_id']})">
+                            <input type="hidden" name="cardCandidatureToken" value="{$token}">
                             <h5 class="text-center mb-0 pt-2">
                                 {$candidature['off_intitule']}
                             </h5>
@@ -110,6 +134,7 @@
                 {foreach $listeEntretiens as $entretien}
                     <div class="card-body">
                         <div class="border-radius highlight" {if $entretien['ent_statut'] eq 3}style="background-color: #f00020"{/if} onclick="showModalEntretien({$entretien['off_id']})">
+                            <input type="hidden" name="cardEntretienToken" value="{$token}">
                             <h5 class="text-center mb-0 pt-2">
                                 {$entretien['off_intitule']}
                             </h5>
@@ -138,6 +163,7 @@
                 {foreach $listeResultats as $resultat}
                     <div class="card-body">
                         <div class="border-radius highlight" onclick="showModalResultat({$resultat['off_id']})" {if $resultat['ent_reponse'] eq 1}style="background-color: darkorange"{elseif $resultat['ent_reponse'] eq 2}style="background-color: forestgreen"{else}style="background-color:#f00020"{/if}>
+                            <input type="hidden" name="cardResultatToken" value="{$token}">
                             <h5 class="text-center mb-0 pt-2">
                                 {$resultat['off_intitule']}
                             </h5>
@@ -191,7 +217,8 @@
             data: {
                 "gestion": "chercheur",
                 "action": "get_offre",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardFavoriToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -240,7 +267,8 @@
             data: {
                 "gestion": "chercheur",
                 "action": "get_offre",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardCandidatureToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -289,7 +317,8 @@
             data: {
                 "gestion": "chercheur",
                 "action": "get_entretien",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardEntretienToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -339,7 +368,8 @@
             data: {
                 "gestion": "chercheur",
                 "action": "get_resultat",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardResultatToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -379,6 +409,31 @@
         });
 
 
+    }
+</script>
+
+<script>
+    function submitFormNavOffres()
+    {
+        $("form[name='formNavOffres']").submit();
+    }
+</script>
+<script>
+    function submitFormNavProfil()
+    {
+        $("form[name='formNavProfil']").submit();
+    }
+</script>
+<script>
+    function submitFormNavDashboard()
+    {
+        $("form[name='formNavDashboard']").submit();
+    }
+</script>
+<script>
+    function submitFormNavCV()
+    {
+        $("form[name='formNavCV']").submit();
     }
 </script>
 

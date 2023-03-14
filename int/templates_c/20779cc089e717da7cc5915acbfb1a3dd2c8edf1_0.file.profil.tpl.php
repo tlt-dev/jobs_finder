@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-09 15:21:54
+/* Smarty version 4.2.1, created on 2023-03-14 10:44:55
   from '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/profil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6409f9925f86e2_02060692',
+  'unifunc' => 'content_64105027bcf803_69944142',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20779cc089e717da7cc5915acbfb1a3dd2c8edf1' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/profil.tpl',
-      1 => 1678375312,
+      1 => 1678790678,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_6409f9925f86e2_02060692 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64105027bcf803_69944142 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,16 +45,43 @@ function content_6409f9925f86e2_02060692 (Smarty_Internal_Template $_smarty_tpl)
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item pe-4">
-                    <a class="nav-link" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    <form method="post" class="my-auto" action="index.php" name="formNavOffres">
+                        <input type="hidden" name="gestion" value="visiteur">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link active" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    <form method="post" action="index.php" name="formNavProfil">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_profil">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de bord</a>
+                    <form method="post" action="index.php" name="formNavDashboard">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_dashboard">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                    <form method="post" action="index.php" name="formNavCV">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_fiche_cv">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavCV()">CV</p>
+                    </form>
                 </li>
             </ul>
             <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
@@ -100,6 +127,8 @@ function content_6409f9925f86e2_02060692 (Smarty_Internal_Template $_smarty_tpl)
                               name="uploadPhotoProfil">
                             <input type="hidden" name="gestion" value="chercheur">
                             <input type="hidden" name="action" value="upload_photo_profil">
+                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                             <img class="img-account-profile rounded-circle mb-2 w-25"
                                  src="mod_chercheur/documents/<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_id();?>
@@ -117,6 +146,8 @@ function content_6409f9925f86e2_02060692 (Smarty_Internal_Template $_smarty_tpl)
                             <form method="post" action="index.php" name="formUpdateIdentification">
                                 <input type="hidden" name="gestion" value="chercheur">
                                 <input type="hidden" name="action" value="update_parametres_identification">
+                                <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                                 <div class="mb-3">
                                     <label class="small mb-1" for="usr_email">Email : </label>
                                     <input class="form-control" id="usr_email" name="usr_email" type="text" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsr_email();?>
@@ -140,6 +171,8 @@ function content_6409f9925f86e2_02060692 (Smarty_Internal_Template $_smarty_tpl)
                             <form method="post" action="index.php" name="formInfosPersonnelles">
                                 <input type="hidden" name="gestion" value="chercheur">
                                 <input type="hidden" name="action" value="modifier_profil">
+                                <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                                 <!-- Form Row-->
                                 <div class="row gx-3 mb-3">
                                     <!-- Form Group (first name)-->
@@ -327,26 +360,34 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <?php echo '<script'; ?>
 >
-    /*$("form[name='formUpdateIdentification']").submit(function (e) {
-        e.preventDefault();
-
-        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
-        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
-        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-
-
-        $.ajax({
-            url: form_url,
-            type: form_method,
-            data: form_data,
-            dataType: 'JSON'
-        }).done(function (response) {
-            console.log(response);
-
-
-        });
-
-    });*/
+    function submitFormNavOffres()
+    {
+        $("form[name='formNavOffres']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavProfil()
+    {
+        $("form[name='formNavProfil']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavDashboard()
+    {
+        $("form[name='formNavDashboard']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavCV()
+    {
+        $("form[name='formNavCV']").submit();
+    }
 <?php echo '</script'; ?>
 >
 

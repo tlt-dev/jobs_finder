@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-12 22:21:12
+/* Smarty version 4.2.1, created on 2023-03-14 12:41:27
   from '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/dashboard.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_640e5058a167d3_43725625',
+  'unifunc' => 'content_64106b77c83b04_46523726',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8537bc0c4614d81cd8352aea1f3fccc9b9f82520' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/dashboard.tpl',
-      1 => 1678659667,
+      1 => 1678797672,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:mod_chercheur/vue/modalResultat.tpl' => 1,
   ),
 ),false)) {
-function content_640e5058a167d3_43725625 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64106b77c83b04_46523726 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,17 +49,43 @@ function content_640e5058a167d3_43725625 (Smarty_Internal_Template $_smarty_tpl)
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item pe-4">
-                    <a class="nav-link" aria-current="page" href="index.php?gestion=visiteur">Offres</a>
+                    <form method="post" action="index.php" name="formNavOffres">
+                        <input type="hidden" name="gestion" value="visiteur">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_profil">Profil</a>
+                    <form method="post" action="index.php" name="formNavProfil">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_profil">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link active" href="index.php?gestion=chercheur&action=generer_dashboard">Tableau de
-                        bord</a>
+                    <form method="post" action="index.php" name="formNavDashboard">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_dashboard">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
+                    </form>
                 </li>
                 <li class="nav-item px-4">
-                    <a class="nav-link" href="index.php?gestion=chercheur&action=generer_fiche_cv">CV</a>
+                    <form method="post" action="index.php" name="formNavCV">
+                        <input type="hidden" name="gestion" value="chercheur">
+                        <input type="hidden" name="action" value="generer_fiche_cv">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavCV()">CV</p>
+                    </form>
                 </li>
             </ul>
             <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
@@ -85,6 +111,8 @@ $_smarty_tpl->tpl_vars['offre']->do_else = false;
                     <div class="card-body" name="cardFavori">
                         <div class="border-radius highlight" onclick="showModalFavori(<?php echo $_smarty_tpl->tpl_vars['offre']->value['off_id'];?>
 )">
+                            <input type="hidden" name="cardFavoriToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                             <h5 class="text-center mb-0 pt-2">
                                 <?php echo $_smarty_tpl->tpl_vars['offre']->value['off_intitule'];?>
 
@@ -126,6 +154,8 @@ $_smarty_tpl->tpl_vars['candidature']->do_else = false;
                     <div class="card-body">
                         <div class="border-radius highlight" <?php if ($_smarty_tpl->tpl_vars['candidature']->value['can_statut'] == 0) {?>style="background-color: #f00020"<?php }?> onclick="showModalCandidature(<?php echo $_smarty_tpl->tpl_vars['candidature']->value['off_id'];?>
 )">
+                            <input type="hidden" name="cardCandidatureToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                             <h5 class="text-center mb-0 pt-2">
                                 <?php echo $_smarty_tpl->tpl_vars['candidature']->value['off_intitule'];?>
 
@@ -167,6 +197,8 @@ $_smarty_tpl->tpl_vars['entretien']->do_else = false;
                     <div class="card-body">
                         <div class="border-radius highlight" <?php if ($_smarty_tpl->tpl_vars['entretien']->value['ent_statut'] == 3) {?>style="background-color: #f00020"<?php }?> onclick="showModalEntretien(<?php echo $_smarty_tpl->tpl_vars['entretien']->value['off_id'];?>
 )">
+                            <input type="hidden" name="cardEntretienToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                             <h5 class="text-center mb-0 pt-2">
                                 <?php echo $_smarty_tpl->tpl_vars['entretien']->value['off_intitule'];?>
 
@@ -207,6 +239,8 @@ $_smarty_tpl->tpl_vars['resultat']->do_else = false;
                     <div class="card-body">
                         <div class="border-radius highlight" onclick="showModalResultat(<?php echo $_smarty_tpl->tpl_vars['resultat']->value['off_id'];?>
 )" <?php if ($_smarty_tpl->tpl_vars['resultat']->value['ent_reponse'] == 1) {?>style="background-color: darkorange"<?php } elseif ($_smarty_tpl->tpl_vars['resultat']->value['ent_reponse'] == 2) {?>style="background-color: forestgreen"<?php } else { ?>style="background-color:#f00020"<?php }?>>
+                            <input type="hidden" name="cardResultatToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                             <h5 class="text-center mb-0 pt-2">
                                 <?php echo $_smarty_tpl->tpl_vars['resultat']->value['off_intitule'];?>
 
@@ -272,7 +306,8 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
             data: {
                 "gestion": "chercheur",
                 "action": "get_offre",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardFavoriToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -323,7 +358,8 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
             data: {
                 "gestion": "chercheur",
                 "action": "get_offre",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardCandidatureToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -374,7 +410,8 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
             data: {
                 "gestion": "chercheur",
                 "action": "get_entretien",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardEntretienToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -426,7 +463,8 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
             data: {
                 "gestion": "chercheur",
                 "action": "get_resultat",
-                "off_id": off_id
+                "off_id": off_id,
+                "token": $("input[name='cardResultatToken']").val()
             },
             dataType: 'JSON'
         }).done(function (response) {
@@ -466,6 +504,39 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
         });
 
 
+    }
+<?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
+    function submitFormNavOffres()
+    {
+        $("form[name='formNavOffres']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavProfil()
+    {
+        $("form[name='formNavProfil']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavDashboard()
+    {
+        $("form[name='formNavDashboard']").submit();
+    }
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+    function submitFormNavCV()
+    {
+        $("form[name='formNavCV']").submit();
     }
 <?php echo '</script'; ?>
 >
