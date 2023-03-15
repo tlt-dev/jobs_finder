@@ -77,6 +77,39 @@ class Chercheur
                     case 'get_resultat':
                         $this->chercheurControleur->getResultat();
                         break;
+                    case 'update_infos_personnelles':
+                        $this->chercheurControleur->updateInfosPersonnelles();
+                        break;
+                    case 'update_cv_description':
+                        $this->chercheurControleur->updateCvDescription();
+                        break;
+                    case 'get_liste_villes':
+                        $this->chercheurControleur->getListeVilles();
+                        break;
+                    case 'add_formation':
+                        $this->chercheurControleur->addFormation();
+                        break;
+                    case 'delete_formation':
+                        $this->chercheurControleur->deleteFormation();
+                        break;
+                    case 'form_edit_formation':
+                        $this->chercheurControleur->formEditFormation();
+                        break;
+                    case 'modifier_formation':
+                        $this->chercheurControleur->editFormation();
+                        break;
+                    case 'add_experiencePro':
+                        $this->chercheurControleur->addExperiencePro();
+                        break;
+                    case 'delete_experiencePro':
+                        $this->chercheurControleur->deleteExperiencePro();
+                        break;
+                    case 'form_edit_experiencePro':
+                        $this->chercheurControleur->formEditExperiencePro();
+                        break;
+                    case 'modifier_experiencePro':
+                        $this->chercheurControleur->editExperiencePro();
+                        break;
 
 
 

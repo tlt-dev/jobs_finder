@@ -260,4 +260,255 @@ class ChercheurModele extends Modele
 
     }
 
+    public function getCv()
+    {
+
+        $sql = "SELECT cv_description FROM T_Cv WHERE cv_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getFormations()
+    {
+
+        $sql = "SELECT * FROM T_Formation WHERE for_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id']
+        ));
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getExperiencesPro()
+    {
+
+        $sql = "SELECT * FROM T_Experience_Pro WHERE exp_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id']
+        ));
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getCompetencesChercheur()
+    {
+
+        $sql = "SELECT * FROM T_Competence INNER JOIN T_Competence_Chercheur_Emploi ON com_id = cce_competence WHERE cce_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+           $this->parametres['che_id']
+        ));
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getLanguesChercheur()
+    {
+
+        $sql = "SELECT lan_id, lan_nom, lce_niveau FROM T_Langue INNER JOIN T_Langue_Chercheur_Emploi ON lce_id = lan_id WHERE lce_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id']
+        ));
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getCentresInteret()
+    {
+
+        $sql = "SELECT * FROM T_Centre_Interet WHERE cei_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id']
+        ));
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getVille($vil_id)
+    {
+
+        $sql = "SELECT vil_nom FROM T_Ville WHERE vil_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $vil_id
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)['vil_nom'];
+
+    }
+
+    public function updateInfosPersonnelles(ChercheurObjet $chercheur)
+    {
+
+        $sql = "UPDATE T_Chercheur_Emploi SET che_nom = ?, che_prenom = ?,"
+            . " che_telephone = ?, che_mail = ?, che_adresse = ?, che_ville = ?, che_code_postal = ?, che_en_recherche = ?"
+            . " WHERE che_id = ?";
+
+        $this->executeRequete($sql, array(
+            $chercheur->getChe_nom(),
+            $chercheur->getChe_prenom(),
+            $chercheur->getChe_telephone(),
+            $chercheur->getChe_mail(),
+            $chercheur->getChe_adresse(),
+            $chercheur->getChe_ville(),
+            $chercheur->getChe_code_postal(),
+            $chercheur->getChe_en_recherche(),
+            $this->parametres['che_id']
+        ));
+
+    }
+
+    public function updateCvDescription()
+    {
+
+        $sql = "SELECT * FROM T_CV WHERE cv_chercheur = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['che_id']
+        ));
+
+        if($resultat->fetch(PDO::FETCH_ASSOC)){
+            $sql = 'UPDATE T_CV SET cv_description = ? WHERE cv_chercheur = ?';
+        }else{
+            $sql = 'INSERT INTO T_CV (cv_description, cv_chercheur) VALUES (?,?)';
+        }
+
+        $this->executeRequete($sql, array(
+            $this->parametres['cv_description'],
+            $this->parametres['che_id']
+        ));
+
+    }
+
+    public function getFormation()
+    {
+
+        $sql = "SELECT * FROM T_Formation WHERE for_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['for_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function addFormation()
+    {
+
+        $sql = "INSERT INTO T_Formation (for_formation, for_etablissement, for_ville, for_date_debut, for_date_fin, for_description, for_chercheur) VALUES (?,?,?,?,?,?,?)";
+
+        $this->executeRequete($sql, array(
+           $this->parametres['for_formation'],
+           $this->parametres['for_etablissement'],
+           $this->parametres['for_ville'],
+           $this->parametres['for_date_debut'],
+           $this->parametres['for_date_fin'],
+           $this->parametres['for_description'],
+           $this->parametres['che_id']
+        ));
+
+    }
+
+    public function deleteFormation()
+    {
+
+        $sql = "DELETE FROM T_Formation WHERE for_id = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['for_id']
+        ));
+
+    }
+
+    public function editFormation()
+    {
+
+        $sql = "UPDATE T_Formation SET for_formation=?, for_etablissement=?, for_ville=?, for_date_debut=?, for_date_fin=?, for_description=? WHERE for_id=?";
+
+        $this->executeRequete($sql, array(
+           $this->parametres['for_formation'],
+           $this->parametres['for_etablissement'],
+           $this->parametres['for_ville'],
+           $this->parametres['for_date_debut'],
+           $this->parametres['for_date_fin'],
+           $this->parametres['for_description'],
+           $this->parametres['for_id']
+        ));
+
+    }
+
+    public function getExperiencePro()
+    {
+
+        $sql = "SELECT * FROM T_Experience_Pro WHERE exp_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['exp_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function addExperiencePro()
+    {
+
+        $sql = "INSERT INTO T_Experience_Pro (exp_poste, exp_employeur, exp_ville, exp_date_debut, exp_date_fin, exp_description, exp_chercheur) VALUES (?,?,?,?,?,?,?)";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['exp_poste'],
+            $this->parametres['exp_employeur'],
+            $this->parametres['exp_ville'],
+            $this->parametres['exp_date_debut'],
+            $this->parametres['exp_date_fin'],
+            $this->parametres['exp_description'],
+            $this->parametres['che_id']
+        ));
+
+    }
+
+    public function deleteExperiencePro()
+    {
+
+        $sql = "DELETE FROM T_Experience_Pro WHERE exp_id = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['exp_id']
+        ));
+
+    }
+
+    public function editExperiencePro()
+    {
+
+        $sql = "UPDATE T_Experience_Pro SET exp_poste=?, exp_employeur=?, exp_ville=?, exp_date_debut=?, exp_date_fin=?, exp_description=? WHERE exp_id=?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['exp_poste'],
+            $this->parametres['exp_employeur'],
+            $this->parametres['exp_ville'],
+            $this->parametres['exp_date_debut'],
+            $this->parametres['exp_date_fin'],
+            $this->parametres['exp_description'],
+            $this->parametres['exp_id']
+        ));
+
+    }
+
+
+
 }

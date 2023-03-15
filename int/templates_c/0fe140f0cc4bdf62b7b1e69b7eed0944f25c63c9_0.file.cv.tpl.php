@@ -1,4 +1,30 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2023-03-15 23:37:51
+  from '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/cv.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_641256cf388075_22359581',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '0fe140f0cc4bdf62b7b1e69b7eed0944f25c63c9' => 
+    array (
+      0 => '/Applications/MAMP/htdocs/jobs_finder/int/mod_chercheur/vue/cv.tpl',
+      1 => 1678923468,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
+    'file:mod_chercheur/vue/modalFormation.tpl' => 1,
+    'file:mod_chercheur/vue/modalExperiencePro.tpl' => 1,
+  ),
+),false)) {
+function content_641256cf388075_22359581 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +50,8 @@
                 <li class="nav-item pe-4">
                     <form method="post" class="my-auto" action="index.php" name="formNavOffres">
                         <input type="hidden" name="gestion" value="visiteur">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
                     </form>
@@ -33,7 +60,8 @@
                     <form method="post" action="index.php" name="formNavProfil">
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="generer_profil">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
                     </form>
@@ -42,7 +70,8 @@
                     <form method="post" action="index.php" name="formNavDashboard">
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="generer_dashboard">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
                     </form>
@@ -51,7 +80,8 @@
                     <form method="post" action="index.php" name="formNavCV">
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="generer_fiche_cv">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavCV()">CV</p>
                     </form>
@@ -84,32 +114,37 @@
                             <form method="post" action="index.php" name="formInfosPersonnelles">
                                 <input type="hidden" name="gestion" value="chercheur">
                                 <input type="hidden" name="action" value="update_infos_personnelles">
-                                <input type="hidden" name="token" value="{$token}">
+                                <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                                 <div class="row">
                                     <div class="col-4">
                                         <label for="photo" class="form-label">Photo</label>
                                         <img class="w-75 d-block" id="photo"
-                                             src="mod_chercheur/documents/{$chercheur->getChe_id()}/logo.png">
+                                             src="mod_chercheur/documents/<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_id();?>
+/logo.png">
                                     </div>
                                     <div class="col-8">
                                         <div class="row">
                                             <div class="col">
                                                 <label for="nom" class="form-label">Nom</label>
                                                 <input type="text" class="form-control" id="nom" name="che_nom"
-                                                       value="{$chercheur->getChe_nom()}">
+                                                       value="<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_nom();?>
+">
                                             </div>
                                             <div class="col">
                                                 <label for="prenom" class="form-label">Prénom</label>
                                                 <input type="text" class="form-control" id="prenom" name="che_prenom"
-                                                       value="{$chercheur->getChe_prenom()}">
+                                                       value="<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_prenom();?>
+">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <label for="mail" class="form-label">Adresse mail</label>
                                                 <input type="text" class="form-control" id="mail" name="che_mail"
-                                                       value="{$chercheur->getChe_mail()}">
+                                                       value="<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_mail();?>
+">
                                             </div>
                                         </div>
                                     </div>
@@ -118,33 +153,47 @@
                                     <div class="col">
                                         <label for="telephone" class="form-label">Numéro de téléphone</label>
                                         <input type="text" class="form-control" id="telephone" name="che_telephone"
-                                               value="{$chercheur->getChe_telephone()}">
+                                               value="<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_telephone();?>
+">
                                     </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col">
                                         <label for="adresse" class="form-label">Adresse</label>
                                         <input type="text" class="form-control" id="adresse" name="che_adresse"
-                                               value="{$chercheur->getChe_adresse()}">
+                                               value="<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_adresse();?>
+">
                                     </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col">
                                         <label for="code_postal" class="form-label">Code postal</label>
                                         <input type="text" class="form-control" id="code_postal" name="che_code_postal"
-                                               value="{$chercheur->getChe_code_postal()}">
+                                               value="<?php echo $_smarty_tpl->tpl_vars['chercheur']->value->getChe_code_postal();?>
+">
                                     </div>
                                     <div class="col">
                                         <label for="ville" class="form-label">Ville</label>
                                         <select class="form-control" id="che_ville" name="che_ville">
-                                            {foreach $chercheur->getComboVilles() as $ville}
-                                                {if $chercheur->getChe_ville() eq $ville['vil_id']}
-                                                    <option value="{$ville['vil_id']}"
-                                                            selected>{$ville['vil_nom']}</option>
-                                                {else}
-                                                    <option value="{$ville['vil_id']}">{$ville['vil_nom']}</option>
-                                                {/if}
-                                            {/foreach}
+                                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['chercheur']->value->getComboVilles(), 'ville');
+$_smarty_tpl->tpl_vars['ville']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['ville']->value) {
+$_smarty_tpl->tpl_vars['ville']->do_else = false;
+?>
+                                                <?php if ($_smarty_tpl->tpl_vars['chercheur']->value->getChe_ville() == $_smarty_tpl->tpl_vars['ville']->value['vil_id']) {?>
+                                                    <option value="<?php echo $_smarty_tpl->tpl_vars['ville']->value['vil_id'];?>
+"
+                                                            selected><?php echo $_smarty_tpl->tpl_vars['ville']->value['vil_nom'];?>
+</option>
+                                                <?php } else { ?>
+                                                    <option value="<?php echo $_smarty_tpl->tpl_vars['ville']->value['vil_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['ville']->value['vil_nom'];?>
+</option>
+                                                <?php }?>
+                                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                         </select>
                                     </div>
                                 </div>
@@ -152,7 +201,7 @@
                                     <div class="col-3">
                                         <label for="en_recherche" class="form-check-label">En recherche ?</label>
                                         <input type="checkbox" class="form-check-input" name="che_en_recherche"
-                                               {if $chercheur->getChe_en_recherche() eq 1}checked{/if}
+                                               <?php if ($_smarty_tpl->tpl_vars['chercheur']->value->getChe_en_recherche() == 1) {?>checked<?php }?>
                                                value="1">
                                     </div>
                                     <div class="offset-6 col-3">
@@ -176,12 +225,14 @@
                             <form method="post" action="index.php" name="formProfil">
                                 <input type="hidden" name="gestion" value="chercheur">
                                 <input type="hidden" name="action" value="update_cv_description">
-                                <input type="hidden" name="token" value="{$token}">
+                                <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                                 <div class="row">
                                     <div class="col">
                                         <label for="description" class="form-label">Profil</label>
-                                        <textarea class="form-control" name="cv_description" id="description" rows="6">{$description}</textarea>
+                                        <textarea class="form-control" name="cv_description" id="description" rows="6"><?php echo $_smarty_tpl->tpl_vars['description']->value;?>
+</textarea>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -203,21 +254,29 @@
                     <div id="accordionFormationContent" class="accordion-collapse collapse" aria-labelledby="accordionFormation"
                          data-bs-parent="#accordionFormation">
                         <div class="accordion-body">
-                            {foreach $listeFormationsChercheur as $formation}
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['listeFormationsChercheur']->value, 'formation');
+$_smarty_tpl->tpl_vars['formation']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['formation']->value) {
+$_smarty_tpl->tpl_vars['formation']->do_else = false;
+?>
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <p>{$formation['for_formation']}</p>
+                                                        <p><?php echo $_smarty_tpl->tpl_vars['formation']->value['for_formation'];?>
+</p>
                                                     </div>
                                                     <div class="col-3">
                                                         <form method="post" action="index.php" name="formEditFormation">
                                                             <input type="hidden" name="gestion" value="chercheur">
                                                             <input type="hidden" name="action" value="form_edit_formation">
-                                                            <input type="hidden" name="for_id" value="{$formation['for_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
+                                                            <input type="hidden" name="for_id" value="<?php echo $_smarty_tpl->tpl_vars['formation']->value['for_id'];?>
+">
+                                                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                                                             <input type="submit" class="btn btn-outline-dark" value="Modifier">
                                                         </form>
@@ -226,8 +285,10 @@
                                                         <form method="post" action="index.php" name="formDeleteFormation">
                                                             <input type="hidden" name="gestion" value="chercheur">
                                                             <input type="hidden" name="action" value="delete_formation">
-                                                            <input type="hidden" name="for_id" value="{$formation['for_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
+                                                            <input type="hidden" name="for_id" value="<?php echo $_smarty_tpl->tpl_vars['formation']->value['for_id'];?>
+">
+                                                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
 
                                                             <input type="submit" class="btn btn-outline-dark" value="Supprimer">
@@ -238,11 +299,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            {/foreach}
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <div class="row mt-3 text-center">
                                 <div class="col">
                                     <form method="post" action="index.php" name="formAddFormation">
-                                        <input type="hidden" name="token" id="formAddFormationToken" value="{$token}">
+                                        <input type="hidden" name="token" id="formAddFormationToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                                         <input type="submit" class="btn btn-outline-dark" value="Ajouter une formation">
                                     </form>
@@ -261,21 +325,29 @@
                     <div id="accordionExperienceProContent" class="accordion-collapse collapse" aria-labelledby="accordionExperiencePro"
                          data-bs-parent="#accordionExperiencePro">
                         <div class="accordion-body">
-                            {foreach $listeExperiencesProChercheur as $experiencePro}
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['listeExperiencesProChercheur']->value, 'experiencePro');
+$_smarty_tpl->tpl_vars['experiencePro']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['experiencePro']->value) {
+$_smarty_tpl->tpl_vars['experiencePro']->do_else = false;
+?>
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <p>{$experiencePro['exp_poste']}</p>
+                                                        <p><?php echo $_smarty_tpl->tpl_vars['experiencePro']->value['exp_poste'];?>
+</p>
                                                     </div>
                                                     <div class="col-3">
                                                         <form method="post" action="index.php" name="formEditExperiencePro">
                                                             <input type="hidden" name="gestion" value="chercheur">
                                                             <input type="hidden" name="action" value="form_edit_experiencePro">
-                                                            <input type="hidden" name="exp_id" value="{$experiencePro['exp_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
+                                                            <input type="hidden" name="exp_id" value="<?php echo $_smarty_tpl->tpl_vars['experiencePro']->value['exp_id'];?>
+">
+                                                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                                                             <input type="submit" class="btn btn-outline-dark" value="Modifier">
                                                         </form>
@@ -284,8 +356,10 @@
                                                         <form method="post" action="index.php" name="formDeleteExperiencePro">
                                                             <input type="hidden" name="gestion" value="chercheur">
                                                             <input type="hidden" name="action" value="delete_experiencePro">
-                                                            <input type="hidden" name="exp_id" value="{$experiencePro['exp_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
+                                                            <input type="hidden" name="exp_id" value="<?php echo $_smarty_tpl->tpl_vars['experiencePro']->value['exp_id'];?>
+">
+                                                            <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
 
                                                             <input type="submit" class="btn btn-outline-dark" value="Supprimer">
@@ -296,11 +370,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            {/foreach}
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             <div class="row mt-3 text-center">
                                 <div class="col">
                                     <form method="post" action="index.php" name="formAddExperiencePro">
-                                        <input type="hidden" name="token" id="formAddExperienceProToken" value="{$token}">
+                                        <input type="hidden" name="token" id="formAddExperienceProToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                                         <input type="submit" class="btn btn-outline-dark" value="Ajouter une expérience professionnelle">
                                     </form>
@@ -319,56 +396,7 @@
                     <div id="accordionCompetencesContent" class="accordion-collapse collapse" aria-labelledby="accordionCompetences"
                          data-bs-parent="#accordionCompetences">
                         <div class="accordion-body">
-                            {foreach $listeCompetencesChercheur as $competence}
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="row">
-                                                            <p>{$competence['com_libelle']}</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p>{$competence['niv_libelle']}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <form method="post" action="index.php" name="formEditCompetence">
-                                                            <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="form_edit_competence">
-                                                            <input type="hidden" name="com_id" value="{$competence['com_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
 
-                                                            <input type="submit" class="btn btn-outline-dark" value="Modifier">
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <form method="post" action="index.php" name="formDeleteCompetence">
-                                                            <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="delete_competence">
-                                                            <input type="hidden" name="com_id" value="{$competence['com_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
-
-
-                                                            <input type="submit" class="btn btn-outline-dark" value="Supprimer">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/foreach}
-                            <div class="row mt-3 text-center">
-                                <div class="col">
-                                    <form method="post" action="index.php" name="formAddCompetence">
-                                        <input type="hidden" name="token" id="formAddCompetenceToken" value="{$token}">
-
-                                        <input type="submit" class="btn btn-outline-dark" value="Ajouter une compétence">
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -382,56 +410,7 @@
                     <div id="accordionLanguesContent" class="accordion-collapse collapse" aria-labelledby="accordionLangues"
                          data-bs-parent="#accordionLangues">
                         <div class="accordion-body">
-                            {foreach $listeLanguesChercheur as $langue}
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="row">
-                                                            <p>{$langue['lan_libelle']}</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <p>{$langue['niv_libelle']}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <form method="post" action="index.php" name="formEditLangue">
-                                                            <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="form_edit_langue">
-                                                            <input type="hidden" name="lce_id" value="{$langue['lce_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
 
-                                                            <input type="submit" class="btn btn-outline-dark" value="Modifier">
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <form method="post" action="index.php" name="formDeleteLangue">
-                                                            <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="deleteLangue">
-                                                            <input type="hidden" name="lce_id" value="{$langue['lce_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
-
-
-                                                            <input type="submit" class="btn btn-outline-dark" value="Supprimer">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/foreach}
-                            <div class="row mt-3 text-center">
-                                <div class="col">
-                                    <form method="post" action="index.php" name="formAddLangue">
-                                        <input type="hidden" name="token" id="formAddLangueToken" value="{$token}">
-
-                                        <input type="submit" class="btn btn-outline-dark" value="Ajouter une langue">
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -445,53 +424,7 @@
                     <div id="accordionCentresInteretContent" class="accordion-collapse collapse" aria-labelledby="accordionCentresInteret"
                          data-bs-parent="#accordionCentresInteret">
                         <div class="accordion-body">
-                            {foreach $listeCentresInteretChercheur as $centreInteret}
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="row">
-                                                            <p>{$centreInteret['cei_intitule']}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <form method="post" action="index.php" name="formEditCentreInteret">
-                                                            <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="form_edit_centre_interet">
-                                                            <input type="hidden" name="cei_id" value="{$competence['cei_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
-
-                                                            <input type="submit" class="btn btn-outline-dark" value="Modifier">
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <form method="post" action="index.php" name="formDeleteCentreInteret">
-                                                            <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="delete_centre_interet">
-                                                            <input type="hidden" name="cei_id" value="{$centre_interet['cei_id']}">
-                                                            <input type="hidden" name="token" value="{$token}">
-
-
-                                                            <input type="submit" class="btn btn-outline-dark" value="Supprimer">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/foreach}
-                            <div class="row mt-3 text-center">
-                                <div class="col">
-                                    <form method="post" action="index.php" name="formAddCentreInteret">
-                                        <input type="hidden" name="token" id="formAddCentreInteretToken" value="{$token}">
-
-                                        <input type="submit" class="btn btn-outline-dark" value="Ajouter un centre d'intérêt">
-                                    </form>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -501,47 +434,59 @@
 
 </div>
 
-{include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
-{include file="mod_chercheur/vue/modalFormation.tpl"}
-{include file="mod_chercheur/vue/modalExperiencePro.tpl"}
-{include file="mod_chercheur/vue/modalCompetenceLangue.tpl"}
-{include file="mod_chercheur/vue/modalCentreInteret.tpl"}
+<?php $_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalDeconnexion.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+$_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalFormation.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+$_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalExperiencePro.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 
 </body>
 
 
 <!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"><?php echo '</script'; ?>
+>
 
 <!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     function submitFormNavOffres() {
         $("form[name='formNavOffres']").submit();
     }
-</script>
-<script>
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
     function submitFormNavProfil() {
         $("form[name='formNavProfil']").submit();
     }
-</script>
-<script>
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
     function submitFormNavDashboard() {
         $("form[name='formNavDashboard']").submit();
     }
-</script>
-<script>
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
     function submitFormNavCV() {
         $("form[name='formNavCV']").submit();
     }
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formInfosPersonnelles']").submit(function (e) {
         e.preventDefault();
 
@@ -561,9 +506,11 @@
         });
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formProfil']").submit(function (e) {
         e.preventDefault();
 
@@ -583,9 +530,11 @@
         });
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formAddFormation']").submit(function (e)
     {
         e.preventDefault();
@@ -617,9 +566,11 @@
         $("#formFormationButton").val('Ajouter');
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formDeleteInformation']").submit(function (e) {
         e.preventDefault();
 
@@ -639,9 +590,11 @@
         });
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formEditFormation']").submit(function (e)
     {
         e.preventDefault();
@@ -688,9 +641,11 @@
 
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formAddExperiencePro']").submit(function (e)
     {
         e.preventDefault();
@@ -722,9 +677,11 @@
         $("#formExperienceProButton").val('Ajouter');
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     /*$("form[name='formDeleteExperiencePro']").submit(function (e) {
         e.preventDefault();
 
@@ -744,9 +701,11 @@
         });
 
     });*/
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='formEditExperiencePro']").submit(function (e)
     {
         e.preventDefault();
@@ -794,6 +753,8 @@
 
 
     });
-</script>
+<?php echo '</script'; ?>
+>
 
-</html>
+</html><?php }
+}

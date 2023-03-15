@@ -12,6 +12,7 @@ class ChercheurObjet
     private $che_mail;
     private $che_adresse;
     private $che_ville;
+    private $che_code_postal;
     private $che_departement;
     private $che_photo;
     private $che_en_recherche;
@@ -98,6 +99,11 @@ class ChercheurObjet
     public function getChe_ville()
     {
         return $this->che_ville;
+    }
+
+    public function getChe_code_postal()
+    {
+        return $this->che_code_postal;
     }
 
     public function getChe_departement()
@@ -242,6 +248,11 @@ class ChercheurObjet
     public function setChe_ville($che_ville)
     {
         $this->che_ville = $che_ville;
+    }
+
+    public function setChe_code_postal($che_code_postal)
+    {
+        $this->che_code_postal = $che_code_postal;
     }
 
     public function setChe_departement($che_departement)

@@ -57,4 +57,25 @@ class ChercheurVue
 
     }
 
+    public function afficherFicheCV($chercheur, $description, $formations, $experiencesPro, $competences, $langues, $centresInteret, $ville, $listeVilles)
+    {
+
+        $this->tpl->assign('chercheur', $chercheur);
+        $this->tpl->assign('description', $description);
+        $this->tpl->assign('listeFormationsChercheur', $formations);
+        $this->tpl->assign('listeExperiencesProChercheur', $experiencesPro);
+        $this->tpl->assign('listeCompetencesChercheur', $competences);
+        $this->tpl->assign('listeLanguesChercheur', $langues);
+        $this->tpl->assign('listeCentresInteretChercheur', $centresInteret);
+
+        $this->tpl->assign('ville', $ville);
+        $this->tpl->assign('listeVilles', $listeVilles);
+
+        $this->tpl->assign('token', $_SESSION['token']);
+
+        $this->tpl->display('mod_chercheur/vue/cv.tpl');
+
+
+    }
+
 }

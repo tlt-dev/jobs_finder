@@ -245,4 +245,156 @@ class ChercheurControleur
 
     }
 
+    public function genererFicheCv()
+    {
+
+        $chercheur = $this->chercheurModele->getChercheur();
+
+        $description = NULL;
+
+        if($cv = $this->chercheurModele->getCv()) $description = $cv['cv_description'];
+
+        $formations = $this->chercheurModele->getFormations();
+        $experiencesPro = $this->chercheurModele->getExperiencesPro();
+        $competences = $this->chercheurModele->getCompetencesChercheur();
+        $langues = $this->chercheurModele->getLanguesChercheur();
+        $centresInteret = $this->chercheurModele->getCentresInteret();
+
+        $listeVilles = $this->chercheurModele->getListeVilles();
+
+        $ville = $this->chercheurModele->getVille($chercheur->getChe_ville());
+
+        $this->chercheurVue->afficherFicheCV($chercheur, $description, $formations, $experiencesPro, $competences, $langues, $centresInteret, $ville, $listeVilles);
+
+    }
+
+    public function updateInfosPersonnelles()
+    {
+
+        $controleChercheur = new ChercheurObjet($this->parametres);
+
+        $this->chercheurModele->updateInfosPersonnelles($controleChercheur);
+
+        echo(json_encode(array(
+            "messageSucces"=>"Modifié avec succès"
+        )));
+
+    }
+
+    public function updateCvDescription()
+    {
+
+        $this->chercheurModele->updateCvDescription();
+
+        echo(json_encode("ok"));
+
+    }
+
+    public function getListeVilles()
+    {
+
+        $listeVilles = $this->chercheurModele->getListeVilles();
+
+        echo(json_encode(array(
+            "listeVilles"=>$listeVilles
+        )));
+
+    }
+
+    public function addFormation()
+    {
+
+        $this->chercheurModele->addFormation();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function deleteFormation()
+    {
+
+        $this->chercheurModele->deleteFormation();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function formEditFormation()
+    {
+
+        $formation = $this->chercheurModele->getFormation();
+        $listeVilles = $this->chercheurModele->getListeVilles();
+
+        echo(json_encode(array(
+            "for_formation"=>$formation['for_formation'],
+            "for_etablissement"=>$formation['for_etablissement'],
+            "for_date_debut"=>$formation['for_date_debut'],
+            "for_date_fin"=>$formation['for_date_fin'],
+            "for_description"=>$formation['for_description'],
+            "for_ville"=>$formation['for_ville'],
+            "for_id"=>$formation['for_id'],
+            "token"=>$_SESSION['token'],
+            "action"=>"modifier_formation",
+            "listeVilles"=>$listeVilles
+        )));
+
+    }
+
+    public function editFormation()
+    {
+
+        $this->chercheurModele->editFormation();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function addExperiencePro()
+    {
+
+        $this->chercheurModele->addExperiencePro();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function deleteExperiencePro()
+    {
+
+        $this->chercheurModele->deleteExperiencePro();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function formEditExperiencePro()
+    {
+
+        $experiencePro = $this->chercheurModele->getExperiencePro();
+        $listeVilles = $this->chercheurModele->getListeVilles();
+
+        echo(json_encode(array(
+            "exp_poste"=>$experiencePro['exp_poste'],
+            "exp_employeur"=>$experiencePro['exp_employeur'],
+            "exp_date_debut"=>$experiencePro['exp_date_debut'],
+            "exp_date_fin"=>$experiencePro['exp_date_fin'],
+            "exp_description"=>$experiencePro['exp_description'],
+            "exp_ville"=>$experiencePro['exp_ville'],
+            "exp_id"=>$experiencePro['exp_id'],
+            "token"=>$_SESSION['token'],
+            "action"=>"modifier_experiencePro",
+            "listeVilles"=>$listeVilles
+        )));
+
+    }
+
+    public function editExperiencePro()
+    {
+
+        $this->chercheurModele->editExperiencePro();
+
+        $this->genererFicheCv();
+
+    }
+
 }
