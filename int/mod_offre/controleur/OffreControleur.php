@@ -48,11 +48,9 @@ class OffreControleur
 
         $offre = new OffreObjet($this->parametres);
 
-        if($offre->getAutorisationBD()){
-            $this->offreModele->modifierOffre($offre);
-            OffreObjet::setMessageSucces("Offre modifiée avec succès !");
-            $this->genererListeOffre();
-        }
+        $this->offreModele->modifierOffre($offre);
+        OffreObjet::setMessageSucces("Offre modifiée avec succès !");
+        $this->genererListeOffre();
     }
 
     public function creerOffre(){
