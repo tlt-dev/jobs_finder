@@ -120,7 +120,8 @@ class OffreModele extends Modele
             off_salaire = ?,
             off_duree = ?,
             off_descriptif = ?,
-            off_type_contrat = ?
+            off_type_contrat = ?,
+            off_poste = ?
             WHERE off_id = ?";
 
         $this->executeRequete(
@@ -134,6 +135,7 @@ class OffreModele extends Modele
                 $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
                 $offre->getOff_descriptif(),
                 $offre->getOff_type_contrat(),
+                $offre->getOff_poste(),
                 $offre->getOff_id()
             )
         );
@@ -151,8 +153,9 @@ class OffreModele extends Modele
             off_duree,
             off_descriptif,
             off_type_contrat,
-            off_entreprise
-        ) VALUES (?,?,?,?,?,?,?,?,?)";
+            off_entreprise,
+            off_poste
+        ) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         $this->executeRequete(
             $sql,
@@ -165,7 +168,8 @@ class OffreModele extends Modele
                 $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
                 $offre->getOff_descriptif(),
                 $offre->getOff_type_contrat(),
-                $offre->getOff_entreprise()
+                $offre->getOff_entreprise(),
+                $offre->getOff_poste()
             )
         );
     }
@@ -184,9 +188,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT * FROM T_Offre INNER JOIN T_Favori_Chercheur_Emploi ON off_id = fce_offre WHERE fce_chercheur = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $che_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $che_id
+            )
         );
 
         $listeFavories = $resultat->fetchAll(PDO::FETCH_ASSOC);
@@ -208,9 +214,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT * FROM T_Offre INNER JOIN T_Candidature ON off_id = can_offre WHERE can_chercheur = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $che_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $che_id
+            )
         );
 
         $listeCandidatures = $resultat->fetchAll(PDO::FETCH_ASSOC);
@@ -231,9 +239,11 @@ class OffreModele extends Modele
     {
         $sql = "SELECT * FROM T_Offre INNER JOIN T_Entretien ON off_id = ent_offre WHERE ent_chercheur = ? AND ent_statut = 1 OR ent_statut = 3";
 
-        $resultat = $this->executeRequete($sql, array(
-            $che_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $che_id
+            )
         );
 
         $listeEntretiens = $resultat->fetchAll(PDO::FETCH_ASSOC);
@@ -253,9 +263,11 @@ class OffreModele extends Modele
     {
         $sql = "SELECT * FROM T_Offre INNER JOIN T_Entretien ON off_id = ent_offre WHERE ent_chercheur = ? AND ent_statut = 0 OR ent_statut = 2";
 
-        $resultat = $this->executeRequete($sql, array(
-            $che_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $che_id
+            )
         );
 
         $listeResultats = $resultat->fetchAll(PDO::FETCH_ASSOC);
@@ -276,9 +288,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT ent_nom FROM T_Entreprise WHERE ent_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $ent_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $ent_id
+            )
         );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['ent_nom'];
@@ -290,9 +304,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT vil_nom FROM T_Ville WHERE vil_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $vil_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $vil_id
+            )
         );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['vil_nom'];
@@ -304,9 +320,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT sal_libelle FROM T_Salaire WHERE sal_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $sal_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $sal_id
+            )
         );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['sal_libelle'];
@@ -318,9 +336,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT tco_libelle FROM T_Type_Contrat WHERE tco_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $tco_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $tco_id
+            )
         );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['tco_libelle'];
@@ -332,9 +352,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT sea_libelle FROM T_Secteur_Activite WHERE sea_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $sea_id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $sea_id
+            )
         );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['sea_libelle'];
@@ -348,6 +370,13 @@ class OffreModele extends Modele
         $resultat = $this->executeRequete($sql, array($login));
 
         return $resultat->fetch(PDO::FETCH_ASSOC)["ent_id"];
+    }
+
+    public function getAllPoste()
+    {
+        $sql = "SELECT * from t_poste";
+
+        return $this->executeRequete($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

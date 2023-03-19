@@ -15,7 +15,7 @@
 
     </head>
     <script type="text/javascript">
-        function setDureeInput(){
+        function setDureeInput() {
             var selection = document.getElementById("typeContratSelect").value;
             document.getElementById("dureeInput").style.display = selection == 1 ? 'none' : 'block';
         }
@@ -26,11 +26,11 @@
         var mm = today.getMonth() + 1; //January is 0!
         var yyyy = today.getFullYear();
         if (dd < 10) {
-        dd = '0' + dd;
+            dd = '0' + dd;
         }
         if (mm < 10) {
-        mm = '0' + mm;
-        } 
+            mm = '0' + mm;
+        }
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById("datePrisePoste").setAttribute("min", today);
     </script>
@@ -73,7 +73,17 @@
                                                 <label class="form-label">Secteur d'activité</label>
                                                 <select name="off_secteur_activite" class="form-control">
                                                     {foreach $listeSecteurActivite as $secteurId => $secteur}
-                                                    <option value="{$secteurId}">{$secteur}</option>
+                                                        <option value="{$secteurId}">{$secteur}</option>
+                                                    {/foreach}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Poste</label>
+                                                <select name="off_poste" class="form-control">
+                                                    {foreach $listePoste as $poste}
+                                                        <option value="{$poste["pos_id"]}">{$poste["pos_libelle"]}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -88,7 +98,7 @@
                                         <label class="form-label">Ville</label>
                                         <select name="off_ville" class="form-control">
                                             {foreach $listeVilles as $villeId => $ville}
-                                            <option value="{$villeId}">{$ville['vil_nom']}</option>
+                                                <option value="{$villeId}">{$ville['vil_nom']}</option>
                                             {/foreach}
                                         </select>
                                     </div>
@@ -113,9 +123,10 @@
                             <div class="row mb-3">
                                 <div class="col-lg-6">
                                     <label class="form-label">Type de contrat</label>
-                                    <select id="typeContratSelect" name="off_type_contrat" class="form-control" onchange="setDureeInput()">
+                                    <select id="typeContratSelect" name="off_type_contrat" class="form-control"
+                                        onchange="setDureeInput()">
                                         {foreach $listeTypeContrat as $typeContratId => $typeContrat}
-                                                <option value="{$typeContratId}">{$typeContrat}</option>
+                                            <option value="{$typeContratId}">{$typeContrat}</option>
                                         {/foreach}
                                     </select>
                                 </div>

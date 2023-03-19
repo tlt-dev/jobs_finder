@@ -13,6 +13,7 @@ class OffreObjet
     private $off_entreprise;
     private $off_descriptif;
     private $off_type_contrat;
+    private $off_poste;
 
     private $autorisationBD = true;
     private static $messageErreur = "";
@@ -138,6 +139,14 @@ class OffreObjet
 
     public function setOff_type_contrat($off_type_contrat){
         $this->off_type_contrat = $off_type_contrat;
+    }
+
+    public function getOff_poste(){
+        return $this->off_poste;
+    }
+
+    public function setOff_poste($off_poste){
+        $this->off_poste = $off_poste;
     }
 
     public function getAutorisationBD()

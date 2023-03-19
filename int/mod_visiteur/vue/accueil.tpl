@@ -350,14 +350,39 @@
             data: form_data,
             dataType: 'json'
         }).done(function(response) {
-            $.each(response, function(index, offre) {
-                $("div.carousel-item.m-auto p.idOffre")[0].innerText = offre.off_id;
+            console.log(response);
+            $("#carouselExampleControls").children("div").remove();
+            $.each(response, function(index, value) {
+                console.log(value);
+                if (index == 0) {
+                    $("#carouselExampleControls").append(
+                        '<div class="carousel-item active"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
+                        value.off_intitule + '</div><p class="idOffre" hidden>' + value.off_id +
+                        '</p><div class="card-body text-dark"><h5 class="card-title">' +
+                        value.vil_nom + '</h5><p class="card-text">' + value
+                        .off_descriptif + '</p></div></div></div>'
+                    );
+                } else {
+                    $("#carouselExampleControls").append(
+                        '<div class="carousel-item m-auto"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
+                        value.off_intitule + '</div><p class="idOffre" hidden>' + value.off_id +
+                        '</p><div class="card-body text-dark"><h5 class="card-title">' +
+                        value.vil_nom + '</h5><p class="card-text">' + value
+                        .off_descriptif + '</p></div></div></div>'
+                    );
+                }
             });
+
         });
     });
 
     $('#carouselExampleControls').bind('slid.bs.carousel', function(e) {
-        e.preventDefault(); //empêcher une action par défaut
+        descOffre();
+    });
+
+    window.onload = function(){ descOffre(); }
+
+    function descOffre(){
         var form_url = "index.php" //récupérer l'URL du formulaire
         var form_method = "post" //récupérer la méthode GET/POST du formulaire
         // Récupérer toutes les valeurs sélectionnées dans le champ de formulaire multiple
@@ -385,7 +410,7 @@
             document.getElementsByName("off_type_contrat")[0].innerText = response.off_type_contrat;
             document.getElementsByName("off_description")[0].innerText = response.off_description;
         });
-    });
+    }
 </script>
 
 </html>

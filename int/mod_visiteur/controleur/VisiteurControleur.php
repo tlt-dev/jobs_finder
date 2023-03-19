@@ -28,6 +28,7 @@ class VisiteurControleur
 
         $listeOffre = $this->visiteurModele->rechercheOffre($this->parametres["off_poste"]);
 
+        $data = array();
         foreach ($listeOffre as $offre){
             $data[] = array(
                 "off_intitule" => $offre["off_intitule"],
