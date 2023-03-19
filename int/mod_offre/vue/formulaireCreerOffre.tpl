@@ -32,7 +32,7 @@
             mm = '0' + mm;
         }
         today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("datePrisePoste").setAttribute("min", today);
+        document.getElementById("#datePrisePoste").setAttribute("min", today);
     </script>
 
     <body>
@@ -133,7 +133,7 @@
                                 <div id="dureeInput" class="col-lg-6" style="display: none">
                                     <label class="form-label">Durée du contrat en mois</label>
                                     <input type="number" name="off_duree" class="form-control"
-                                        placeholder="Durée du poste" required>
+                                        placeholder="Durée du poste">
                                 </div>
                             </div>
                             <!-- Notes -->

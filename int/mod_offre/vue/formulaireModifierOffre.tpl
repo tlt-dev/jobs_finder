@@ -33,7 +33,7 @@
             mm = '0' + mm;
         }
         today = yyyy + '-' + mm + '-' + dd;
-        document.getElementById("datePrisePoste").setAttribute("min", today);
+        document.getElementById("#datePrisePoste").setAttribute("min", today);
     </script>
 
     <body>

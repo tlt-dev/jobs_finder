@@ -214,7 +214,7 @@
                                 <div class="card mb-4">
                                     <p>Type de contrat : <label name="off_type_contrat"></label></p>
                                 </div>
-                                <div class="card mb-4">
+                                <div name="duree_contrat" class="card mb-4">
                                     <p>Durée contrat : <label name="off_duree_contrat"></label> mois</p>
                                 </div>
                                 <div class="card mb-4">
@@ -374,15 +374,13 @@
             document.getElementsByName("off_intitule")[0].innerText = response.off_intitule;
             document.getElementsByName("off_secteur")[0].innerText = response.off_secteur;
             document.getElementsByName("off_ville")[0].innerText = response.off_ville;
-            document.getElementsByName("off_date_prise_poste")[0].innerText = response
-                .off_date_prise_poste;
+            document.getElementsByName("off_date_prise_poste")[0].innerText = response.off_date_prise_poste;
             document.getElementsByName("off_salaire")[0].innerText = response.off_salaire;
-            if (response.off_type_contrat === "CDI") {
-                document.getElementsByName("off_duree_contrat")[0].style.display = "none";
+            if (response.off_type_contrat == "CDI") {
+                document.getElementsByName("duree_contrat")[0].style.display = "none";
             } else {
-                document.getElementsByName("off_duree_contrat")[0].style.display = "inline";
-                document.getElementsByName("off_duree_contrat")[0].innerText = response
-                    .off_duree_contrat;
+                document.getElementsByName("duree_contrat")[0].style.display = "inline";
+                document.getElementsByName("off_duree_contrat")[0].innerText = response.off_duree_contrat;
             }
             document.getElementsByName("off_type_contrat")[0].innerText = response.off_type_contrat;
             document.getElementsByName("off_description")[0].innerText = response.off_description;
