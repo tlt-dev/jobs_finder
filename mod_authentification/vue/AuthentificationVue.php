@@ -17,6 +17,8 @@ class AuthentificationVue
     public function afficherFormulaireAuthentification()
     {
 
+        $this->tpl->assign('token', $_SESSION['token']);
+
         $this->tpl->display('mod_authentification/vue/formAuthentification.tpl');
 
     }

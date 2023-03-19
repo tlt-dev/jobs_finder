@@ -154,6 +154,7 @@
                         <form method="post" action="index.php" name="rechercheOffre">
                             <input type="hidden" name="gestion" value="visiteur">
                             <input type="hidden" name="action" value="recherche_poste">
+                            <input type="hidden" name="token" id="formRechercheOffre_token" value="{$token}">
 
                             <label for="poste_recherche">Poste recherché</label>
                             <select class="form-select" name="off_poste" id="multiple-select-field"
@@ -268,13 +269,18 @@
 </script>
 
 <script>
+    $(document).ready(function() {
+        $("#modalAuthentification_token").val($("#formRechercheOffre_token").val());
+    });
+</script>
+
+<script>
     $("form[name='formAuthentification']").submit(function(e) {
         e.preventDefault();
 
         var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
         var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-
 
         $.ajax({
             url: form_url,
@@ -290,9 +296,9 @@
                 $("#message").removeClass("d-none");
 
             } else if (response.gestion == 'entreprise') {
-                window.location.replace("index.php?gestion=" + response.gestion);
+                window.location.replace("index.php?gestion=" + response.gestion + "&token=" + $("#formRechercheOffre_token").val());
             } else {
-                window.location.replace("index.php?gestion=visiteur");
+                window.location.replace("index.php?gestion=visiteur&token=" + $("#formRechercheOffre_token").val());
             }
         });
 
