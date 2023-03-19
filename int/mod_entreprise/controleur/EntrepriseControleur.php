@@ -122,8 +122,9 @@ class EntrepriseControleur
         $listeOffres = $this->offreModele->getListeOffres($_SESSION["login"]);
         $listeVilles = $this->offreModele->getAllVille();
         $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+        $entreprise = $this->entrepriseModele->getEntreprise();
 
-        $this->entrepriseVue->afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite);
+        $this->entrepriseVue->afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite,$entreprise);
     }
 
 }
