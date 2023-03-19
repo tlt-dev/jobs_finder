@@ -12,7 +12,7 @@ class OffreModele extends Modele
 
     }
 
-    public function getListeOffres($login = null)
+    public function getListeOffres($login)
     {
 
         $sql = "SELECT * FROM t_offre 

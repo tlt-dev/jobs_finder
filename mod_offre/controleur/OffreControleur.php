@@ -37,7 +37,7 @@ class OffreControleur
     public function genererListeOffre()
     {
 
-        $listeOffres = $this->offreModele->getListeOffres();
+        $listeOffres = $this->offreModele->getListeOffres($_SESSION['login']);
         $listeVilles = $this->offreModele->getAllVille();
         $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
         $entreprise = $this->offreModele->getEntreprise($this->offreModele->getEntrepriseId($_SESSION["login"]));
