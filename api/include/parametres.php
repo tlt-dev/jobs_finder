@@ -2,9 +2,9 @@
 ini_set("display_errors", 1);
 //Pour connexion à la base de donnée
 define('NOM', 'root');
-define('PASSE', 'matthieulucasthomas');
-define('SERVEUR', 'jobs-finder.czfyzb4tdpnz.us-east-1.rds.amazonaws.com');
-define('BASE', 'jobs-finder');
+define('PASSE', 'root');
+define('SERVEUR', 'localhost');
+define('BASE', 'jobs_finder');
 define('P', 'x19v_');
 
 //Heure de début des réunions
