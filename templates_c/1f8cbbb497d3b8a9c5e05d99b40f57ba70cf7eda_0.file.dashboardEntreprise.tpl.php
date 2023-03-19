@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 10:42:44
+/* Smarty version 4.2.1, created on 2023-03-19 21:23:47
   from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\dashboardEntreprise.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6416e724558587_74021903',
+  'unifunc' => 'content_64177d63554172_03420309',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f8cbbb497d3b8a9c5e05d99b40f57ba70cf7eda' => 
     array (
       0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\dashboardEntreprise.tpl',
-      1 => 1679222559,
+      1 => 1679260944,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6416e724558587_74021903 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64177d63554172_03420309 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -41,13 +41,16 @@ function content_6416e724558587_74021903 (Smarty_Internal_Template $_smarty_tpl)
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+   
+
 </head>
 
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <img class="navbar-brand" style="max-width: 50px;" src="mod_entreprise/documents/<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+      <img class="navbar-brand" style="max-width: 50px;"
+        src="mod_entreprise/documents/<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
 /logo.png"></img>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +75,7 @@ function content_6416e724558587_74021903 (Smarty_Internal_Template $_smarty_tpl)
 ">
           <input type="submit" class="btn btn-outline-light" value="Suivi">
         </form>
-      </div>  
+      </div>
     </div>
   </nav>
 
@@ -142,6 +145,8 @@ function content_6416e724558587_74021903 (Smarty_Internal_Template $_smarty_tpl)
             <form method="post" action="index.php" name="rechercheEmploi">
               <input type="hidden" name="gestion" value="entreprise">
               <input type="hidden" name="action" value="recherche_chercheur_emploi">
+              <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
               <label for="poste_recherche">Poste recherché</label>
               <select class="form-select" name="competenceMultiSelect[]" id="multiple-select-field"
                 data-placeholder="Choose anything" multiple>
@@ -239,24 +244,29 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       dataType: 'JSON'
     }).done(function(response) {
       console.log(response);
-      $.each(response.listeChercheurEmploiFilter, function(index, value) {
-        if (index == 0) {
-          $("#carouselExampleControls").append(
-            '<div class="carousel-item active"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
-            value.che_nom + " " + value.che_prenom +
-            '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
-            value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
+      $.each(response.listeChercheurEmploiFilter, function(i, val) {
+        $.each(val, function(index, value) {
+
+          if (index == 0) {
+            $("#carouselExampleControls").append(
+              '<div class="carousel-item active"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
+              value.che_nom + " " + value.che_prenom +
+              '</div><div class="card-body"><img style="max-width: 50px;" src="mod_chercheur/documents/' +
+              value.che_id +
+              '/logo.png"></img><p class="card-text"></p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_chercheur/documents/' +
+              value.che_id + '/cv.png"></img></div></div>'
             );
-        } else {
-          $("#carouselExampleControls").append(
-            '<div class="carousel-item"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
-            value.che_nom + " " + value.che_prenom +
-            '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
-            value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
+          } else {
+            $("#carouselExampleControls").append(
+              '<div class="carousel-item"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
+              value.che_nom + " " + value.che_prenom +
+              '</div><div class="card-body"><img style="max-width: 50px;" src="mod_chercheur/documents/' +
+              value.che_id +
+              '/logo.png"></img><p class="card-text"></p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_chercheur/documents/' +
+              value.che_id + '/cv.png"></img></div></div>'
             );
-        }
+          }
+        });
       });
     });
   });

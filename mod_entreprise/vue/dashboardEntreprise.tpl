@@ -18,13 +18,16 @@
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+   
+
 </head>
 
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <img class="navbar-brand" style="max-width: 50px;" src="mod_entreprise/documents/{$entreprise->getEnt_id()}/logo.png"></img>
+      <img class="navbar-brand" style="max-width: 50px;"
+        src="mod_entreprise/documents/{$entreprise->getEnt_id()}/logo.png"></img>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -44,7 +47,7 @@
           <input type="hidden" name="token" value="{$token}">
           <input type="submit" class="btn btn-outline-light" value="Suivi">
         </form>
-      </div>  
+      </div>
     </div>
   </nav>
 
@@ -114,6 +117,7 @@
             <form method="post" action="index.php" name="rechercheEmploi">
               <input type="hidden" name="gestion" value="entreprise">
               <input type="hidden" name="action" value="recherche_chercheur_emploi">
+              <input type="hidden" name="token" value="{$token}">
               <label for="poste_recherche">Poste recherché</label>
               <select class="form-select" name="competenceMultiSelect[]" id="multiple-select-field"
                 data-placeholder="Choose anything" multiple>
@@ -191,24 +195,29 @@
       dataType: 'JSON'
     }).done(function(response) {
       console.log(response);
-      $.each(response.listeChercheurEmploiFilter, function(index, value) {
-        if (index == 0) {
-          $("#carouselExampleControls").append(
-            '<div class="carousel-item active"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
-            value.che_nom + " " + value.che_prenom +
-            '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
-            value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
+      $.each(response.listeChercheurEmploiFilter, function(i, val) {
+        $.each(val, function(index, value) {
+
+          if (index == 0) {
+            $("#carouselExampleControls").append(
+              '<div class="carousel-item active"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
+              value.che_nom + " " + value.che_prenom +
+              '</div><div class="card-body"><img style="max-width: 50px;" src="mod_chercheur/documents/' +
+              value.che_id +
+              '/logo.png"></img><p class="card-text"></p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_chercheur/documents/' +
+              value.che_id + '/cv.png"></img></div></div>'
             );
-        } else {
-          $("#carouselExampleControls").append(
-            '<div class="carousel-item"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
-            value.che_nom + " " + value.che_prenom +
-            '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
-            value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
+          } else {
+            $("#carouselExampleControls").append(
+              '<div class="carousel-item"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
+              value.che_nom + " " + value.che_prenom +
+              '</div><div class="card-body"><img style="max-width: 50px;" src="mod_chercheur/documents/' +
+              value.che_id +
+              '/logo.png"></img><p class="card-text"></p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_chercheur/documents/' +
+              value.che_id + '/cv.png"></img></div></div>'
             );
-        }
+          }
+        });
       });
     });
   });

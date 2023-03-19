@@ -48,18 +48,14 @@ class ChercheurModele extends Modele
 
             $sql = "SELECT * FROM T_Chercheur_Emploi as che" .
                 " INNER JOIN T_Competence_Chercheur_Emploi AS cce ON cce.cce_competence = ?" .
-                " WHERE che.che_id = cce.chercheur_emploi";
+                " WHERE che.che_id = cce.cce_chercheur";
 
             $resultat = $this->executeRequete($sql, array(
-                $competence["cce_id"]
+                $competence
             ));
 
-            foreach($resultat->fetchAll(PDO::FETCH_ASSOC) as $chercheurEmploi)
-            {
-
-                array_push($listeChercheursEmploi, new ChercheurObjet($chercheurEmploi));
-
-            }
+            array_push($listeChercheursEmploi, $resultat->fetchAll(PDO::FETCH_ASSOC));
+           
 
         }
 
