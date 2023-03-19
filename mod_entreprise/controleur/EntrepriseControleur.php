@@ -54,7 +54,6 @@ class EntrepriseControleur
     public function genererSuivi()  
     {
         $listeOffres = $this->entrepriseModele->getListeOffres();
-
         $this->entrepriseVue->afficherSuivi($listeOffres);
 
     }
@@ -63,8 +62,11 @@ class EntrepriseControleur
     {
 
         $this->entrepriseModele->addEntretien();
+        
 
-        $this->genererSuivi();
+        echo(json_encode(array(
+            "ent_date_entretien"=>$this->parametres['ent_date_entretien']
+        )));
 
 
     }
@@ -118,6 +120,9 @@ class EntrepriseControleur
     public function recherche_Candidat()
     {
         $listeCandidatFilter = $this->entrepriseModele->getListeCandidatureByOffreId($this->parametres['offreMultiSelect']);
+        $listeEntretien = $this->entrepriseModele->getEntretien($this->parametres['offreMultiSelect']);
+        $listeEntretienReponse = $this->entrepriseModele->getEntretienReponse($this->parametres['offreMultiSelect']);
+
 
         /*foreach ($listeCandidatFilter as $candidat){
             $data[] = array(
@@ -132,6 +137,8 @@ class EntrepriseControleur
         }*/
         echo (json_encode(array(
             "listeCandidats"=>$listeCandidatFilter,
+            "listeEntretien"=>$listeEntretien,
+            "listeEntretienReponse"=>$listeEntretienReponse,
             "token"=>$_SESSION['token']
         )));
         

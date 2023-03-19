@@ -151,17 +151,7 @@ class EntrepriseModele extends Modele
 
     }
 
-    public function getEntretienStatut()
-    {
-        $sql = 'SELECT ent_statut FROM t_entretien';
-
-        $resultat = $this->executeRequete($sql);
-
-        $statut = $resultat->fetchAll(PDO::FETCH_ASSOC);
-
-        return $statut;
-
-    }
+   
 
     public function getListeCandidatureByOffreId($listeOffres)
     {
@@ -214,16 +204,60 @@ class EntrepriseModele extends Modele
 
     }
 
-    public function getEntretien()
+   
+
+    public function getEntretien($listeOffres)
     {
 
-        $sql = "SELECT * FROM T_entretien WHERE ent_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $this->parametres['ent_id']
-        ));
+        $listeEntretien = array();
 
-        return $resultat->fetch(PDO::FETCH_ASSOC);
+        foreach($listeOffres as $offre)
+        {
+
+            $sql = 'SELECT * FROM `t_entretien` where ent_offre = ? AND ent_statut = 1';
+
+
+            $resultat = $this->executeRequete($sql, array(
+                $offre
+            ));
+
+            $listeEntretien[] = $resultat->fetchAll(PDO::FETCH_ASSOC);
+            
+
+        }
+
+        return $listeEntretien;
+
+       
+
+    }
+
+
+    public function getEntretienReponse($listeOffres)
+    {
+
+
+        $listeEntretienReponse = array();
+
+        foreach($listeOffres as $offre)
+        {
+
+            $sql = 'SELECT * FROM `t_entretien` where ent_offre = ? AND ent_statut = 2';
+
+
+            $resultat = $this->executeRequete($sql, array(
+                $offre
+            ));
+
+            $listeEntretienReponse[] = $resultat->fetchAll(PDO::FETCH_ASSOC);
+            
+
+        }
+
+        return $listeEntretienReponse;
+
+       
 
     }
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-        <link rel="stylesheet" href="mod_entreprise/assets/entreprise.css">
+    <link rel="stylesheet" href="mod_entreprise/assets/entreprise.css">
 
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -68,50 +68,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 pb-5 pb-lg-0">
+                <div class="col-lg-3  pb-5 pb-lg-0">
                     <div class="card text-dark bg-light mb-3">
                         <div class="card-header">
-                            <p>Proposition d'entretien</p>
+                            <p>Liste des entretiens </p>
                         </div>
-                        <div class="card-body">
-                            <form method="post" action="index.php" name="formAddEntretien">
-                                <input type="hidden" name="token" id="formAddEntretienToken" value="{$token}">
-                                <input type="submit" class="btn btn-outline-dark" value="Ajouter un entretien">
-                            </form>
-                        </div>
-                    </div>
+                        <div class="card-body" id="CardEntretient">
 
-                </div>
-                <div class="col-lg-3  pb-5 pb-lg-0">
-                    <div class="card text-dark bg-light mb-3">
-                        <div class="card-header">
-                        <p>Réponse du candidat</p>
                         </div>
-                        <div class="card-body">
-                        {if {$EntretienStatut[0]['ent_statut']} eq "1"}
-                            <span> Attente de la réponse </span>
-                      
-                        {/if}
-                        {if {$EntretienStatut[0]['ent_statut']} eq "2"}
-                            <span> Accepté </span>
-                      
-                        {/if}
-                        {if {$EntretienStatut[0]['ent_statut']} eq "3"}
-                            <span> Refusé </span>
-                      
-                        {/if}
-                        <form method="post" action="index.php" name="formAddEntretienReponse">
-                        <input type="hidden" name="token" id="formAddEntretienReponseToken" value="{$token}">
-                        <input type="submit" class="btn btn-outline-dark" value="Ajouter une réponse">
-                    </form>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-3  pb-5 pb-lg-0">
                     <div class="card text-dark bg-light mb-3">
-                        <div class="card-header"></div>
-                        <div class="card-body">
-                            <span>card4</span>
+                        <div class="card-header">
+                            <p>Réponse des entretien</p>
+                        </div>
+                        <div class="card-body" id="CardEntretientReponse">
                         </div>
                     </div>
                 </div>
@@ -152,30 +125,11 @@
 
         $("#formEntretien_offre").val(can_offre);
         $("#formEntretien_chercheur").val(can_chercheur);
+        $("#formEntretien_token").val($("input[name='cardCandidatToken']").val());
+
 
         var myModal = new bootstrap.Modal(document.getElementById('modalEntretien'));
         myModal.show();
-
-
-        /*$.ajax({
-            url: "index.php",
-            type: "POST",
-            data: {
-                "gestion": "entreprise",
-                "can_chercheur": can_chercheur,
-                "can_off": can_off,
-                "token": $("input[name='cardEntretienToken']").val()
-            },
-            dataType: 'JSON'
-        }).done(function (response) {
-            console.log(response);
-
-            
-
-        });*/
-
-        
-
 
 
     }
@@ -195,22 +149,77 @@
             data: form_data,
             dataType: 'JSON'
         }).done(function(response) {
-            console.log(response.listeCandidats);
-
             $.each(response.listeCandidats, function(index, value) {
 
                 $("#CardCandidat").append(
 
-
-
-                    '<div class="border-radius highlight" onclick="showModalEntretien('+value.can_chercheur + ',' + value.can_offre +')"><input type="hidden" name="cardEntretienToken" value="'+value.token+'"><h5 class="text-center mb-0 pt-2">'+value.che_nom + ' ' + value.che_prenom+'</h5> <div class="row align-items-center"><div class="col-9 pb-2"> <p class="m-0">'+value.che_mail+'</p><p class="m-0">'+value.che_telephone+'</p></div></div></div>'
+                    '<div class="border-radius highlight" onclick="showModalEntretien(' +
+                    value.can_chercheur + ',' + value.can_offre +
+                    ')"><input type="hidden" name="cardCandidatToken" value="' + response
+                    .token + '"><h5 class="text-center mb-0 pt-2">' + value.che_nom + ' ' +
+                    value.che_prenom +
+                    '</h5> <div class="row align-items-center"><div class="col-9 pb-2"> <p class="m-0">' +
+                    value.che_mail + '</p><p class="m-0">' + value.che_telephone +
+                    '</p></div></div></div>'
                 );
-                
+
             });
 
-            
-                                
-                            
+            $.each(response.listeEntretien, function(index, value) {
+                $.each(value, function(i, val) {
+                    $("#CardEntretient").append(
+
+                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2">' +
+                        value.ent_date_entretien + '</h5></div>'
+                    );
+
+                });
+
+            });
+
+            $.each(response.listeEntretienReponse, function(index, value) {
+                $.each(value, function(i, val) {
+                    console.log(val.ent_reponse);
+                    if (val.ent_reponse == 2) {
+
+                    $("#CardEntretientReponse").append(
+
+                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: green;">' +
+                            "Accepté" + '</h5></div>'
+                        );
+
+
+                    }
+
+                    if (val.ent_reponse == 0) {
+
+                        $("#CardEntretientReponse").append(
+
+                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">' +
+                            "Refusé" + '</h5></div>'
+                        );
+
+
+                    }
+
+                    if (val.ent_reponse == 1) {
+
+                        $("#CardEntretientReponse").append(
+
+                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">' +
+                            "En réflexion" + '</h5></div>'
+                        );
+
+
+                    }
+
+
+
+
+
+
+                });
+            });
 
         });
 
@@ -218,6 +227,59 @@
         $("#formEntretien_action").val('add_entretien');
         $("#formEntretien_token").val($("#formAddEntretienToken").val());
         $("#formEntretienButton").val('Ajouter');
+    });
+</script>
+
+<script>
+    $("form[name='formEntretien']").submit(function(e) {
+        e.preventDefault(); //empêcher une action par défaut
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function(response) {
+            console.log(response);
+
+            $("#CardEntretient").append(
+
+                '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2">' + response
+                .ent_date_entretien + '</h5></div>'
+            );
+
+
+
+        });
+    });
+</script>
+
+<script>
+    $("form[name='formEntretien']").submit(function(e) {
+        e.preventDefault(); //empêcher une action par défaut
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function(response) {
+            $("#CardEntretientReponse").append(
+
+                '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2">' + response
+                .ent_reponse + '</h5></div>'
+
+
+            );
+        });
     });
 </script>
 
