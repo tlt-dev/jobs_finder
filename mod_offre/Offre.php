@@ -10,7 +10,7 @@ class Offre
     {
 
         $this->parametres = $parametres;
-        $this->offreControleur = new offreControleur($this->parametres);
+        $this->offreControleur = new OffreControleur($this->parametres);
 
     }
 
@@ -34,6 +34,7 @@ class Offre
                     break;
                 case 'supprimer_offre':
                     $this->offreControleur->supprimerOffre();
+                    break;
             }
 
         }
@@ -45,6 +46,10 @@ class Offre
 
         }
 
+    }
+
+    public function getOffre_controleur(){
+        return $this->offreControleur;
     }
 
 }

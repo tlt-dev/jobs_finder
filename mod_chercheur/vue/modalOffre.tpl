@@ -68,6 +68,7 @@
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" id="modalOffre_action" value="">
                         <input type="hidden" name="off_id" id="modalOffre_off_id" value="">
+                        <input type="hidden" name="token" id="modalOffre_token" value="">
 
                         <input type="submit" class="btn" id="btnCandidature" value="">
                     </form>

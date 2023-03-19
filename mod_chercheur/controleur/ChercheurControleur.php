@@ -150,7 +150,8 @@ class ChercheurControleur
             "off_salaire"=>$salaire,
             "off_contrat"=>$contrat,
             "off_secteur"=>$secteur,
-            "off_nom_entreprise"=>$entreprise
+            "off_nom_entreprise"=>$entreprise,
+            "token"=>$_SESSION['token']
         )));
 
     }
@@ -199,7 +200,8 @@ class ChercheurControleur
             "off_secteur"=>$secteur,
             "off_nom_entreprise"=>$entreprise,
             "ent_date_entretien"=>$entretien['ent_date_entretien'],
-            "ent_modalites"=>$entretien['ent_modalites']
+            "ent_modalites"=>$entretien['ent_modalites'],
+            "token"=>$_SESSION['token']
         )));
 
     }
@@ -239,7 +241,8 @@ class ChercheurControleur
             "off_secteur"=>$secteur,
             "off_nom_entreprise"=>$entreprise,
             "ent_reponse"=>$resultat['ent_reponse'],
-            "ent_commentaire"=>$resultat['ent_commentaire']
+            "ent_commentaire"=>$resultat['ent_commentaire'],
+            "token"=>$_SESSION['token']
         )));
 
 

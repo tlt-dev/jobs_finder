@@ -36,16 +36,21 @@
         <form class="d-flex" method="post" action="index.php">
           <input type="hidden" name="gestion" value="entreprise">
           <input type="hidden" name="action" value="consulter_profil">
-          <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
           <input type="hidden" name="token" value="{$token}">
           <input type="submit" class="btn btn-outline-light" value="Profil">
         </form>
         <form class="d-flex" method="post" action="index.php">
           <input type="hidden" name="gestion" value="entreprise">
           <input type="hidden" name="action" value="consulter_suivi">
-          <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
           <input type="hidden" name="token" value="{$token}">
           <input type="submit" class="btn btn-outline-light" value="Suivi">
+        </form>
+        <form class="d-flex" method="post" action="index.php">
+          <input type="hidden" name="gestion" value="entreprise">
+          <input type="hidden" name="action" value="generer_liste_offre">
+          <input type="hidden" name="token" value="{$token}">
+
+          <input type="submit" class="btn btn-outline-light" value="Offres">
         </form>
       </div>
     </div>

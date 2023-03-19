@@ -14,7 +14,7 @@ class VisiteurVue
 
     }
 
-    public function afficherAccueil()
+    public function afficherAccueil($listeOffre,$listePoste)
     {
         if(isset($_SESSION['type_user']))
         {
@@ -35,6 +35,8 @@ class VisiteurVue
             $this->tpl->assign('entrepriseConnected', 0);
         }
 
+        $this->tpl->assign("listeOffre",$listeOffre);
+        $this->tpl->assign("listePoste",$listePoste);
         $this->tpl->assign('token', $_SESSION['token']);
 
         $this->tpl->display('mod_visiteur/vue/accueil.tpl');

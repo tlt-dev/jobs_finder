@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 21:23:47
+/* Smarty version 4.2.1, created on 2023-03-19 21:54:48
   from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\dashboardEntreprise.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_64177d63554172_03420309',
+  'unifunc' => 'content_641784a8753013_35393892',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1f8cbbb497d3b8a9c5e05d99b40f57ba70cf7eda' => 
     array (
       0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\dashboardEntreprise.tpl',
-      1 => 1679260944,
+      1 => 1679262838,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64177d63554172_03420309 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641784a8753013_35393892 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -60,8 +60,6 @@ function content_64177d63554172_03420309 (Smarty_Internal_Template $_smarty_tpl)
         <form class="d-flex" method="post" action="index.php">
           <input type="hidden" name="gestion" value="entreprise">
           <input type="hidden" name="action" value="consulter_profil">
-          <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
-">
           <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
 ">
           <input type="submit" class="btn btn-outline-light" value="Profil">
@@ -69,11 +67,17 @@ function content_64177d63554172_03420309 (Smarty_Internal_Template $_smarty_tpl)
         <form class="d-flex" method="post" action="index.php">
           <input type="hidden" name="gestion" value="entreprise">
           <input type="hidden" name="action" value="consulter_suivi">
-          <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
-">
           <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
 ">
           <input type="submit" class="btn btn-outline-light" value="Suivi">
+        </form>
+        <form class="d-flex" method="post" action="index.php">
+          <input type="hidden" name="gestion" value="entreprise">
+          <input type="hidden" name="action" value="generer_liste_offre">
+          <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+          <input type="submit" class="btn btn-outline-light" value="Offres">
         </form>
       </div>
     </div>

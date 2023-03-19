@@ -54,4 +54,22 @@ class EntrepriseVue
     }
 
 
+    public function afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite,$entreprise){
+        $this->tpl->assign('titre', "Liste offres d'emplois");
+        $this->tpl->assign('listeOffres', $listeOffres);
+        $this->tpl->assign('listeVilles', $listeVilles);
+        $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
+        $this->tpl->assign('token', $_SESSION['token']);
+        $this->tpl->assign('entreprise', $entreprise);
+
+        if(OffreObjet::getMessageSucces() != "")
+        {
+            $this->tpl->assign('messageSucces', OffreObjet::getMessageSucces());
+        }else{
+            $this->tpl->assign('messageSucces', '');
+        }
+
+        $this->tpl->display('mod_entreprise/vue/listeOffre.tpl');
+    }
+
 }
