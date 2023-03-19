@@ -48,7 +48,20 @@ class VisiteurModele extends Modele
             }
         }
 
-        return $this->executeRequete($sql)->fetchAll();
+        return $this->executeRequete($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getOffreById($off_id){
+
+        $sql = "SELECT * from t_offre toff
+        JOIN t_poste tp ON toff.off_poste=tp.pos_id
+        JOIN t_ville tv ON toff.off_ville=tv.vil_id
+        JOIN t_secteur_activite sa ON toff.off_secteur_activite=sa.sea_id
+        JOIN t_type_contrat tc ON toff.off_type_contrat=tc.tco_id
+        JOIN t_salaire ts ON ts.sal_id=toff.off_salaire
+        WHERE toff.off_id=?";
+
+        return $this->executeRequete($sql,array($off_id))->fetchAll(PDO::FETCH_ASSOC)[0];
     }
 
 }

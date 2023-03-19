@@ -148,13 +148,14 @@
             </div>
 
             <div class="row justify-content-center">
-                <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
                     <div class="carousel-inner">
                         {foreach $listeOffre as $offre}
                             {if $offre@first}
                                 <div class="carousel-item active">
                                     <div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;">
                                         <div class="card-header">{$offre["off_intitule"]}</div>
+                                        <p class="idOffre" hidden>{$offre["off_id"]}</p>
                                         <div class="card-body text-dark">
                                             <h5 class="card-title">{$offre["vil_nom"]}</h5>
                                             <p class="card-text">{$offre["off_descriptif"]}</p>
@@ -165,6 +166,7 @@
                                 <div class="carousel-item m-auto">
                                     <div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;">
                                         <div class="card-header">{$offre["off_intitule"]}</div>
+                                        <p class="idOffre" hidden>{$offre["off_id"]}</p>
                                         <div class="card-body text-dark">
                                             <h5 class="card-title">{$offre["vil_nom"]}</h5>
                                             <p class="card-text">{$offre["off_descriptif"]}</p>
@@ -186,23 +188,73 @@
                     </button>
                 </div>
             </div>
-            <table class="table" id="tableOffre" style="display:none">
-                <thead>
-                    <th>ID</th>
-                    <th>Intitulé</th>
-                    <th>Ville</th>
-                    <th>Secteur</th>
-                    <th>Date début</th>
-                    <th>Type Contrat</th>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
+            <div class="row justify-content-center">
+                <div class="container-fluid">
+                    <div class="container">
+                        <!-- Main content -->
+                        <div class="row">
+                            <!-- Left side -->
+                            <div class="col-lg-8">
+                                <!-- Basic information -->
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label name="off_intitule"></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label name="off_secteur"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Address -->
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label name="off_ville"></label>
 
-    {include file="../../mod_authentification/vue/modalAuthentification.tpl"}
-    {include file="../../mod_authentification/vue/modalInscription.tpl"}
-    {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mb-4">
+
+                                <div class="mb-3">
+                                    <label name="off_date_prise_poste"></label>
+                                </div>
+                                <div class="mb-3">
+                                    <label name="off_salaire"></label>
+
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-6">
+                                        <label name="off_type_contrat"></label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label name="off_duree_contrat"></label>
+                                    </div>
+                                </div>
+                                <!-- Notes -->
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <label name="off_description"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {include file="../../mod_authentification/vue/modalAuthentification.tpl"}
+        {include file="../../mod_authentification/vue/modalInscription.tpl"}
+        {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 
 </body>
 
@@ -296,27 +348,42 @@
             url: form_url,
             type: form_method,
             data: form_data,
-            dataType: 'JSON'
+            dataType: 'json'
         }).done(function(response) {
-            console.log(response);
-            if (response.length === 0) {
-                $("#carouselExampleControls").hide();
-                $("#tableOffre").hide();
+            $.each(response, function(index, offre) {
+                $("div.carousel-item.m-auto p.idOffre")[0].innerText = offre.off_id;
+            });
+        });
+    });
+
+    $('#carouselExampleControls').bind('slid.bs.carousel', function(e) {
+        e.preventDefault(); //empêcher une action par défaut
+        var form_url = "index.php" //récupérer l'URL du formulaire
+        var form_method = "post" //récupérer la méthode GET/POST du formulaire
+        // Récupérer toutes les valeurs sélectionnées dans le champ de formulaire multiple
+        var off_id = $('div.carousel-item.active p.idOffre')[0].innerText;
+        var form_data = "gestion=visiteur&action=get_current_offre&off_id=" + off_id;
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'json',
+        }).done(function(response) {
+            document.getElementsByName("off_intitule")[0].innerText = response.off_intitule;
+            document.getElementsByName("off_secteur")[0].innerText = response.off_secteur;
+            document.getElementsByName("off_ville")[0].innerText = response.off_ville;
+            document.getElementsByName("off_date_prise_poste")[0].innerText = response
+                .off_date_prise_poste;
+            document.getElementsByName("off_salaire")[0].innerText = response.off_salaire;
+            if (response.off_type_contrat === "CDI") {
+                document.getElementsByName("off_duree_contrat")[0].style.display = "none";
             } else {
-                $("#carouselExampleControls").hide();
-                $("#tableOffre").show();
-                $('#tableOffre tbody > tr').remove();
-                $.each(response, function(index, offre) {
-                    var row = $('<tr>');
-                    row.append($('<td>').text(offre.off_id));
-                    row.append($('<td>').text(offre.off_intitule));
-                    row.append($('<td>').text(offre.vil_nom));
-                    row.append($('<td>').text(offre.sea_libelle));
-                    row.append($('<td>').text(offre.off_date_prise_poste));
-                    row.append($('<td>').text(offre.tco_libelle));
-                    $('#tableOffre > tbody').append(row);
-                });
+                document.getElementsByName("off_duree_contrat")[0].style.display = "inline";
+                document.getElementsByName("off_duree_contrat")[0].innerText = response
+                    .off_duree_contrat;
             }
+            document.getElementsByName("off_type_contrat")[0].innerText = response.off_type_contrat;
+            document.getElementsByName("off_description")[0].innerText = response.off_description;
         });
     });
 </script>
