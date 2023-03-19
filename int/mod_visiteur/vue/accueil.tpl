@@ -193,57 +193,32 @@
                     <div class="container">
                         <!-- Main content -->
                         <div class="row">
-                            <!-- Left side -->
-                            <div class="col-lg-8">
-                                <!-- Basic information -->
-                                <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label name="off_intitule"></label>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label name="off_secteur"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Address -->
-                                <div class="card mb-4">
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label name="off_ville"></label>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="card mb-4">
-
-                                <div class="mb-3">
-                                    <label name="off_date_prise_poste"></label>
-                                </div>
-                                <div class="mb-3">
-                                    <label name="off_salaire"></label>
-
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-lg-6">
-                                        <label name="off_type_contrat"></label>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label name="off_duree_contrat"></label>
-                                    </div>
-                                </div>
-                                <!-- Notes -->
                                 <div class="card mb-4">
-                                    <div class="card-body">
-                                        <label name="off_description"></label>
-                                    </div>
+                                    <p>Intitulé du poste : <label name="off_intitule"></label></p>
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Secteur d'activité : <label name="off_secteur"></label></p>
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Ville : <label name="off_ville"></label></p>
+
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Date de prise de poste : <label name="off_date_prise_poste"></label></p>
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Salaire : <label name="off_salaire"></label></p>
+
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Type de contrat : <label name="off_type_contrat"></label></p>
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Durée contrat : <label name="off_duree_contrat"></label> mois</p>
+                                </div>
+                                <div class="card mb-4">
+                                    <p>Description : <label name="off_description"></label></p>
                                 </div>
                             </div>
                         </div>
@@ -357,7 +332,8 @@
                 if (index == 0) {
                     $("#carouselExampleControls").append(
                         '<div class="carousel-item active"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
-                        value.off_intitule + '</div><p class="idOffre" hidden>' + value.off_id +
+                        value.off_intitule + '</div><p class="idOffre" hidden>' + value
+                        .off_id +
                         '</p><div class="card-body text-dark"><h5 class="card-title">' +
                         value.vil_nom + '</h5><p class="card-text">' + value
                         .off_descriptif + '</p></div></div></div>'
@@ -365,7 +341,8 @@
                 } else {
                     $("#carouselExampleControls").append(
                         '<div class="carousel-item m-auto"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
-                        value.off_intitule + '</div><p class="idOffre" hidden>' + value.off_id +
+                        value.off_intitule + '</div><p class="idOffre" hidden>' + value
+                        .off_id +
                         '</p><div class="card-body text-dark"><h5 class="card-title">' +
                         value.vil_nom + '</h5><p class="card-text">' + value
                         .off_descriptif + '</p></div></div></div>'
@@ -380,9 +357,9 @@
         descOffre();
     });
 
-    window.onload = function(){ descOffre(); }
+    window.onload = function() { descOffre(); }
 
-    function descOffre(){
+    function descOffre() {
         var form_url = "index.php" //récupérer l'URL du formulaire
         var form_method = "post" //récupérer la méthode GET/POST du formulaire
         // Récupérer toutes les valeurs sélectionnées dans le champ de formulaire multiple
