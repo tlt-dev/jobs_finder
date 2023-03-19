@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 19:52:36
+/* Smarty version 4.2.1, created on 2023-03-19 22:10:52
   from '/Applications/MAMP/htdocs/jobs_finder/mod_visiteur/vue/accueil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_641768045b8780_55909495',
+  'unifunc' => 'content_6417886c449304_19532756',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '39e5c0eaaa882423f1d4892951c526d88670b620' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_visiteur/vue/accueil.tpl',
-      1 => 1679254593,
+      1 => 1679263848,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_641768045b8780_55909495 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6417886c449304_19532756 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -184,6 +184,8 @@ function content_641768045b8780_55909495 (Smarty_Internal_Template $_smarty_tpl)
                         <form method="post" action="index.php" name="rechercheOffre">
                             <input type="hidden" name="gestion" value="visiteur">
                             <input type="hidden" name="action" value="recherche_poste">
+                            <input type="hidden" name="token" id="formRechercheOffre_token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                             <label for="poste_recherche">Poste recherché</label>
                             <select class="form-select" name="off_poste" id="multiple-select-field"
@@ -339,13 +341,20 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 <?php echo '<script'; ?>
 >
+    $(document).ready(function() {
+        $("#modalAuthentification_token").val($("#formRechercheOffre_token").val());
+    });
+<?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
     $("form[name='formAuthentification']").submit(function(e) {
         e.preventDefault();
 
         var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
         var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
         var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
-
 
         $.ajax({
             url: form_url,
@@ -361,9 +370,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 $("#message").removeClass("d-none");
 
             } else if (response.gestion == 'entreprise') {
-                window.location.replace("index.php?gestion=" + response.gestion);
+                window.location.replace("index.php?gestion=" + response.gestion + "&token=" + $("#formRechercheOffre_token").val());
             } else {
-                window.location.replace("index.php?gestion=visiteur");
+                window.location.replace("index.php?gestion=visiteur&token=" + $("#formRechercheOffre_token").val());
             }
         });
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 19:52:36
+/* Smarty version 4.2.1, created on 2023-03-19 22:00:46
   from '/Applications/MAMP/htdocs/jobs_finder/mod_authentification/vue/modalAuthentification.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_641768045ced48_92319834',
+  'unifunc' => 'content_6417860e93fac2_63079546',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4a20ae25ac2e7747b11f7350892f6916d0202406' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_authentification/vue/modalAuthentification.tpl',
-      1 => 1679251430,
+      1 => 1679263197,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_641768045ced48_92319834 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6417860e93fac2_63079546 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Modal -->
 <div class="modal fade" id="modalAuthentification" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="modalAuthentificationTitre" aria-hidden="true">
@@ -39,6 +39,7 @@ function content_641768045ced48_92319834 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="modal-body">
                     <input type="hidden" name="gestion" value="authentification">
                     <input type="hidden" name="action" value="verifier_utilisateur">
+                    <input type="hidden" name="token" id="modalAuthentification_token" value="">
 
                     <label for="email" class="form-label">Adresse mail : </label>
                     <input type="text" id="email" class="form-control" name="usr_email" value="">

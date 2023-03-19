@@ -16,6 +16,7 @@
                 <div class="modal-body">
                     <input type="hidden" name="gestion" value="authentification">
                     <input type="hidden" name="action" value="verifier_utilisateur">
+                    <input type="hidden" name="token" id="modalAuthentification_token" value="">
 
                     <label for="email" class="form-label">Adresse mail : </label>
                     <input type="text" id="email" class="form-control" name="usr_email" value="">
