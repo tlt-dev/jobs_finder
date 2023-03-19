@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 22:10:52
+/* Smarty version 4.2.1, created on 2023-03-19 23:03:41
   from '/Applications/MAMP/htdocs/jobs_finder/mod_visiteur/vue/accueil.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6417886c449304_19532756',
+  'unifunc' => 'content_641794cd401da2_76626633',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '39e5c0eaaa882423f1d4892951c526d88670b620' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_visiteur/vue/accueil.tpl',
-      1 => 1679263848,
+      1 => 1679266967,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_6417886c449304_19532756 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641794cd401da2_76626633 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +47,6 @@ function content_6417886c449304_19532756 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Logo</a>
@@ -342,7 +341,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 <?php echo '<script'; ?>
 >
     $(document).ready(function() {
-        $("#modalAuthentification_token").val($("#formRechercheOffre_token").val());
+$("#formAuthentificationToken").val($("formRechercheOffre_token"));
     });
 <?php echo '</script'; ?>
 >
@@ -370,9 +369,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 $("#message").removeClass("d-none");
 
             } else if (response.gestion == 'entreprise') {
-                window.location.replace("index.php?gestion=" + response.gestion + "&token=" + $("#formRechercheOffre_token").val());
+                window.location.replace("index.php?gestion=" + response.gestion + "&token=" + response.token);
             } else {
-                window.location.replace("index.php?gestion=visiteur&token=" + $("#formRechercheOffre_token").val());
+                window.location.replace("index.php?gestion=visiteur&token=" + response.token);
             }
         });
 

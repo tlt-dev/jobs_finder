@@ -40,6 +40,7 @@ class AuthentificationControleur
                 echo(json_encode(array(
                     "gestion"=>"chercheur",
                     "action"=>"generer_dashboard",
+                    "token"=>$_SESSION['token'],
                     "user_login"=>$user['usr_email'],
                     "message"=>""
                 )));
@@ -52,6 +53,7 @@ class AuthentificationControleur
                 echo(json_encode(array(
                     "gestion"=>"entreprise",
                     "action"=>"generer_dashboard",
+                    "token"=>$_SESSION['token'],
                     "user_login"=>$user['usr_email'],
                     "message"=>""
                 )));

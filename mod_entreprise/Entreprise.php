@@ -7,9 +7,6 @@ class Entreprise
     private $entrepriseControleur;
 
 
-
-
-
     public function __construct($parametres)
     {
 

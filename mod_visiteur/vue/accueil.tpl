@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Logo</a>
@@ -270,7 +269,7 @@
 
 <script>
     $(document).ready(function() {
-        $("#modalAuthentification_token").val($("#formRechercheOffre_token").val());
+$("#formAuthentificationToken").val($("formRechercheOffre_token"));
     });
 </script>
 
@@ -296,9 +295,9 @@
                 $("#message").removeClass("d-none");
 
             } else if (response.gestion == 'entreprise') {
-                window.location.replace("index.php?gestion=" + response.gestion + "&token=" + $("#formRechercheOffre_token").val());
+                window.location.replace("index.php?gestion=" + response.gestion + "&token=" + response.token);
             } else {
-                window.location.replace("index.php?gestion=visiteur&token=" + $("#formRechercheOffre_token").val());
+                window.location.replace("index.php?gestion=visiteur&token=" + response.token);
             }
         });
 
