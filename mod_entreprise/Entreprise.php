@@ -11,8 +11,7 @@ class Entreprise
     {
 
         $this->parametres = $parametres;
-        var_dump($this->parametres);
-        var_dump($_SESSION['token']);
+       
 
 
         if ((!isset($this->parametres['token'])) || ($_SESSION['token'] != $this->parametres['token'])) {
