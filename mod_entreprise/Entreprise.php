@@ -14,6 +14,8 @@ class Entreprise
     {
 
         $this->parametres = $parametres;
+        var_dump($this->parametres);
+
 
         if ((!isset($this->parametres['token'])) || ($_SESSION['token'] != $this->parametres['token'])) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 405 Method Not Allowed');
