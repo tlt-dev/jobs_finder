@@ -56,6 +56,7 @@ class OffreControleur
     public function creerOffre(){
 
         $offre = new OffreObjet($this->parametres);
+        $offre->setOff_entreprise($this->offreModele->getEntrepriseId($_SESSION["login"]));
 
         if($offre->getAutorisationBD()){
             $this->offreModele->creerOffre($offre);

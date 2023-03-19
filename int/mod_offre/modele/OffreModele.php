@@ -21,14 +21,14 @@ class OffreModele extends Modele
             JOIN t_user ON t_user.usr_id=t_entreprise.ent_user
             WHERE usr_email=?";
             $resultat = $this->executeRequete($sql, array($login));
-        }else{
+        } else {
             $resultat = $this->executeRequete($sql);
         }
 
         $listeOffres = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
         $listeOffresObjet = array();
-        
+
         foreach ($listeOffres as $offre) {
             $listeOffresObjet[] = new OffreObjet($offre);
         }
@@ -41,9 +41,11 @@ class OffreModele extends Modele
 
         $sql = "SELECT * FROM T_Offre where off_id = ?";
 
-        $resultat = $this->executeRequete($sql, array(
-            $id
-        )
+        $resultat = $this->executeRequete(
+            $sql,
+            array(
+                $id
+            )
         );
 
         return new OffreObjet($resultat->fetch(PDO::FETCH_ASSOC));
@@ -121,17 +123,19 @@ class OffreModele extends Modele
             off_type_contrat = ?
             WHERE off_id = ?";
 
-        $this->executeRequete($sql, array(
-            $offre->getOff_intitule(),
-            $offre->getOff_secteur_activite(),
-            $offre->getOff_ville(),
-            $offre->getOff_date_prise_poste(),
-            $offre->getOff_salaire(),
-            $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
-            $offre->getOff_descriptif(),
-            $offre->getOff_type_contrat(),
-            $offre->getOff_id()
-        )
+        $this->executeRequete(
+            $sql,
+            array(
+                $offre->getOff_intitule(),
+                $offre->getOff_secteur_activite(),
+                $offre->getOff_ville(),
+                $offre->getOff_date_prise_poste(),
+                $offre->getOff_salaire(),
+                $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
+                $offre->getOff_descriptif(),
+                $offre->getOff_type_contrat(),
+                $offre->getOff_id()
+            )
         );
     }
 
@@ -146,20 +150,23 @@ class OffreModele extends Modele
             off_salaire,
             off_duree,
             off_descriptif,
-            off_type_contrat
-        ) VALUES (?,?,?,?,?,?,?,?)
-        ";
+            off_type_contrat,
+            off_entreprise
+        ) VALUES (?,?,?,?,?,?,?,?,?)";
 
-        $this->executeRequete($sql, array(
-            $offre->getOff_intitule(),
-            $offre->getOff_secteur_activite(),
-            $offre->getOff_ville(),
-            $offre->getOff_date_prise_poste(),
-            $offre->getOff_salaire(),
-            $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
-            $offre->getOff_descriptif(),
-            $offre->getOff_type_contrat()
-        )
+        $this->executeRequete(
+            $sql,
+            array(
+                $offre->getOff_intitule(),
+                $offre->getOff_secteur_activite(),
+                $offre->getOff_ville(),
+                $offre->getOff_date_prise_poste(),
+                $offre->getOff_salaire(),
+                $offre->getOff_duree() == null ? 1 : $offre->getOff_duree(),
+                $offre->getOff_descriptif(),
+                $offre->getOff_type_contrat(),
+                $offre->getOff_entreprise()
+            )
         );
     }
 
@@ -179,14 +186,13 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $che_id
-        ));
+        )
+        );
 
         $listeFavories = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        if($listeFavories)
-        {
-            foreach($listeFavories as $key => $value)
-            {
+        if ($listeFavories) {
+            foreach ($listeFavories as $key => $value) {
                 $listeFavories[$key]['ent_nom'] = $this->getNomEntreprise($listeFavories[$key]['off_entreprise']);
                 $listeFavories[$key]['vil_nom'] = $this->getNomVille($listeFavories[$key]['off_ville']);
             }
@@ -204,14 +210,13 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $che_id
-        ));
+        )
+        );
 
         $listeCandidatures = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        if($listeCandidatures)
-        {
-            foreach($listeCandidatures as $key => $value)
-            {
+        if ($listeCandidatures) {
+            foreach ($listeCandidatures as $key => $value) {
                 $listeCandidatures[$key]['ent_nom'] = $this->getNomEntreprise($listeCandidatures[$key]['off_entreprise']);
                 $listeCandidatures[$key]['vil_nom'] = $this->getNomVille($listeCandidatures[$key]['off_ville']);
             }
@@ -228,14 +233,13 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $che_id
-        ));
+        )
+        );
 
         $listeEntretiens = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        if($listeEntretiens)
-        {
-            foreach($listeEntretiens as $key => $value)
-            {
+        if ($listeEntretiens) {
+            foreach ($listeEntretiens as $key => $value) {
                 $listeEntretiens[$key]['ent_nom'] = $this->getNomEntreprise($listeEntretiens[$key]['off_entreprise']);
                 $listeEntretiens[$key]['vil_nom'] = $this->getNomVille($listeEntretiens[$key]['off_ville']);
             }
@@ -251,14 +255,13 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $che_id
-        ));
+        )
+        );
 
         $listeResultats = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        if($listeResultats)
-        {
-            foreach($listeResultats as $key => $value)
-            {
+        if ($listeResultats) {
+            foreach ($listeResultats as $key => $value) {
                 $listeResultats[$key]['ent_nom'] = $this->getNomEntreprise($listeResultats[$key]['off_entreprise']);
                 $listeResultats[$key]['vil_nom'] = $this->getNomVille($listeResultats[$key]['off_ville']);
             }
@@ -275,7 +278,8 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $ent_id
-        ));
+        )
+        );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['ent_nom'];
 
@@ -288,7 +292,8 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $vil_id
-        ));
+        )
+        );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['vil_nom'];
 
@@ -301,7 +306,8 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $sal_id
-        ));
+        )
+        );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['sal_libelle'];
 
@@ -314,7 +320,8 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $tco_id
-        ));
+        )
+        );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['tco_libelle'];
 
@@ -327,12 +334,21 @@ class OffreModele extends Modele
 
         $resultat = $this->executeRequete($sql, array(
             $sea_id
-        ));
+        )
+        );
 
         return $resultat->fetch(PDO::FETCH_ASSOC)['sea_libelle'];
 
     }
 
+    public function getEntrepriseId($login)
+    {
+        $sql = "SELECT ent_id from t_entreprise join t_user on t_entreprise.ent_user=t_user.usr_id where usr_email=?";
+
+        $resultat = $this->executeRequete($sql, array($login));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC)["ent_id"];
+    }
 
 
 }
