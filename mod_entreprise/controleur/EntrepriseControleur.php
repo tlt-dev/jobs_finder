@@ -137,8 +137,6 @@ class EntrepriseControleur
         }*/
         echo (json_encode(array(
             "listeCandidats"=>$listeCandidatFilter,
-            "listeEntretien"=>$listeEntretien,
-            "listeEntretienReponse"=>$listeEntretienReponse,
             "token"=>$_SESSION['token']
         )));
         

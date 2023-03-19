@@ -168,7 +168,10 @@ class EntrepriseModele extends Modele
                 $offre
             ));
 
-            $listecandidat = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach($resultat->fetchAll(PDO::FETCH_ASSOC) as $candidat){
+                $listecandidat[] = $candidat;
+            }
             
 
         }
