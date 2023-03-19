@@ -23,12 +23,12 @@ class OffreControleur
         $listeSalaire = $this->offreModele->getAllSalaire();
         $listeTypeContrat = $this->offreModele->getAllTypeContrat();
         $listePoste = $this->offreModele->getAllPoste();
-        
+
         if (!isset($_POST['id']) || empty($_POST['id'])) {
-            $this->offreVue->afficherFormulaireCreationOffre($listeVilles, $listeSecteurActivite, $listeSalaire, $listeTypeContrat,$listePoste);
+            $this->offreVue->afficherFormulaireCreationOffre($listeVilles, $listeSecteurActivite, $listeSalaire, $listeTypeContrat, $listePoste);
         } else {
             $offre = $this->offreModele->getOffreFromId($_POST['id']);
-            $this->offreVue->afficherFormulaireModificationOffre($offre, $listeVilles, $listeSecteurActivite, $listeSalaire, $listeTypeContrat,$listePoste);
+            $this->offreVue->afficherFormulaireModificationOffre($offre, $listeVilles, $listeSecteurActivite, $listeSalaire, $listeTypeContrat, $listePoste);
         }
 
 
@@ -40,8 +40,9 @@ class OffreControleur
         $listeOffres = $this->offreModele->getListeOffres();
         $listeVilles = $this->offreModele->getAllVille();
         $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
+        $entreprise = $this->offreModele->getEntreprise($this->offreModele->getEntrepriseId($_SESSION["login"]));
 
-        $this->offreVue->afficherListeOffres($listeOffres, $listeVilles, $listeSecteurActivite);
+        $this->offreVue->afficherListeOffres($listeOffres, $listeVilles, $listeSecteurActivite,$entreprise);
 
     }
 
