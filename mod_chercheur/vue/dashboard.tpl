@@ -80,7 +80,7 @@
                             </h5>
                             <div class="row align-items-center">
                                 <div class="col-2 mx-2">
-                                    <img src="../int/documents/2/logo.png" class="w-100">
+                                    <img src="documents/2/logo.png" class="w-100">
                                 </div>
                                 <div class="col-9 pb-2">
                                     <p class="m-0">{$offre['ent_nom']}</p>
@@ -224,7 +224,7 @@
         }).done(function (response) {
             console.log(response);
 
-            $("#logo_entreprise").attr("src", "../int/documents/"+ response.off_entreprise +"/logo.png");
+            $("#logo_entreprise").attr("src", "documents/"+ response.off_entreprise +"/logo.png");
             $("#modalFavoriTitre").text(response.off_intitule);
 
             $("#off_entreprise").text(response.off_nom_entreprise);
@@ -248,6 +248,7 @@
             $("#btnCandidature").val("Déposer sa candidature");
             $("#modalOffre_action").val("candidater_offre");
             $("#modalOffre_off_id").val(off_id);
+            $("#modalOffre_token").val(response.token);
 
         });
 
@@ -298,6 +299,7 @@
             $("#btnCandidature").val("Retirer sa candidature");
             $("#modalOffre_action").val("retirer_candidature_offre");
             $("#modalOffre_off_id").val(off_id);
+            $("#modalOffre_token").val(response.token);
 
         });
 
@@ -349,6 +351,8 @@
 
             $("#modalEntretien_off_id").val(off_id);
             $("#modalEntretien_off_id2").val(off_id);
+            $("#modalEntretien_token").val(response.token);
+            $("#modalEntretien_token2").val(response.token);
 
         });
 

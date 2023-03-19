@@ -2,7 +2,7 @@
 ini_set("display_errors", 1);
 //Pour connexion à la base de donnée
 define('NOM', 'root');
-define('PASSE', '');
+define('PASSE', 'root');
 define('SERVEUR', 'localhost');
 define('BASE', 'jobs_finder');
 define('P', 'x19v_');

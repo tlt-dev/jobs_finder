@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 09:29:06
+/* Smarty version 4.2.1, created on 2023-03-19 19:04:08
   from '/Applications/MAMP/htdocs/jobs_finder/mod_chercheur/vue/dashboard.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6416d5e24dd125_35592885',
+  'unifunc' => 'content_64175ca8803f38_65361952',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e61cd07fcc30a3733b20a4dbb592aac07050af8a' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_chercheur/vue/dashboard.tpl',
-      1 => 1678797672,
+      1 => 1679252461,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:mod_chercheur/vue/modalResultat.tpl' => 1,
   ),
 ),false)) {
-function content_6416d5e24dd125_35592885 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64175ca8803f38_65361952 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +119,7 @@ $_smarty_tpl->tpl_vars['offre']->do_else = false;
                             </h5>
                             <div class="row align-items-center">
                                 <div class="col-2 mx-2">
-                                    <img src="../int/documents/2/logo.png" class="w-100">
+                                    <img src="documents/2/logo.png" class="w-100">
                                 </div>
                                 <div class="col-9 pb-2">
                                     <p class="m-0"><?php echo $_smarty_tpl->tpl_vars['offre']->value['ent_nom'];?>
@@ -313,7 +313,7 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
         }).done(function (response) {
             console.log(response);
 
-            $("#logo_entreprise").attr("src", "../int/documents/"+ response.off_entreprise +"/logo.png");
+            $("#logo_entreprise").attr("src", "documents/"+ response.off_entreprise +"/logo.png");
             $("#modalFavoriTitre").text(response.off_intitule);
 
             $("#off_entreprise").text(response.off_nom_entreprise);
@@ -337,6 +337,7 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
             $("#btnCandidature").val("Déposer sa candidature");
             $("#modalOffre_action").val("candidater_offre");
             $("#modalOffre_off_id").val(off_id);
+            $("#modalOffre_token").val(response.token);
 
         });
 
@@ -389,6 +390,7 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
             $("#btnCandidature").val("Retirer sa candidature");
             $("#modalOffre_action").val("retirer_candidature_offre");
             $("#modalOffre_off_id").val(off_id);
+            $("#modalOffre_token").val(response.token);
 
         });
 
@@ -442,6 +444,8 @@ $_smarty_tpl->_subTemplateRender("file:mod_chercheur/vue/modalResultat.tpl", $_s
 
             $("#modalEntretien_off_id").val(off_id);
             $("#modalEntretien_off_id2").val(off_id);
+            $("#modalEntretien_token").val(response.token);
+            $("#modalEntretien_token2").val(response.token);
 
         });
 

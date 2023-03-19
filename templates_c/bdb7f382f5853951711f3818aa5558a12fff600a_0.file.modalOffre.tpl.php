@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 09:29:06
+/* Smarty version 4.2.1, created on 2023-03-19 18:51:42
   from '/Applications/MAMP/htdocs/jobs_finder/mod_chercheur/vue/modalOffre.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6416d5e2500ca0_43523757',
+  'unifunc' => 'content_641759be9b1400_92260307',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bdb7f382f5853951711f3818aa5558a12fff600a' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_chercheur/vue/modalOffre.tpl',
-      1 => 1678628538,
+      1 => 1679251797,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6416d5e2500ca0_43523757 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641759be9b1400_92260307 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Modal -->
 <div class="modal fade" id="modalOffre" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="modalOffreTitre" aria-hidden="true">
@@ -91,6 +91,7 @@ function content_6416d5e2500ca0_43523757 (Smarty_Internal_Template $_smarty_tpl)
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" id="modalOffre_action" value="">
                         <input type="hidden" name="off_id" id="modalOffre_off_id" value="">
+                        <input type="hidden" name="token" id="modalOffre_token" value="">
 
                         <input type="submit" class="btn" id="btnCandidature" value="">
                     </form>

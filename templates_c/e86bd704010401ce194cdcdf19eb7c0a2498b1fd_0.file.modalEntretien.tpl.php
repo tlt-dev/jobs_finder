@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 09:29:06
+/* Smarty version 4.2.1, created on 2023-03-19 19:04:08
   from '/Applications/MAMP/htdocs/jobs_finder/mod_chercheur/vue/modalEntretien.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6416d5e250bdc6_11120155',
+  'unifunc' => 'content_64175ca8819f00_19345894',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e86bd704010401ce194cdcdf19eb7c0a2498b1fd' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_chercheur/vue/modalEntretien.tpl',
-      1 => 1678646585,
+      1 => 1679252437,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6416d5e250bdc6_11120155 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64175ca8819f00_19345894 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Modal -->
 <div class="modal fade" id="modalEntretien" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="modalEntretienTitre" aria-hidden="true">
@@ -56,6 +56,7 @@ function content_6416d5e250bdc6_11120155 (Smarty_Internal_Template $_smarty_tpl)
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="repondre_entretien">
                         <input type="hidden" name="reponse" value="1">
+                        <input type="hidden" name="token" id="modalEntretien_token" value="">
                         <input type="hidden" name="off_id" id="modalEntretien_off_id" value="">
 
                         <input type="submit" class="btn btn-success" value="Accepter l'entretien">
@@ -66,6 +67,8 @@ function content_6416d5e250bdc6_11120155 (Smarty_Internal_Template $_smarty_tpl)
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="repondre_entretien">
                         <input type="hidden" name="reponse" value="0">
+                        <input type="hidden" name="token" id="modalEntretien_token2" value="">
+
                         <input type="hidden" name="off_id" id="modalEntretien_off_id2" value="">
 
                         <input type="submit" class="btn btn-danger" value="Refuser l'entretien">
@@ -129,18 +132,6 @@ function content_6416d5e250bdc6_11120155 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
 
-                <!--Formulaire pour candidater à l'offre -->
-                <div class="row text-center my-3">
-                    <div class="col">
-                        <form method="post" action="index.php" name="formCandidature">
-                            <input type="hidden" name="gestion" value="chercheur">
-                            <input type="hidden" name="action" id="modalOffre_action" value="">
-                            <input type="hidden" name="off_id" id="modalOffre_off_id" value="">
-
-                            <input type="submit" class="btn" id="btnCandidature" value="">
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

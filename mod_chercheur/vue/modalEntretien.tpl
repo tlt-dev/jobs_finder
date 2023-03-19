@@ -33,6 +33,7 @@
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="repondre_entretien">
                         <input type="hidden" name="reponse" value="1">
+                        <input type="hidden" name="token" id="modalEntretien_token" value="">
                         <input type="hidden" name="off_id" id="modalEntretien_off_id" value="">
 
                         <input type="submit" class="btn btn-success" value="Accepter l'entretien">
@@ -43,6 +44,8 @@
                         <input type="hidden" name="gestion" value="chercheur">
                         <input type="hidden" name="action" value="repondre_entretien">
                         <input type="hidden" name="reponse" value="0">
+                        <input type="hidden" name="token" id="modalEntretien_token2" value="">
+
                         <input type="hidden" name="off_id" id="modalEntretien_off_id2" value="">
 
                         <input type="submit" class="btn btn-danger" value="Refuser l'entretien">
@@ -106,18 +109,6 @@
                     </div>
                 </div>
 
-                <!--Formulaire pour candidater à l'offre -->
-                <div class="row text-center my-3">
-                    <div class="col">
-                        <form method="post" action="index.php" name="formCandidature">
-                            <input type="hidden" name="gestion" value="chercheur">
-                            <input type="hidden" name="action" id="modalOffre_action" value="">
-                            <input type="hidden" name="off_id" id="modalOffre_off_id" value="">
-
-                            <input type="submit" class="btn" id="btnCandidature" value="">
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
