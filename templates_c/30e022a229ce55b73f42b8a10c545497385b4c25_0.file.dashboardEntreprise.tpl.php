@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 19:17:59
+/* Smarty version 4.2.1, created on 2023-03-19 19:49:07
   from '/Applications/MAMP/htdocs/jobs_finder/mod_entreprise/vue/dashboardEntreprise.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_64175fe7cd13b5_06868642',
+  'unifunc' => 'content_641767333d9a25_47315132',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '30e022a229ce55b73f42b8a10c545497385b4c25' => 
     array (
       0 => '/Applications/MAMP/htdocs/jobs_finder/mod_entreprise/vue/dashboardEntreprise.tpl',
-      1 => 1679252549,
+      1 => 1679254187,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64175fe7cd13b5_06868642 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641767333d9a25_47315132 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +72,14 @@ function content_64175fe7cd13b5_06868642 (Smarty_Internal_Template $_smarty_tpl)
 ">
           <input type="submit" class="btn btn-outline-light" value="Suivi">
         </form>
-      </div>  
+        <form class="d-flex" method="post" action="index.php">
+          <input type="hidden" name="gestion" value="entreprise">
+          <input type="hidden" name="action" value="generer_liste_offre">
+          <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+          <input type="submit" class="btn btn-outline-light" value="Offres">
+        </form>
+      </div>
     </div>
   </nav>
 
@@ -246,16 +253,18 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             value.che_nom + " " + value.che_prenom +
             '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
             value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
-            );
+            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/' +
+            value.che_id + '/cv.png"></img></div></div>'
+          );
         } else {
           $("#carouselExampleControls").append(
             '<div class="carousel-item"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
             value.che_nom + " " + value.che_prenom +
             '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
             value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
-            );
+            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/' +
+            value.che_id + '/cv.png"></img></div></div>'
+          );
         }
       });
     });

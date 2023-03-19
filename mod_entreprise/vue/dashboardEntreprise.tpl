@@ -44,7 +44,13 @@
           <input type="hidden" name="token" value="{$token}">
           <input type="submit" class="btn btn-outline-light" value="Suivi">
         </form>
-      </div>  
+        <form class="d-flex" method="post" action="index.php">
+          <input type="hidden" name="gestion" value="entreprise">
+          <input type="hidden" name="action" value="generer_liste_offre">
+          <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
+          <input type="submit" class="btn btn-outline-light" value="Offres">
+        </form>
+      </div>
     </div>
   </nav>
 
@@ -198,16 +204,18 @@
             value.che_nom + " " + value.che_prenom +
             '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
             value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
-            );
+            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div><div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/' +
+            value.che_id + '/cv.png"></img></div></div>'
+          );
         } else {
           $("#carouselExampleControls").append(
             '<div class="carousel-item"><div class="card border-dark mb-3 mx-auto" style="max-width: 18rem;"><div class="card-header">' +
             value.che_nom + " " + value.che_prenom +
             '</div><div class="card-body"><img style="max-width: 50px;" src="../mod_utilisateur/documents/' +
             value.che_id +
-            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/'+value.che_id+'/cv.png"></img></div></div>'
-            );
+            '/photo.png"></img><p class="card-text">Recherche ingénieur informatique full-stack H/F</p></div></div>  <div class="row justify-content-center"><img style="max-width: 450px;" src="../int/mod_utilisateur/documents/' +
+            value.che_id + '/cv.png"></img></div></div>'
+          );
         }
       });
     });

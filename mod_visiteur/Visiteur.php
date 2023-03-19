@@ -17,14 +17,18 @@ class Visiteur
     public function choixAction()
     {
 
-        if(isset($this->parametres['action ']))
+        if(isset($this->parametres['action']))
         {
 
             switch($this->parametres['action'])
             {
 
-
-
+                case 'recherche_poste':
+                    $this->visiteurControleur->rechercheOffre();
+                    break;
+                case 'get_current_offre':
+                    $this->visiteurControleur->getOffreById();
+                    break;
             }
 
         }

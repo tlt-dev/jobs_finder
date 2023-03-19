@@ -61,6 +61,9 @@ class Entreprise
                     case 'consulter_profil':
                         $this->entrepriseControleur->consulterProfil();
                         break;
+                    case 'generer_liste_offre':
+                        $this->entrepriseControleur->genererListeOffre();
+                        break;
                     case 'recherche_chercheur_emploi':
                         $this->entrepriseControleur->rechercheChercheurEmploi();
                         break;
@@ -90,21 +93,7 @@ class Entreprise
             } else {
 
 
-                if (!isset($this->parametres["ent_id"])) {
-
-                    $entrepriseModele = new EntrepriseModele(NULL);
-                    $ent_id = $entrepriseModele->getEntId($_SESSION["login"]);
-
-                    $this->parametres["ent_id"] = $ent_id;
-                    $entrepriseControleur = new EntrepriseControleur($this->parametres);
-
-                    $entrepriseControleur->genererDashboard();
-
-                } else {
-
-                    $this->entrepriseControleur->genererDashboard();
-
-                }
+                $this->entrepriseControleur->genererDashboard();
 
 
             }
