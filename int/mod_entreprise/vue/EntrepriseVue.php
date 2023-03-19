@@ -100,6 +100,7 @@ class EntrepriseVue
         $this->tpl->assign('listeOffres', $listeOffres);
         $this->tpl->assign('listeVilles', $listeVilles);
         $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
+        $this->tpl->assign('token', $_SESSION['token']);
 
         if(OffreObjet::getMessageSucces() != "")
         {

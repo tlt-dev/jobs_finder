@@ -23,6 +23,7 @@ class OffreVue
         $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
         $this->tpl->assign('listeSalaire', $listeSalaire);
         $this->tpl->assign('listeTypeContrat',$listeTypeContrat);
+        $this->tpl->assign('token', $_SESSION['token']);
 
         $this->tpl->assign('action', 'modifier_offre');
         
@@ -62,6 +63,7 @@ class OffreVue
         $this->tpl->assign('listeSecteurActivite', $listeSecteurActivite);
         $this->tpl->assign('listeSalaire', $listeSalaire);
         $this->tpl->assign('listeTypeContrat',$listeTypeContrat);
+        $this->tpl->assign('token', $_SESSION['token']);
 
         $this->tpl->assign('action', 'creer_offre');
         

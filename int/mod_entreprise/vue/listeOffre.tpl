@@ -56,6 +56,7 @@
                             <input type="hidden" name="gestion" value="offre">
                             <input type="hidden" name="action" value="form_offre">
                             <input type="hidden" name="id" value="{$offre->getOff_id()}">
+                            <input type="hidden" name="token" value="{$token}">
 
                             <button type="submit" class="btn btn-primary" value="Modifier">Modifier</button>
                         </form>
@@ -65,6 +66,7 @@
                             <input type="hidden" name="gestion" value="offre">
                             <input type="hidden" name="action" value="supprimer_offre">
                             <input type="hidden" name="id" value="{$offre->getOff_id()}">
+                            <input type="hidden" name="token" value="{$token}">
 
                             <button type="submit" class="btn btn-primary" value="Supprimer">Supprimer</button>
                         </form>
@@ -76,7 +78,13 @@
     <form method="post" action="index.php">
         <input type="hidden" name="gestion" value="offre">
         <input type="hidden" name="action" value="form_offre">
+        <input type="hidden" name="token" value="{$token}">
         <button type="submit" class="btn btn-primary" value="Creer">Créer</button>
+    </form>
+    <form method="post" action="index.php">
+        <input type="hidden" name="gestion" value="entreprise">
+        <input type="hidden" name="action" value="generer_dashboard">
+        <button type="submit" class="btn btn-primary" value="Retour">Retour</button>
     </form>
 </div>
 </body>

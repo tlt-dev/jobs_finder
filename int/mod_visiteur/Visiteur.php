@@ -26,6 +26,9 @@ class Visiteur
                 case 'recherche_poste':
                     $this->visiteurControleur->rechercheOffre();
                     break;
+                case 'get_current_offre':
+                    $this->visiteurControleur->getOffreById();
+                    break;
             }
 
         }
