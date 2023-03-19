@@ -16,7 +16,8 @@ class EntrepriseModele extends Modele
     {
 
         //Défini le chemin d'enregistrement
-        $path = "documents/" . $ent_id;
+        $path = "mod_entreprise/documents/" . $ent_id . "/";
+
         //Répertoire de l'entreprise existe ?
         if(!file_exists($path))
         {
@@ -25,7 +26,7 @@ class EntrepriseModele extends Modele
 
         }
         
-        $filename = $path . '/logo.png' ;
+      $filename = $path . "logo.png";
 
         //On déplace le fichier de son emplacement temporaire à son emplacement final
         move_uploaded_file($_FILES['source_logo']['tmp_name'], $filename);
@@ -65,7 +66,7 @@ class EntrepriseModele extends Modele
 
     }
 
-    public function getOffreByEntrepriseId()
+    public function getListeOffres()
     {
         $sql = 'SELECT off_id, off_intitule FROM `t_offre` where off_entreprise = ?';
 
@@ -147,6 +148,82 @@ class EntrepriseModele extends Modele
         $listeCompetence = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
         return $listeCompetence;
+
+    }
+
+    public function getEntretienStatut()
+    {
+        $sql = 'SELECT ent_statut FROM t_entretien';
+
+        $resultat = $this->executeRequete($sql);
+
+        $statut = $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+        return $statut;
+
+    }
+
+    public function getListeCandidatureByOffreId($listeOffres)
+    {
+
+        $listecandidat = array();
+
+        foreach($listeOffres as $offre)
+        {
+
+            $sql = 'SELECT * FROM `t_candidature` INNER JOIN t_chercheur_emploi ON t_candidature.can_chercheur = t_chercheur_emploi.che_id WHERE can_offre = ?';
+
+
+            $resultat = $this->executeRequete($sql, array(
+                $offre
+            ));
+
+            $listecandidat = $resultat->fetchAll(PDO::FETCH_ASSOC);
+            
+
+        }
+
+        return $listecandidat;
+
+    }
+
+    public function addEntretien()
+    {
+
+        $sql = "INSERT INTO T_entretien (ent_offre, ent_chercheur, ent_date_entretien, ent_modalites) VALUES (?,?,?,?)";
+
+        $this->executeRequete($sql, array(
+           $this->parametres['ent_offre'],
+           $this->parametres['ent_chercheur'],
+           $this->parametres['ent_date_entretien'],
+           $this->parametres['ent_modalites'],
+        ));
+
+    }
+
+
+    public function editEntretien($entretienId)
+    {
+
+        $sql = 'UPDATE t_entretien SET ent_reponse = ?,      
+         WHERE ent_id = ?';
+        $this->executeRequete($sql, array(
+            $entretienId
+          
+        ));
+
+    }
+
+    public function getEntretien()
+    {
+
+        $sql = "SELECT * FROM T_entretien WHERE ent_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['ent_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
 
     }
 

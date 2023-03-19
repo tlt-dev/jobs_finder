@@ -51,20 +51,54 @@ class EntrepriseControleur
 
     public function genererSuivi()  
     {
-        $listeOffres = $this->entrepriseModele->getOffreByEntrepriseId();
+        $listeOffres = $this->entrepriseModele->getListeOffres();
 
         $this->entrepriseVue->afficherSuivi($listeOffres);
 
     }
 
-    public function genererListe()
+    public function addEntretien()
+    {
+
+        $this->entrepriseModele->addEntretien();
+
+        $this->genererSuivi();
+
+
+    }
+
+    
+
+    public function getListeOffres()
+    {
+
+        $listeOffres = $this->entrepriseModele->getListeOffres();
+
+        echo(json_encode(array(
+            "listeOffres"=>$listeOffres
+        )));
+
+    }
+
+    public function getListeChercheur()
+    {
+
+        $listeChercheur = $this->entrepriseModele->getListeChercheureEmploi();
+
+        echo(json_encode(array(
+            "listeChercheur"=>$listeChercheur
+        )));
+
+    }
+
+    /*public function genererListe()
     {
 
         $listeEntreprises = $this->entrepriseModele->getListeEntreprises();
 
         $this->entrepriseVue->afficherListe($listeEntreprises);
 
-    }
+    }*/
 
 
     public function rechercheChercheurEmploi()
@@ -76,6 +110,29 @@ class EntrepriseControleur
 
         echo(json_encode(array(
             "listeChercheurEmploiFilter"=>$listeChercheurEmploiFilter)));
+
+    }
+
+    public function recherche_Candidat()
+    {
+        $listeCandidatFilter = $this->entrepriseModele->getListeCandidatureByOffreId($this->parametres['offreMultiSelect']);
+
+        /*foreach ($listeCandidatFilter as $candidat){
+            $data[] = array(
+                "che_id" => $candidat["che_id"],
+                "che_nom" => $candidat["che_nom"],
+                "che_prenom" => $candidat["che_prenom"],
+                "che_telephone" => $candidat["che_telephone"],
+                "che_mail" => $candidat["che_mail"],
+                "token"=>$_SESSION['token']
+                
+            );
+        }*/
+        echo (json_encode(array(
+            "listeCandidats"=>$listeCandidatFilter,
+            "token"=>$_SESSION['token']
+        )));
+        
 
     }
 
@@ -103,7 +160,7 @@ class EntrepriseControleur
 
     }
 
-    public function supprimerEntreprise()
+    /*public function supprimerEntreprise()
     {
 
         $entreprise = new EntrepriseObjet($this->parametres);
@@ -114,6 +171,6 @@ class EntrepriseControleur
 
         $this->genererListe();
 
-    }
+    }*/
 
 }

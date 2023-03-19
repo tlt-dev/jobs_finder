@@ -1,4 +1,28 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2023-03-19 18:38:49
+  from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\suiviCandidat.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_641756b9156670_46508717',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'cc4fec203f0d7dfa6d668f6b02f66227dad6fb05' => 
+    array (
+      0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\suiviCandidat.tpl',
+      1 => 1679251126,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:mod_entreprise/vue/modalEntretien.tpl' => 1,
+  ),
+),false)) {
+function content_641756b9156670_46508717 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,14 +65,24 @@
                             <form method="post" action="index.php" name="rechercheCandidat">
                                 <input type="hidden" name="gestion" value="entreprise">
                                 <input type="hidden" name="action" value="recherche_Candidat">
-                                <input type="hidden" name="token" value="{$token}">
+                                <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                                 <label for="candidat_recherche">Poste recherché</label>
                                 <select class="form-select" name="offreMultiSelect[]" id="multiple-select-field"
                                     data-placeholder="Choose anything" multiple>
-                                    {foreach $listeOffres as $offres}
-                                        <option value="{$offres['off_id']}">{$offres['off_intitule']}
+                                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['listeOffres']->value, 'offres');
+$_smarty_tpl->tpl_vars['offres']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['offres']->value) {
+$_smarty_tpl->tpl_vars['offres']->do_else = false;
+?>
+                                        <option value="<?php echo $_smarty_tpl->tpl_vars['offres']->value['off_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['offres']->value['off_intitule'];?>
+
                                         </option>
-                                    {/foreach}
+                                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 </select>
                                 <input type="submit" class="btn btn-primary" value="Rechercher">
                             </form>
@@ -75,7 +109,8 @@
                         </div>
                         <div class="card-body">
                             <form method="post" action="index.php" name="formAddEntretien">
-                                <input type="hidden" name="token" id="formAddEntretienToken" value="{$token}">
+                                <input type="hidden" name="token" id="formAddEntretienToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                                 <input type="submit" class="btn btn-outline-dark" value="Ajouter un entretien">
                             </form>
                         </div>
@@ -88,20 +123,30 @@
                         <p>Réponse du candidat</p>
                         </div>
                         <div class="card-body">
-                        {if {$EntretienStatut[0]['ent_statut']} eq "1"}
+                        <?php ob_start();
+echo $_smarty_tpl->tpl_vars['EntretienStatut']->value[0]['ent_statut'];
+$_prefixVariable1 = ob_get_clean();
+if ($_prefixVariable1 == "1") {?>
                             <span> Attente de la réponse </span>
                       
-                        {/if}
-                        {if {$EntretienStatut[0]['ent_statut']} eq "2"}
+                        <?php }?>
+                        <?php ob_start();
+echo $_smarty_tpl->tpl_vars['EntretienStatut']->value[0]['ent_statut'];
+$_prefixVariable2 = ob_get_clean();
+if ($_prefixVariable2 == "2") {?>
                             <span> Accepté </span>
                       
-                        {/if}
-                        {if {$EntretienStatut[0]['ent_statut']} eq "3"}
+                        <?php }?>
+                        <?php ob_start();
+echo $_smarty_tpl->tpl_vars['EntretienStatut']->value[0]['ent_statut'];
+$_prefixVariable3 = ob_get_clean();
+if ($_prefixVariable3 == "3") {?>
                             <span> Refusé </span>
                       
-                        {/if}
+                        <?php }?>
                         <form method="post" action="index.php" name="formAddEntretienReponse">
-                        <input type="hidden" name="token" id="formAddEntretienReponseToken" value="{$token}">
+                        <input type="hidden" name="token" id="formAddEntretienReponseToken" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                         <input type="submit" class="btn btn-outline-dark" value="Ajouter une réponse">
                     </form>
                         </div>
@@ -119,35 +164,47 @@
         </div>
     </section>
 
-    {include file="mod_entreprise/vue/modalEntretien.tpl"}
+    <?php $_smarty_tpl->_subTemplateRender("file:mod_entreprise/vue/modalEntretien.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 
 </body>
 
 <!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"><?php echo '</script'; ?>
+>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"><?php echo '</script'; ?>
+>
 
 <!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
+<?php echo '</script'; ?>
+>
 
 
-<script>
+<?php echo '<script'; ?>
+>
     $('#multiple-select-field').select2({
         theme: "bootstrap-5",
         width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
         placeholder: $(this).data('placeholder'),
         closeOnSelect: false,
     });
-</script>
+<?php echo '</script'; ?>
+>
 
 
-<script>
+<?php echo '<script'; ?>
+>
     function showModalEntretien(can_chercheur, can_offre) {
 
         $("#formEntretien_offre").val(can_offre);
@@ -179,10 +236,12 @@
 
 
     }
-</script>
+<?php echo '</script'; ?>
+>
 
 
-<script>
+<?php echo '<script'; ?>
+>
     $("form[name='rechercheCandidat']").submit(function(e) {
         e.preventDefault(); //empêcher une action par défaut
 
@@ -219,8 +278,10 @@
         $("#formEntretien_token").val($("#formAddEntretienToken").val());
         $("#formEntretienButton").val('Ajouter');
     });
-</script>
+<?php echo '</script'; ?>
+>
 
 
 
-</html>
+</html><?php }
+}

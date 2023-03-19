@@ -14,12 +14,12 @@ class EntrepriseVue
 
     }
 
-    public function afficherAccueil()
+    /*public function afficherAccueil()
     {
 
         $this->tpl->display('mod_entreprise/vue/listeEntreprise.tpl');
 
-    }
+    }*/
 
     public function afficherDashboard($entreprise, $listeChercheurEmploi, $listeCompetence)
     {
@@ -27,6 +27,7 @@ class EntrepriseVue
         $this->tpl->assign("entreprise", $entreprise);
         $this->tpl->assign("listeCompetence", $listeCompetence);
         $this->tpl->assign("listeChercheurEmploi", $listeChercheurEmploi);
+        $this->tpl->assign('token', $_SESSION['token']);
         $this->tpl->display('mod_entreprise/vue/dashboardEntreprise.tpl');
 
     }
@@ -39,6 +40,7 @@ class EntrepriseVue
         $this->tpl->assign("listeStatuts", $listeStatuts);
         $this->tpl->assign("listeSecteurs", $listeSecteurs);
         $this->tpl->assign("userName", $userName);
+        $this->tpl->assign('token', $_SESSION['token']);
         $this->tpl->display('mod_entreprise/vue/profilEntrepriseV1.tpl');
 
 
@@ -47,10 +49,11 @@ class EntrepriseVue
     public function afficherSuivi($listeOffres)
      {
         $this->tpl->assign('listeOffres', $listeOffres);
+        $this->tpl->assign('token', $_SESSION['token']);
         $this->tpl->display('mod_entreprise/vue/suiviCandidat.tpl');
     }
 
-    public function afficherListe($listeEntreprises)
+    /*public function afficherListe($listeEntreprises)
     {
 
         //$this->tpl->assign('titre', "Liste Entreprises");
@@ -64,9 +67,9 @@ class EntrepriseVue
 
         $this->tpl->display('mod_entreprise/vue/listeEntreprise.tpl');
 
-    }
+    }*/
 
-    public function afficherFicheEntreprise($entreprise)
+    /*public function afficherFicheEntreprise($entreprise)
     {
 
         switch ($this->parametres['action']) {
@@ -93,6 +96,6 @@ class EntrepriseVue
 
         $this->tpl->display('mod_entreprise/vue/ficheEntreprise.tpl');
 
-    }
+    }*/
 
 }
