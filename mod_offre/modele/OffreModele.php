@@ -379,5 +379,18 @@ class OffreModele extends Modele
         return $this->executeRequete($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getEntreprise($ent_id)
+    {
+
+        $sql = 'SELECT * FROM t_entreprise WHERE ent_id = ?';
+
+        $resultat = $this->executeRequete($sql, array(
+            $ent_id
+        ));
+
+        return new EntrepriseObjet($resultat->fetch(PDO::FETCH_ASSOC));
+
+    }
+
 
 }
