@@ -1,4 +1,28 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 4.2.1, created on 2023-03-20 08:58:31
+  from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\dashboardEntreprise.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.2.1',
+  'unifunc' => 'content_641820379f9d57_15731257',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '1f8cbbb497d3b8a9c5e05d99b40f57ba70cf7eda' => 
+    array (
+      0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\dashboardEntreprise.tpl',
+      1 => 1679302659,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
+  ),
+),false)) {
+function content_641820379f9d57_15731257 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,7 +51,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
     <img class="navbar-brand" style="max-width: 50px;"
-    src="mod_entreprise/documents/{$entreprise->getEnt_id()}/logo.png"></img>
+    src="mod_entreprise/documents/<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+/logo.png"></img>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,7 +63,8 @@
                     <form method="post" action="index.php" name="formNavOffres">
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="generer_liste_offre">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
                         <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
                     </form>
                 </li>
@@ -46,7 +72,8 @@
                     <form method="post" action="index.php" name="formNavProfil">
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="consulter_profil">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
                     </form>
@@ -55,7 +82,8 @@
                     <form method="post" action="index.php" name="formNavDashboard">
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="consulter_suivi">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavDashboard()">Tableau de bord</p>
                     </form>
@@ -64,7 +92,8 @@
                     <form method="post" action="index.php" name="FormNavAccueil">
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="generer_dashboard">
-                        <input type="hidden" name="token" value="{$token}">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
 
                         <p class="nav-link" onclick="submitFormNavAccueil()">Acceuil</p>
                     </form>
@@ -143,14 +172,24 @@
             <form method="post" action="index.php" name="rechercheEmploi">
               <input type="hidden" name="gestion" value="entreprise">
               <input type="hidden" name="action" value="recherche_chercheur_emploi">
-              <input type="hidden" name="token" value="{$token}">
+              <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
               <label for="poste_recherche">Poste recherché</label>
               <select class="form-select" name="competenceMultiSelect[]" id="multiple-select-field"
                 data-placeholder="Choose anything" multiple>
-                {foreach $listeCompetence as $competence}
-                  <option value="{$competence['com_id']}">{$competence['com_libelle']}
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['listeCompetence']->value, 'competence');
+$_smarty_tpl->tpl_vars['competence']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['competence']->value) {
+$_smarty_tpl->tpl_vars['competence']->do_else = false;
+?>
+                  <option value="<?php echo $_smarty_tpl->tpl_vars['competence']->value['com_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['competence']->value['com_libelle'];?>
+
                   </option>
-                {/foreach}
+                <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
               </select>
 
               <input type="submit" class="btn btn-primary" value="Rechercher">
@@ -180,35 +219,47 @@
     </div>
 
 
-    {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
+    <?php $_smarty_tpl->_subTemplateRender("file:../../mod_authentification/vue/modalDeconnexion.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
 
 
 </body>
 
 <!--AJAX-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+<?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"><?php echo '</script'; ?>
+>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"><?php echo '</script'; ?>
+>
 
 <!--Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
+<?php echo '</script'; ?>
+>
 
 
 
-<script>
+<?php echo '<script'; ?>
+>
   $('#multiple-select-field').select2({
     theme: "bootstrap-5",
     width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
     placeholder: $(this).data('placeholder'),
     closeOnSelect: false,
   });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
   $("form[name='rechercheEmploi']").submit(function(e) {
     e.preventDefault(); //empêcher une action par défaut
 
@@ -247,31 +298,41 @@
       });
     });
   });
-</script>
+<?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
     function submitFormNavOffres()
     {
         $("form[name='formNavOffres']").submit();
     }
-</script>
-<script>
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
     function submitFormNavProfil()
     {
         $("form[name='formNavProfil']").submit();
     }
-</script>
-<script>
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
     function submitFormNavDashboard()
     {
         $("form[name='formNavDashboard']").submit();
     }
-</script>
-<script>
+<?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
     function submitFormNavAccueil()
     {
         $("form[name='FormNavAccueil']").submit();
     }
-</script>
+<?php echo '</script'; ?>
+>
 
-</html>
+</html><?php }
+}

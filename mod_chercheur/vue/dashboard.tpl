@@ -25,7 +25,6 @@
                     <form method="post" action="index.php" name="formNavOffres">
                         <input type="hidden" name="gestion" value="visiteur">
                         <input type="hidden" name="token" value="{$token}">
-
                         <p class="nav-link" onclick="submitFormNavOffres()">Offres</p>
                     </form>
                 </li>
