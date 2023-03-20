@@ -18,6 +18,57 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <img class="navbar-brand" style="max-width: 50px;"
+                src="mod_entreprise/documents/{$entreprise->getEnt_id()}/logo.png"></img>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="consulter_profil">
+                            <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
+                            <input type="submit" class="btn btn-outline-light" value="Profil">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="consulter_suivi">
+                            <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
+                            <input type="submit" class="btn btn-outline-light" value="Suivi">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="generer_liste_offre">
+                            <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
+                            <input type="submit" class="btn btn-outline-light" value="Offres">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="generer_dashboard">
+                            <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
+                            <input type="submit" class="btn btn-outline-light" value="Accueil">
+                        </form>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+                    data-bs-target="#modalDeconnexion">Déconnexion
+                </button>
+            </div>
+        </div>
+    </nav>
 </head>
 
 <body>
@@ -29,7 +80,7 @@
                         <h3>SUIVI CANDIDATURE</h3>
                     </div>
                     <p class="description-p text-muted pe-0 pe-lg-0">
-                        Suivi des candidatures pour gérer les entretients etc....
+                        Suivi des candidatures pour gérer les entretients etc..
                     </p>
                 </div>
             </div>
@@ -150,7 +201,6 @@
             dataType: 'JSON'
         }).done(function(response) {
             $.each(response.listeCandidats, function(index, value) {
-
                 $("#CardCandidat").append(
 
                     '<div class="border-radius highlight" onclick="showModalEntretien(' +
@@ -182,7 +232,7 @@
                     console.log(val.ent_reponse);
                     if (val.ent_reponse == 2) {
 
-                    $("#CardEntretientReponse").append(
+                        $("#CardEntretientReponse").append(
 
                             '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: green;">' +
                             "Accepté" + '</h5></div>'
@@ -195,7 +245,7 @@
 
                         $("#CardEntretientReponse").append(
 
-                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">' +
+                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">' +
                             "Refusé" + '</h5></div>'
                         );
 
@@ -206,7 +256,7 @@
 
                         $("#CardEntretientReponse").append(
 
-                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">' +
+                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">' +
                             "En réflexion" + '</h5></div>'
                         );
 

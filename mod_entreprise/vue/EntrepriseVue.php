@@ -46,10 +46,11 @@ class EntrepriseVue
 
     }
 
-    public function afficherSuivi($listeOffres)
+    public function afficherSuivi($listeOffres, $entreprise)
      {
         $this->tpl->assign('listeOffres', $listeOffres);
         $this->tpl->assign('token', $_SESSION['token']);
+        $this->tpl->assign('entreprise', $entreprise);
         $this->tpl->display('mod_entreprise/vue/suiviCandidat.tpl');
     }
 

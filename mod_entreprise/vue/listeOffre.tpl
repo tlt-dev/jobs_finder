@@ -18,36 +18,56 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
     </script>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <img class="navbar-brand" style="max-width: 50px;" src="../int/documents/2/logo.png"></img>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<div class="container-fluid">
+    <img class="navbar-brand" style="max-width: 50px;"
+        src="mod_entreprise/documents/{$entreprise->getEnt_id()}/logo.png"></img>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item pe-4">
                 <form class="d-flex" method="post" action="index.php">
                     <input type="hidden" name="gestion" value="entreprise">
                     <input type="hidden" name="action" value="consulter_profil">
                     <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
                     <input type="submit" class="btn btn-outline-light" value="Profil">
                 </form>
+            </li>
+            <li class="nav-item px-4">
                 <form class="d-flex" method="post" action="index.php">
                     <input type="hidden" name="gestion" value="entreprise">
                     <input type="hidden" name="action" value="consulter_suivi">
                     <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
                     <input type="submit" class="btn btn-outline-light" value="Suivi">
                 </form>
+            </li>
+            <li class="nav-item px-4">
                 <form class="d-flex" method="post" action="index.php">
                     <input type="hidden" name="gestion" value="entreprise">
                     <input type="hidden" name="action" value="generer_liste_offre">
                     <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
                     <input type="submit" class="btn btn-outline-light" value="Offres">
                 </form>
-            </div>
-        </div>
-    </nav>
+            </li>
+            <li class="nav-item px-4">
+                <form class="d-flex" method="post" action="index.php">
+                    <input type="hidden" name="gestion" value="entreprise">
+                    <input type="hidden" name="action" value="generer_dashboard">
+                    <input type="hidden" name="ent_id" value="{$entreprise->getEnt_id()}">
+                    <input type="submit" class="btn btn-outline-light" value="Accueil">
+                </form>
+            </li>
+        </ul>
+        <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+            data-bs-target="#modalDeconnexion">Déconnexion
+        </button>
+    </div>
+</div>
+</nav>
 </head>
 
 

@@ -54,7 +54,8 @@ class EntrepriseControleur
     public function genererSuivi()  
     {
         $listeOffres = $this->entrepriseModele->getListeOffres();
-        $this->entrepriseVue->afficherSuivi($listeOffres);
+        $entreprise = $this->entrepriseModele->getEntreprise();
+        $this->entrepriseVue->afficherSuivi($listeOffres, $entreprise);
 
     }
 

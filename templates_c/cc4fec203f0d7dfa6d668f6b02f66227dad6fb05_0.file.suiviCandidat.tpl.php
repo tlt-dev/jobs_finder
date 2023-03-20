@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 22:25:05
+/* Smarty version 4.2.1, created on 2023-03-20 08:09:08
   from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\suiviCandidat.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_64178bc15b51a2_74038445',
+  'unifunc' => 'content_641814a4151619_51700141',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cc4fec203f0d7dfa6d668f6b02f66227dad6fb05' => 
     array (
       0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\suiviCandidat.tpl',
-      1 => 1679262521,
+      1 => 1679299652,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:mod_entreprise/vue/modalEntretien.tpl' => 1,
   ),
 ),false)) {
-function content_64178bc15b51a2_74038445 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641814a4151619_51700141 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -42,6 +42,62 @@ function content_64178bc15b51a2_74038445 (Smarty_Internal_Template $_smarty_tpl)
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <img class="navbar-brand" style="max-width: 50px;"
+                src="mod_entreprise/documents/<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+/logo.png"></img>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="consulter_profil">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Profil">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="consulter_suivi">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Suivi">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="generer_liste_offre">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Offres">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="generer_dashboard">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Accueil">
+                        </form>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+                    data-bs-target="#modalDeconnexion">Déconnexion
+                </button>
+            </div>
+        </div>
+    </nav>
 </head>
 
 <body>
@@ -53,7 +109,7 @@ function content_64178bc15b51a2_74038445 (Smarty_Internal_Template $_smarty_tpl)
                         <h3>SUIVI CANDIDATURE</h3>
                     </div>
                     <p class="description-p text-muted pe-0 pe-lg-0">
-                        Suivi des candidatures pour gérer les entretients etc....
+                        Suivi des candidatures pour gérer les entretients etc..
                     </p>
                 </div>
             </div>
@@ -198,7 +254,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             dataType: 'JSON'
         }).done(function(response) {
             $.each(response.listeCandidats, function(index, value) {
-
                 $("#CardCandidat").append(
 
                     '<div class="border-radius highlight" onclick="showModalEntretien(' +
@@ -230,7 +285,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     console.log(val.ent_reponse);
                     if (val.ent_reponse == 2) {
 
-                    $("#CardEntretientReponse").append(
+                        $("#CardEntretientReponse").append(
 
                             '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: green;">' +
                             "Accepté" + '</h5></div>'
@@ -243,7 +298,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
                         $("#CardEntretientReponse").append(
 
-                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">' +
+                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">' +
                             "Refusé" + '</h5></div>'
                         );
 
@@ -254,7 +309,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
                         $("#CardEntretientReponse").append(
 
-                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">' +
+                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">' +
                             "En réflexion" + '</h5></div>'
                         );
 

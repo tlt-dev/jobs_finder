@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-19 22:50:36
+/* Smarty version 4.2.1, created on 2023-03-20 08:09:14
   from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\profilEntrepriseV1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_641791bcd8f664_33995538',
+  'unifunc' => 'content_641814aac83293_32932917',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3aeca150f49de73b2e6be0c4d2b0e0131ab8c64a' => 
     array (
       0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\profilEntrepriseV1.tpl',
-      1 => 1679220746,
+      1 => 1679299709,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_641791bcd8f664_33995538 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641814aac83293_32932917 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +34,63 @@ function content_641791bcd8f664_33995538 (Smarty_Internal_Template $_smarty_tpl)
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <img class="navbar-brand" style="max-width: 50px;"
+                src="mod_entreprise/documents/<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+/logo.png"></img>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="consulter_profil">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Profil">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="consulter_suivi">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Suivi">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="generer_liste_offre">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Offres">
+                        </form>
+                    </li>
+                    <li class="nav-item px-4">
+                        <form class="d-flex" method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="entreprise">
+                            <input type="hidden" name="action" value="generer_dashboard">
+                            <input type="hidden" name="ent_id" value="<?php echo $_smarty_tpl->tpl_vars['entreprise']->value->getEnt_id();?>
+">
+                            <input type="submit" class="btn btn-outline-light" value="Accueil">
+                        </form>
+                    </li>
+                </ul>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" id="btnDisconnect"
+                    data-bs-target="#modalDeconnexion">Déconnexion
+                </button>
+            </div>
+        </div>
+    </nav>
+        
 
 </head>
 
