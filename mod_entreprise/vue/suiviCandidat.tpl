@@ -200,7 +200,9 @@
             data: form_data,
             dataType: 'JSON'
         }).done(function(response) {
-            $.each(response.listeCandidats, function(index, value) {
+            $.each(response.listeCandidats, function(i, val) {
+            $.each(val, function(index, value) {
+
                 $("#CardCandidat").append(
 
                     '<div class="border-radius highlight" onclick="showModalEntretien(' +
@@ -214,13 +216,14 @@
                 );
 
             });
+            });
 
             $.each(response.listeEntretien, function(index, value) {
                 $.each(value, function(i, val) {
                     $("#CardEntretient").append(
 
                         '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2">' +
-                        value.ent_date_entretien + '</h5></div>'
+                        val.ent_date_entretien + '</h5></div>'
                     );
 
                 });
@@ -234,39 +237,23 @@
 
                         $("#CardEntretientReponse").append(
 
-                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: green;">' +
-                            "Accepté" + '</h5></div>'
+                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: green;">Accepté</h5></div>'
                         );
 
 
                     }
 
                     if (val.ent_reponse == 0) {
-
                         $("#CardEntretientReponse").append(
-
-                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">' +
-                            "Refusé" + '</h5></div>'
+                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: red;">Refusé</h5></div>'
                         );
-
-
                     }
 
                     if (val.ent_reponse == 1) {
-
                         $("#CardEntretientReponse").append(
-
-                            '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">' +
-                            "En réflexion" + '</h5></div>'
+                        '<div class="border-radius highlight"><h5 class="text-center mb-0 pt-2" style="background-color: orange;">En réflexion</h5></div>'
                         );
-
-
                     }
-
-
-
-
-
 
                 });
             });
