@@ -189,7 +189,7 @@
 
 {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 {include file="mod_chercheur/vue/modalOffre.tpl"}
-{include file="mod_chercheur/vue/modalPropositionEntretien.tpl"}
+{include file="mod_chercheur/vue/modalEntretien.tpl"}
 {include file="mod_chercheur/vue/modalResultat.tpl"}
 
 </body>
