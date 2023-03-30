@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-21 13:59:28
-  from '/Applications/MAMP/htdocs/jobs_finder/mod_offre/vue/formulaireModifierOffre.tpl' */
+/* Smarty version 4.2.1, created on 2023-03-30 18:34:15
+  from 'C:\wamp64\www\jobs_finder\mod_offre\vue\formulaireModifierOffre.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_6419b840392ea6_34031994',
+  'unifunc' => 'content_6425d6275057e7_08922713',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'fe0e6fb8698d73285ce7f3b62164d47ebc453227' => 
+    'd5e67b8c93fd6062a50da675ed6236d28c54a792' => 
     array (
-      0 => '/Applications/MAMP/htdocs/jobs_finder/mod_offre/vue/formulaireModifierOffre.tpl',
-      1 => 1679407122,
+      0 => 'C:\\wamp64\\www\\jobs_finder\\mod_offre\\vue\\formulaireModifierOffre.tpl',
+      1 => 1680194987,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6419b840392ea6_34031994 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6425d6275057e7_08922713 (Smarty_Internal_Template $_smarty_tpl) {
 ?><body>
 
     <!DOCTYPE html>
@@ -52,7 +52,7 @@ function content_6419b840392ea6_34031994 (Smarty_Internal_Template $_smarty_tpl)
         var mm = today.getMonth() + 1; //January is 0!
         var yyyy = today.getFullYear();
         if (dd < 10) {
-            dd = '0' + dd;
+            dd = '0' + dd; 
         }
         if (mm < 10) {
             mm = '0' + mm;
