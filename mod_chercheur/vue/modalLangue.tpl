@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="formLangue_niveau" class="form-label">Niveau</label>
-                        <input type="range" name="lce_niveau" id="formLangue_niveau" min="1" max="5" step="1" value="">
+                        <input type="range" class="form-range" name="lce_niveau" id="formLangue_niveau" min="1" max="5" step="1" value="">
                     </div>
                 </div>
 

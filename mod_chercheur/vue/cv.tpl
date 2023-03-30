@@ -409,7 +409,7 @@
                                                     <div class="col-3">
                                                         <form method="post" action="index.php" name="formDeleteLangue">
                                                             <input type="hidden" name="gestion" value="chercheur">
-                                                            <input type="hidden" name="action" value="deleteLangue">
+                                                            <input type="hidden" name="action" value="delete_langue">
                                                             <input type="hidden" name="lce_id" value="{$langue['lce_id']}">
                                                             <input type="hidden" name="token" value="{$token}">
 
@@ -460,7 +460,7 @@
                                                         <form method="post" action="index.php" name="formEditCentreInteret">
                                                             <input type="hidden" name="gestion" value="chercheur">
                                                             <input type="hidden" name="action" value="form_edit_centre_interet">
-                                                            <input type="hidden" name="cei_id" value="{$competence['cei_id']}">
+                                                            <input type="hidden" name="cei_id" value="{$centreInteret['cei_id']}">
                                                             <input type="hidden" name="token" value="{$token}">
 
                                                             <input type="submit" class="btn btn-outline-dark" value="Modifier">
@@ -470,7 +470,7 @@
                                                         <form method="post" action="index.php" name="formDeleteCentreInteret">
                                                             <input type="hidden" name="gestion" value="chercheur">
                                                             <input type="hidden" name="action" value="delete_centre_interet">
-                                                            <input type="hidden" name="cei_id" value="{$centre_interet['cei_id']}">
+                                                            <input type="hidden" name="cei_id" value="{$centreInteret['cei_id']}">
                                                             <input type="hidden" name="token" value="{$token}">
 
 
@@ -856,8 +856,12 @@
 </script>
 
 <script>
-    function updateNivLibelle()
+    $("form[name='formAddLangue']").submit(function (e)
     {
+        e.preventDefault();
+
+        var myModal = new bootstrap.Modal(document.getElementById('modalLangue'));
+        myModal.show();
 
         $.ajax({
             url: "index.php",
@@ -865,17 +869,120 @@
             data:
                 {
                     gestion:"chercheur",
-                    action:"get_libelle_niveau",
-                    token: $("#formAddCompetenceToken").val()
+                    action:"form_add_langue",
+                    token: $("#formAddLangueToken").val()
                 },
             dataType: 'JSON'
         }).done(function (response) {
             console.log(response);
 
-            $("#niv_competence_libelle").text(response.niv_libelle);
+            $.each(response.listeLangues, function (index, value) {
+                $("#formLangue_langue").append('<option value="' + value.lan_id + '">' + value.lan_nom + '</option>');
+            });
         });
 
-    }
+        $("#modalLangueTitre").text("Ajout d'une langue");
+        $("#formLangue_action").val('add_langue');
+        $("#formLangue_token").val($("#formAddLangueToken").val());
+        $("#formLangueButton").val('Ajouter');
+
+    });
 </script>
+
+<script>
+    $("form[name='formEditLangue']").submit(function (e)
+    {
+        e.preventDefault();
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function (response) {
+            console.log(response);
+
+            $("#formLangue_niveau").val(response.lce_niveau);
+            $("#formLangue_id").val(response.lce_id);
+            $("#formLangue_token").val(response.token);
+            $("#formLangue_action").val(response.action);
+            $("#modalLangueTitre").text("Modifier la langue");
+            $("#formLangueButton").val("Modifier");
+
+
+
+            $.each(response.listeLangues, function (index, value) {
+                if(value.lan_id === response.lce_langue)
+                {
+                    $("#formLangue_langue").append('<option value="' + value.lan_id + '" selected>' + value.lan_nom + '</option>');
+                }
+                else
+                {
+                    $("#formLangue_langue").append('<option value="' + value.lan_id + '">' + value.lan_nom + '</option>');
+                }
+            });
+        });
+
+        var myModal = new bootstrap.Modal(document.getElementById('modalLangue'));
+        myModal.show();
+
+
+
+    });
+</script>
+
+<script>
+    $("form[name='formAddCentreInteret']").submit(function (e)
+    {
+        e.preventDefault();
+
+        var myModal = new bootstrap.Modal(document.getElementById('modalCentreInteret'));
+        myModal.show();
+
+        $("#modalCentreInteretTitre").text("Ajout d'un centre d'intérêt");
+        $("#formCentreInteret_action").val('add_centre_interet');
+        $("#formCentreInteret_token").val($("#formAddCentreInteretToken").val());
+        $("#formCentreInteretButton").val('Ajouter');
+
+    });
+</script>
+
+<script>
+    $("form[name='formEditCentreInteret']").submit(function (e)
+    {
+        e.preventDefault();
+
+        var form_url = $(this).attr("action"); //récupérer l'URL du formulaire
+        var form_method = $(this).attr("method"); //récupérer la méthode GET/POST du formulaire
+        var form_data = $(this).serialize(); //Encoder les éléments du formulaire pour la soumission
+
+        $.ajax({
+            url: form_url,
+            type: form_method,
+            data: form_data,
+            dataType: 'JSON'
+        }).done(function (response) {
+            console.log(response);
+
+            $("#formCentreInteret_id").val(response.cei_id);
+            $("#formCentreInteret_token").val(response.token);
+            $("#formCentreInteret_action").val(response.action);
+            $("#modalCentreInteretTitre").text("Modifier le centre d'intérêt");
+            $("#formCentreInteretButton").val("Modifier");
+            $("#formCentreInteret_intitule").val(response.cei_intitule);
+        });
+
+        var myModal = new bootstrap.Modal(document.getElementById('modalCentreInteret'));
+        myModal.show();
+
+
+
+    });
+</script>
+
 
 </html>

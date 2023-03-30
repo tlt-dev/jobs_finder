@@ -128,8 +128,33 @@ class Chercheur
                     case 'form_add_competence':
                         $this->chercheurControleur->formAddCompetence();
                         break;
-
-
+                    case 'add_langue':
+                        $this->chercheurControleur->addLangue();
+                        break;
+                    case 'delete_langue':
+                        $this->chercheurControleur->deleteLangue();
+                        break;
+                    case 'form_edit_langue':
+                        $this->chercheurControleur->formEditLangue();
+                        break;
+                    case 'modifier_langue':
+                        $this->chercheurControleur->editLangue();
+                        break;
+                    case 'form_add_langue':
+                        $this->chercheurControleur->formAddLangue();
+                        break;
+                    case 'add_centre_interet':
+                        $this->chercheurControleur->addCentreInteret();
+                        break;
+                    case 'delete_centre_interet':
+                        $this->chercheurControleur->deleteCentreInteret();
+                        break;
+                    case 'form_edit_centre_interet':
+                        $this->chercheurControleur->formEditCentreInteret();
+                        break;
+                    case 'modifier_centre_interet':
+                        $this->chercheurControleur->editCentreInteret();
+                        break;
 
                 }
 

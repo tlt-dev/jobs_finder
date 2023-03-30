@@ -79,7 +79,7 @@
                             </h5>
                             <div class="row align-items-center">
                                 <div class="col-2 mx-2">
-                                    <img src="documents/2/logo.png" class="w-100">
+                                    <img src="mod_entreprise/documents/{$offre['off_entreprise']}/logo.png" class="w-100">
                                 </div>
                                 <div class="col-9 pb-2">
                                     <p class="m-0">{$offre['ent_nom']}</p>
@@ -109,7 +109,7 @@
                             </h5>
                             <div class="row align-items-center">
                                 <div class="col-2 mx-2">
-                                    <img src="../int/documents/2/logo.png" class="w-100">
+                                    <img src="mod_entreprise/documents/{$candidature['off_entreprise']}/logo.png" class="w-100">
                                 </div>
                                 <div class="col-9 pb-2">
                                     <p class="m-0">{$candidature['ent_nom']}</p>
@@ -139,7 +139,7 @@
                             </h5>
                             <div class="row align-items-center">
                                 <div class="col-2 mx-2">
-                                    <img src="../int/documents/2/logo.png" class="w-100">
+                                    <img src="mod_entreprise/documents/{$entretien['ent_id']}/logo.png" class="w-100">
                                 </div>
                                 <div class="col-9 pb-2">
                                     <p class="m-0">{$entretien['ent_nom']}</p>
@@ -168,7 +168,7 @@
                             </h5>
                             <div class="row align-items-center">
                                 <div class="col-2 mx-2">
-                                    <img src="../int/documents/2/logo.png" class="w-100">
+                                    <img src="mod_entreprise/documents/{$resultat['ent_id']}/logo.png" class="w-100">
                                 </div>
                                 <div class="col-9 pb-2">
                                     <p class="m-0">{$resultat['ent_nom']}</p>
@@ -189,7 +189,7 @@
 
 {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 {include file="mod_chercheur/vue/modalOffre.tpl"}
-{include file="mod_chercheur/vue/modalEntretien.tpl"}
+{include file="mod_chercheur/vue/modalPropositionEntretien.tpl"}
 {include file="mod_chercheur/vue/modalResultat.tpl"}
 
 </body>

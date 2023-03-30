@@ -31,8 +31,7 @@
                 <div class="row">
                     <div class="col-6">
                         <label for="formCompetence_niveau" class="form-label">Niveau</label>
-                        <input type="range" class="form-range" name="cce_niveau" id="formCompetence_niveau" onchange="updateNivLibelle(this.getAttribute('value'))" min="1" max="5" step="1" value="">
-                        <span><strong id="niv_competence_libelle"></strong></span>
+                        <input type="range" class="form-range" name="cce_niveau" id="formCompetence_niveau" min="1" max="5" step="1" value="">
                     </div>
                 </div>
 

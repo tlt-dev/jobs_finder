@@ -8,14 +8,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="row m-2 mb-0">
-                <div class="alert alert-danger d-none" role="alert" id="message">
-                    <p id="messageContent"></p>
+                <div class="alert alert-danger d-none" role="alert" id="inscriptionMessage">
+                    <p id="inscriptionMessageContent"></p>
                 </div>
             </div>
-            <form method="post" action="index.php" name="formInscription" class="mt-0">
+            <form method="post" action="index.php" name="formInscription" id="formInscription" class="mt-0">
                 <div class="modal-body">
                     <input type="hidden" name="gestion" value="authentification">
-                    <input type="hidden" name="action" value="inscription">
+                    <input type="hidden" name="action" id="formInscription_action" value="verifier_inscription">
 
                     <label for="type_1">Qui êtes-vous ?</label>
 
@@ -48,6 +48,17 @@
                         un compte ? Connectez-vous</a>
                     <input type="submit" class="btn btn-primary" value="S'inscrire">
                 </div>
+            </form>
+
+            <form method="post" action="index.php" id="formInscriptionHidden">
+                <input type="hidden" name="gestion" value="authentification">
+                <input type="hidden" name="action" id="formInscription_action" value="inscription">
+                <input type="hidden" name="usr_est_chercheur_emploi" id="formInscription_est_chercheur_emploi" value="">
+                <input type="hidden" name="che_nom" id="formInscription_che_nom" value="">
+                <input type="hidden" name="che_prenom" id="formInscription_che_prenom" value="">
+                <input type="hidden" name="ent_nom" id="formInscription_ent_nom" value="">
+                <input type="hidden" name="usr_email" id="formInscription_email" value="">
+                <input type="hidden" name="usr_mot_de_passe" id="formInscription_mot_de_passe" value="">
             </form>
 
 

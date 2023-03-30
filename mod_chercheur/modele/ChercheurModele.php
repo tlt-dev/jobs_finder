@@ -302,8 +302,8 @@ class ChercheurModele extends Modele
     public function getLanguesChercheur()
     {
 
-        $sql = "SELECT lan_id, lan_nom, lce_niveau, niv_libelle FROM T_Langue"
-            . " INNER JOIN T_Langue_Chercheur_Emploi ON lce_id = lan_id"
+        $sql = "SELECT lan_id, lan_nom, lce_id, lce_niveau, niv_libelle FROM T_Langue"
+            . " INNER JOIN T_Langue_Chercheur_Emploi ON lce_langue = lan_id"
             . " INNER JOIN T_niveau on niv_id = lce_niveau"
             . " WHERE lce_chercheur = ?";
 
@@ -571,6 +571,115 @@ class ChercheurModele extends Modele
         ));
 
         return $resultat->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function addLangue()
+    {
+
+        $sql = "INSERT INTO T_Langue_Chercheur_Emploi (lce_chercheur, lce_langue, lce_niveau) VALUES (?,?,?)";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['che_id'],
+            $this->parametres['lce_langue'],
+            $this->parametres['lce_niveau']
+        ));
+
+    }
+
+    public function deleteLangue()
+    {
+
+        $sql = "DELETE FROM T_Langue_Chercheur_Emploi WHERE lce_id = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['lce_id'],
+        ));
+
+    }
+
+    public function getListeLangues()
+    {
+
+        $sql = "SELECT * FROM T_Langue";
+
+        $resultat = $this->executeRequete($sql);
+
+        return $resultat->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public function getLangue()
+    {
+
+        $sql = "SELECT * FROM T_Langue_Chercheur_Emploi WHERE lce_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['lce_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function editLangue()
+    {
+
+        $sql = "UPDATE T_Langue_Chercheur_Emploi SET lce_langue = ?, lce_niveau = ? WHERE lce_id = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['lce_langue'],
+            $this->parametres['lce_niveau'],
+            $this->parametres['lce_id']
+        ));
+
+    }
+
+    public function addCentreInteret()
+    {
+
+        $sql = "INSERT INTO T_Centre_Interet (cei_chercheur, cei_intitule) VALUES (?,?)";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['che_id'],
+            $this->parametres['cei_intitule']
+        ));
+
+    }
+
+    public function deleteCentreInteret()
+    {
+
+        $sql = "DELETE FROM T_Centre_Interet WHERE cei_id = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['cei_id']
+        ));
+
+    }
+
+    public function getCentreInteret()
+    {
+
+        $sql = "SELECT * FROM T_Centre_Interet WHERE cei_id = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $this->parametres['cei_id']
+        ));
+
+        return $resultat->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function editCentreInteret()
+    {
+
+        $sql = "UPDATE T_Centre_Interet SET cei_intitule = ? WHERE cei_id = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['cei_intitule'],
+            $this->parametres['cei_id']
+        ));
+
     }
 
 

@@ -466,4 +466,101 @@ class ChercheurControleur
 
     }
 
+    public function formAddLangue()
+    {
+
+        $listeLangues = $this->chercheurModele->getListeLangues();
+
+        echo(json_encode(array(
+            "listeLangues"=>$listeLangues
+        )));
+
+    }
+
+    public function addLangue()
+    {
+
+        $this->chercheurModele->addLangue();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function deleteLangue()
+    {
+
+        $this->chercheurModele->deleteLangue();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function formEditLangue()
+    {
+
+        $listeLangues = $this->chercheurModele->getListeLangues();
+
+        $langue = $this->chercheurModele->getLangue();
+
+        echo(json_encode(array(
+            "listeLangues"=>$listeLangues,
+            "lce_niveau"=>$langue['lce_niveau'],
+            "lce_id"=>$langue['lce_id'],
+            "lce_langue"=>$langue['lce_langue'],
+            "token"=>$_SESSION['token'],
+            "action"=>"modifier_langue"
+        )));
+
+    }
+
+    public function editLangue()
+    {
+
+        $this->chercheurModele->editLangue();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function addCentreInteret()
+    {
+
+        $this->chercheurModele->addCentreInteret();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function deleteCentreInteret()
+    {
+
+        $this->chercheurModele->deleteCentreInteret();
+
+        $this->genererFicheCv();
+
+    }
+
+    public function formEditCentreInteret()
+    {
+
+        $langue = $this->chercheurModele->getCentreInteret();
+
+        echo(json_encode(array(
+            "cei_id"=>$langue['cei_id'],
+            "cei_intitule"=>$langue['cei_intitule'],
+            "token"=>$_SESSION['token'],
+            "action"=>"modifier_centre_interet"
+        )));
+
+    }
+
+    public function editCentreInteret()
+    {
+
+        $this->chercheurModele->editCentreInteret();
+
+        $this->genererFicheCv();
+
+    }
+
 }

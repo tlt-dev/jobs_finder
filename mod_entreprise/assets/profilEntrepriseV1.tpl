@@ -49,6 +49,15 @@
                     </form>
                 </li>
                 <li class="nav-item px-4">
+                    <form method="post" action="index.php" name="formNavProfil">
+                        <input type="hidden" name="gestion" value="entreprise">
+                        <input type="hidden" name="action" value="consulter_profil_2">
+                        <input type="hidden" name="token" value="{$token}">
+
+                        <p class="nav-link" onclick="submitFormNavProfil()">Profil 2</p>
+                    </form>
+                </li>
+                <li class="nav-item px-4">
                     <form method="post" action="index.php" name="formNavDashboard">
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="consulter_suivi">

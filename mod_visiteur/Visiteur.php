@@ -10,6 +10,13 @@ class Visiteur
     {
 
         $this->parametres = $parametres;
+
+        if(isset($_SESSION['login'])){
+            $chercheurModele = new ChercheurModele(NULL);
+
+            $this->parametres['che_id'] = $chercheurModele->getCheId($_SESSION['login']);
+        }
+
         $this->visiteurControleur = new VisiteurControleur($this->parametres);
 
     }
@@ -28,6 +35,18 @@ class Visiteur
                     break;
                 case 'get_current_offre':
                     $this->visiteurControleur->getOffreById();
+                    break;
+                case "add_favori":
+                    $this->visiteurControleur->addFavori();
+                    break;
+                case "retirer_favori":
+                    $this->visiteurControleur->removeFavori();
+                    break;
+                case "add_candidature":
+                    $this->visiteurControleur->addCandidature();
+                    break;
+                case "retirer_candidature":
+                    $this->visiteurControleur->removeCandidature();
                     break;
             }
 

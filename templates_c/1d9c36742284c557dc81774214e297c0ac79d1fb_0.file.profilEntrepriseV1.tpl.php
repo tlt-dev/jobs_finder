@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-20 09:00:40
-  from 'C:\wamp64\www\jobs_finder\mod_entreprise\vue\profilEntrepriseV1.tpl' */
+/* Smarty version 4.2.1, created on 2023-03-24 08:57:17
+  from '/Applications/MAMP/htdocs/jobs_finder/mod_entreprise/vue/profilEntrepriseV1.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_641820b8b4fad4_10666090',
+  'unifunc' => 'content_641d65ed854171_36211744',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '3aeca150f49de73b2e6be0c4d2b0e0131ab8c64a' => 
+    '1d9c36742284c557dc81774214e297c0ac79d1fb' => 
     array (
-      0 => 'C:\\wamp64\\www\\jobs_finder\\mod_entreprise\\vue\\profilEntrepriseV1.tpl',
-      1 => 1679302839,
+      0 => '/Applications/MAMP/htdocs/jobs_finder/mod_entreprise/vue/profilEntrepriseV1.tpl',
+      1 => 1679648211,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:../../mod_authentification/vue/modalDeconnexion.tpl' => 1,
   ),
 ),false)) {
-function content_641820b8b4fad4_10666090 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641d65ed854171_36211744 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -76,6 +76,16 @@ function content_641820b8b4fad4_10666090 (Smarty_Internal_Template $_smarty_tpl)
 ">
 
                         <p class="nav-link" onclick="submitFormNavProfil()">Profil</p>
+                    </form>
+                </li>
+                <li class="nav-item px-4">
+                    <form method="post" action="index.php" name="formNavProfil">
+                        <input type="hidden" name="gestion" value="entreprise">
+                        <input type="hidden" name="action" value="consulter_profil_2">
+                        <input type="hidden" name="token" value="<?php echo $_smarty_tpl->tpl_vars['token']->value;?>
+">
+
+                        <p class="nav-link" onclick="submitFormNavProfil()">Profil 2</p>
                     </form>
                 </li>
                 <li class="nav-item px-4">

@@ -27,14 +27,11 @@ class EntrepriseControleur
 
         $listeCompetence = $this->entrepriseModele->getListeCompetence();
 
-        $chercheurModele = new ChercheurModele($this->parametres);
-
-
         $this->entrepriseVue->afficherDashboard($entreprise, $listeChercheurEmploi, $listeCompetence);
 
     }
 
-    public function consulterProfil()
+    /*public function consulterProfil()
     {
         $entreprise = $this->entrepriseModele->getEntreprise();
 
@@ -46,7 +43,26 @@ class EntrepriseControleur
 
         $listeSecteurAct = $this->entrepriseModele->getListeSecteurAct();
 
+        $user = $this->entrepriseModele->getUser();
+
         $this->entrepriseVue->afficherProfil($entreprise, $listeStatuts, $listeVilles, $userName, $listeSecteurAct);
+
+
+    }*/
+
+    public function consulterProfil()
+    {
+        $entreprise = $this->entrepriseModele->getEntreprise();
+
+        $listeStatuts = $this->entrepriseModele->getListeStatuts();
+
+        $listeVilles = $this->entrepriseModele->getListeVilles();
+
+        $user = $this->entrepriseModele->getUser();
+
+        $listeSecteurAct = $this->entrepriseModele->getListeSecteurAct();
+
+        $this->entrepriseVue->afficherProfil($entreprise, $listeStatuts, $listeVilles, $listeSecteurAct, $user);
 
 
     }
@@ -121,21 +137,9 @@ class EntrepriseControleur
     public function recherche_Candidat()
     {
         $listeCandidatFilter = $this->entrepriseModele->getListeCandidatureByOffreId($this->parametres['offreMultiSelect']);
-        $listeEntretien = $this->entrepriseModele->getEntretien($this->parametres['offreMultiSelect']);
+        $listeEntretien = $this->entrepriseModele->getListeEntretiens($this->parametres['offreMultiSelect']);
         $listeEntretienReponse = $this->entrepriseModele->getEntretienReponse($this->parametres['offreMultiSelect']);
 
-
-        /*foreach ($listeCandidatFilter as $candidat){
-            $data[] = array(
-                "che_id" => $candidat["che_id"],
-                "che_nom" => $candidat["che_nom"],
-                "che_prenom" => $candidat["che_prenom"],
-                "che_telephone" => $candidat["che_telephone"],
-                "che_mail" => $candidat["che_mail"],
-                "token"=>$_SESSION['token']
-                
-            );
-        }*/
         echo (json_encode(array(
             "listeCandidats"=>$listeCandidatFilter,
             "listeEntretien"=>$listeEntretien,
@@ -170,26 +174,127 @@ class EntrepriseControleur
 
     }
 
-    /*public function supprimerEntreprise()
+    public function uploadLogo()
+    {
+
+        if($_FILES['source_logo']['size'] != 0)
+        {
+            $this->entrepriseModele->addDocument();
+            EntrepriseObjet::setMessageSucces("Logo modifié avec succès !");
+        }else{
+            EntrepriseObjet::setMessageErreur("Aucun logo à ajouter !");
+        }
+
+        $this->consulterProfil();
+
+    }
+
+    public function modifierParametresIdentification()
+    {
+
+        $user = new UserObjet($this->parametres);
+
+        if($user->getAutorisationBD())
+        {
+
+            if(!empty($user->getUsr_mot_de_passe()))
+            {
+                $this->entrepriseModele->updateMotDePasse($user);
+            }
+
+            $this->entrepriseModele->updateUserEmail($user);
+
+            $_SESSION['login'] = $user->getUsr_email();
+
+            UserObjet::setMessageSucces("Paramètres d'authentification modifiés avec succès !");
+
+        }
+
+        $this->consulterProfil();
+
+    }
+
+    public function modifierInformationsPersonnelles()
     {
 
         $entreprise = new EntrepriseObjet($this->parametres);
 
-        $this->entrepriseModele->deleteEntreprise($entreprise);
+        if($entreprise->getAutorisationBD())
+        {
 
-        EntrepriseObjet::setMessageSucces("Entreprise supprimée avec succès !");
+            $this->entrepriseModele->updateInformationsPersonnelles($entreprise);
 
-        $this->genererListe();
+            EntrepriseObjet::setMessageSucces("Informations personnelles modifiées avec succès !");
 
-    }*/
+        }
+
+        $this->consulterProfil();
+
+    }
+
+    public function modifierInformationsContact()
+    {
+
+        $entreprise = new EntrepriseObjet($this->parametres);
+
+        if($entreprise->getAutorisationBD())
+        {
+
+            $this->entrepriseModele->updateInformationsContact($entreprise);
+
+            EntrepriseObjet::setMessageSucces("Informations de contact modifiées avec succès !");
+
+        }
+
+        $this->consulterProfil();
+
+    }
 
     public function genererListeOffre(){
         $listeOffres = $this->offreModele->getListeOffres($_SESSION["login"]);
+        $listeTypeContrat = $this->offreModele->getAllTypeContrat();
         $listeVilles = $this->offreModele->getAllVille();
         $listeSecteurActivite = $this->offreModele->getAllSecteurActivite();
         $entreprise = $this->entrepriseModele->getEntreprise();
 
-        $this->entrepriseVue->afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite,$entreprise);
+        $this->entrepriseVue->afficherListeOffres($listeOffres,$listeVilles,$listeSecteurActivite,$entreprise, $listeTypeContrat);
+    }
+
+    public function getEntretien()
+    {
+
+        $entretien = $this->entrepriseModele->getEntretien();
+
+        echo(json_encode(array(
+            "ent_id"=>$entretien['ent_id'],
+            "che_nom"=>$entretien['che_nom'],
+            "che_prenom"=>$entretien['che_prenom'],
+            "che_mail"=>$entretien['che_mail'],
+            "che_telephone"=>$entretien['che_telephone'],
+            "commentaire"=>$entretien['ent_commentaire'],
+            "date_entretien"=>$entretien['ent_date_entretien'],
+            "modalites"=>$entretien['ent_modalites'],
+            "token"=>$_SESSION['token']
+        )));
+
+    }
+
+    public function editEntretien()
+    {
+
+        $this->entrepriseModele->editEntretien();
+
+        $this->genererSuivi();
+
+    }
+
+    public function modifierReponseEntretien()
+    {
+
+        $this->entrepriseModele->editReponseEntretien();
+
+        $this->genererSuivi();
+
     }
 
 }

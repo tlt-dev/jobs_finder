@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2023-03-20 08:25:55
-  from 'C:\wamp64\www\jobs_finder\mod_authentification\vue\modalInscription.tpl' */
+/* Smarty version 4.2.1, created on 2023-03-20 15:07:39
+  from '/Applications/MAMP/htdocs/jobs_finder/mod_authentification/vue/modalInscription.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_64181893784c89_84928189',
+  'unifunc' => 'content_641876bb31a2d3_23643856',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '16eb26388733e7a845721a212a208f7298b2b02b' => 
+    '0e9c37ce1254ac49a305601017867fe26a031437' => 
     array (
-      0 => 'C:\\wamp64\\www\\jobs_finder\\mod_authentification\\vue\\modalInscription.tpl',
-      1 => 1679220158,
+      0 => '/Applications/MAMP/htdocs/jobs_finder/mod_authentification/vue/modalInscription.tpl',
+      1 => 1679319405,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64181893784c89_84928189 (Smarty_Internal_Template $_smarty_tpl) {
+function content_641876bb31a2d3_23643856 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Modal -->
 <div class="modal fade" id="modalInscription" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="modalInscriptionTitre" aria-hidden="true">
@@ -31,14 +31,14 @@ function content_64181893784c89_84928189 (Smarty_Internal_Template $_smarty_tpl)
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="row m-2 mb-0">
-                <div class="alert alert-danger d-none" role="alert" id="message">
-                    <p id="messageContent"></p>
+                <div class="alert alert-danger d-none" role="alert" id="inscriptionMessage">
+                    <p id="inscriptionMessageContent"></p>
                 </div>
             </div>
-            <form method="post" action="index.php" name="formInscription" class="mt-0">
+            <form method="post" action="index.php" name="formInscription" id="formInscription" class="mt-0">
                 <div class="modal-body">
                     <input type="hidden" name="gestion" value="authentification">
-                    <input type="hidden" name="action" value="inscription">
+                    <input type="hidden" name="action" id="formInscription_action" value="verifier_inscription">
 
                     <label for="type_1">Qui êtes-vous ?</label>
 
@@ -71,6 +71,17 @@ function content_64181893784c89_84928189 (Smarty_Internal_Template $_smarty_tpl)
                         un compte ? Connectez-vous</a>
                     <input type="submit" class="btn btn-primary" value="S'inscrire">
                 </div>
+            </form>
+
+            <form method="post" action="index.php" id="formInscriptionHidden">
+                <input type="hidden" name="gestion" value="authentification">
+                <input type="hidden" name="action" id="formInscription_action" value="inscription">
+                <input type="hidden" name="usr_est_chercheur_emploi" id="formInscription_est_chercheur_emploi" value="">
+                <input type="hidden" name="che_nom" id="formInscription_che_nom" value="">
+                <input type="hidden" name="che_prenom" id="formInscription_che_prenom" value="">
+                <input type="hidden" name="ent_nom" id="formInscription_ent_nom" value="">
+                <input type="hidden" name="usr_email" id="formInscription_email" value="">
+                <input type="hidden" name="usr_mot_de_passe" id="formInscription_mot_de_passe" value="">
             </form>
 
 

@@ -8,7 +8,7 @@
     <!--Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="mod_entreprise/assets/entreprise.css">
     <!--Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -62,7 +62,7 @@
                         <input type="hidden" name="gestion" value="entreprise">
                         <input type="hidden" name="action" value="generer_dashboard">
                         <input type="hidden" name="token" value="{$token}">
-                        <p class="nav-link" onclick="submitFormNavAccueil()">Acceuil</p>
+                        <p class="nav-link" onclick="submitFormNavAccueil()">Accueil</p>
                     </form>
                 </li>
             </ul>
@@ -72,75 +72,131 @@
         </div>
     </div>
 </nav>
-    <h1>{$titre}</h1>
 
-    {if $messageSucces}
-        <p><strong>{$messageSucces}</strong></p>
-    {/if}
-    <div>
-        <table class="table">
-            <thead>
-                <th>ID</th>
-                <th>Intitulé</th>
-                <th>Ville</th>
-                <th>Secteur</th>
-                <th>Date début</th>
-                <th>Durée</th>
-                <th></th>
-                <th></th>
-            </thead>
-            <tbody>
-                {foreach $listeOffres as $offre}
-                    <tr>
-                        <td>{$offre->getOff_id()}</td>
-                        <td>{$offre->getOff_intitule()}</td>
-                        <td>{$listeVilles[$offre->getOff_ville()]['vil_nom']}</td>
-                        <td>{$listeSecteurActivite[$offre->getOff_secteur_activite()]}</td>
-                        <td>{$offre->getOff_date_prise_poste()}</td>
-                        {if $offre->getOff_type_contrat() != 1}
-                            <td>{$offre->getOff_type_contrat()} mois</td>
-                        {else}
-                            <td>CDI</td>
-                        {/if}
-                        <td>
-                            <form method="post" action="index.php">
-                                <input type="hidden" name="gestion" value="offre">
-                                <input type="hidden" name="action" value="form_offre">
-                                <input type="hidden" name="id" value="{$offre->getOff_id()}">
-                                <input type="hidden" name="token" value="{$token}">
-
-                                <button type="submit" class="btn btn-primary" value="Modifier">Modifier</button>
-                            </form>
-                        </td>
-                        <td>
-                            <form method="post" action="index.php">
-                                <input type="hidden" name="gestion" value="offre">
-                                <input type="hidden" name="action" value="supprimer_offre">
-                                <input type="hidden" name="id" value="{$offre->getOff_id()}">
-                                <input type="hidden" name="token" value="{$token}">
-
-                                <button type="submit" class="btn btn-primary" value="Supprimer">Supprimer</button>
-                            </form>
-                        </td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
-        <form method="post" action="index.php">
-            <input type="hidden" name="gestion" value="offre">
-            <input type="hidden" name="action" value="form_offre">
-            <input type="hidden" name="token" value="{$token}">
-            <button type="submit" class="btn btn-primary" value="Creer">Créer</button>
-        </form>
-        <form method="post" action="index.php">
-            <input type="hidden" name="gestion" value="entreprise">
-            <input type="hidden" name="action" value="generer_dashboard">
-            <input type="hidden" name="token" value="{$token}">
-
-            <button type="submit" class="btn btn-primary" value="Retour">Retour</button>
-        </form>
+<div class="container-fluid">
+    <div class="row text-center mt-3">
+        <div class="col">
+            <h2>{$titre}</h2>
+        </div>
     </div>
-    {include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
+    {if $messageErreur neq ""}
+        <div class="row justify-content-center mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>
+                    {$messageErreur}
+                </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+            </div>
+        </div>
+    {/if}
+    {if $messageSucces neq ""}
+        <div class="row justify-content-center mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>
+                    {$messageSucces}
+                </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+            </div>
+        </div>
+    {/if}
+    <div class="row mt-3 justify-content-center">
+        {foreach $listeOffres as $offre}
+            <div class="col-3 m-4  border-radius">
+                <div class="row text-center mt-2">
+                    <div class="col">
+                        <h5>{$offre->getOff_intitule()}</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row text-center">
+                            <div class="col">
+                                <label for="off_ville" class="form-label">Ville</label>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <p id="off_ville"><strong>{$listeVilles[$offre->getOff_ville()]['vil_nom']}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row text-center">
+                            <div class="col">
+                                <label for="off_date_prise_poste" class="form-label">Prise de poste</label>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <p id="off_date_prise_poste"><strong>{$offre->getOff_date_prise_poste()}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row text-center">
+                            <div class="col">
+                                <label for="off_type_contrat" class="form-label">Type de contrat</label>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <p id="off_type_contrat"><strong>{$listeTypeContrat[$offre->getOff_type_contrat()]}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row text-center">
+                            <div class="col">
+                                <label for="off_duree" class="form-label">Durée</label>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <p id="off_duree"><strong>
+                                        {if $offre->getOff_type_contrat() neq 1}
+                                            {$offre->getOff_duree()} mois
+                                        {else}
+                                            -
+                                        {/if}
+                                    </strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <div class="col">
+                        <form method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="offre">
+                            <input type="hidden" name="action" value="form_offre">
+                            <input type="hidden" name="id" value="{$offre->getOff_id()}">
+                            <input type="hidden" name="token" value="{$token}">
+
+                            <button type="submit" class="btn btn-primary" value="Modifier">Modifier</button>
+                        </form>
+                    </div>
+                    <div class="col">
+                        <form method="post" action="index.php">
+                            <input type="hidden" name="gestion" value="offre">
+                            <input type="hidden" name="action" value="supprimer_offre">
+                            <input type="hidden" name="id" value="{$offre->getOff_id()}">
+                            <input type="hidden" name="token" value="{$token}">
+
+                            <button type="submit" class="btn btn-danger" value="Supprimer">Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {/foreach}
+    </div>
+
+</div>
+
+
+{include file="../../mod_authentification/vue/modalDeconnexion.tpl"}
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

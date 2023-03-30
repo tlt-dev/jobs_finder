@@ -39,26 +39,27 @@ class Entreprise
             if (isset($this->parametres['action'])) {
 
                 switch ($this->parametres['action']) {
-                    /*case 'form_modifier_entreprise_modal':
-                    $this->entrepriseControleur->formModifierEntrepriseModal();
-                    break;*/
-                    /*case 'form_modifier_entreprise':
-                    $this->entrepriseControleur->formModifierEntreprise();
-                    break;*/
+
                     case 'modifier_entreprise':
                         $this->entrepriseControleur->modifierEntreprise();
                         break;
-                    case 'supprimer_entreprise':
-                        $this->entrepriseControleur->supprimerEntreprise();
-                        break;
-                    /*case 'afficher_fiche':
-                    $this->entrepriseControleur->genererFicheEntreprise();
-                    break;*/
                     case 'generer_dashboard':
                         $this->entrepriseControleur->genererDashboard();
                         break;
                     case 'consulter_profil':
                         $this->entrepriseControleur->consulterProfil();
+                        break;
+                    case 'upload_logo':
+                        $this->entrepriseControleur->uploadLogo();
+                        break;
+                    case 'update_parametres_identification':
+                        $this->entrepriseControleur->modifierParametresIdentification();
+                        break;
+                    case 'modifier_informations_personnelles':
+                        $this->entrepriseControleur->modifierInformationsPersonnelles();
+                        break;
+                    case 'modifier_informations_contact':
+                        $this->entrepriseControleur->modifierInformationsContact();
                         break;
                     case 'generer_liste_offre':
                         $this->entrepriseControleur->genererListeOffre();
@@ -72,6 +73,9 @@ class Entreprise
                     case 'consulter_suivi':
                         $this->entrepriseControleur->genererSuivi();
                         break;
+                    case 'get_entretien':
+                        $this->entrepriseControleur->getEntretien();
+                        break;
                     case 'add_entretien':
                         $this->entrepriseControleur->addEntretien();
                         break;
@@ -81,9 +85,14 @@ class Entreprise
                     case 'get_listeChercheur':
                         $this->entrepriseControleur->getListeChercheur();
                         break;
-                    case 'edit_entretien':
+                    case 'modifier_entretien':
                         $this->entrepriseControleur->editEntretien();
                         break;
+                    case 'modifier_reponse_entretien':
+                        $this->entrepriseControleur->modifierReponseEntretien();
+                        break;
+
+
 
                 }
 

@@ -172,6 +172,8 @@ class ChercheurObjet
 
     public function setChe_sexe($che_sexe)
     {
+        $che_sexe = $this->validation($che_sexe);
+
         $this->che_sexe = $che_sexe;
     }
 
@@ -182,6 +184,8 @@ class ChercheurObjet
             self::setMessageErreur("La date de naissance doit être complétée !\n");
             $this->setAutorisationBD(false);
         }
+
+        $che_date_naissance = $this->validation($che_date_naissance);
 
         $this->che_date_naissance = $che_date_naissance;
     }
@@ -239,21 +243,29 @@ class ChercheurObjet
 
     public function setChe_ville($che_ville)
     {
+        $che_ville = $this->validation($che_ville);
+
         $this->che_ville = $che_ville;
     }
 
     public function setChe_code_postal($che_code_postal)
     {
+        $che_code_postal = $this->validation($che_code_postal);
+
         $this->che_code_postal = $che_code_postal;
     }
 
     public function setChe_departement($che_departement)
     {
+        $che_departement = $this->validation($che_departement);
+
         $this->che_departement = $che_departement;
     }
 
     public function setChe_en_recherche($che_en_recherche)
     {
+        $che_en_recherche = $this->validation($che_en_recherche);
+
         $this->che_en_recherche = $che_en_recherche;
     }
 

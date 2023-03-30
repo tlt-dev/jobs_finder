@@ -5,10 +5,7 @@ class EntrepriseObjet
 
     private $ent_id;
     private $ent_nom;
-    private $ent_adresse1;
-    private $ent_adresse2;
-    private $ent_adresse3;
-    private $ent_adresse4;
+    private $ent_adresse;
 
     private $ent_chiffre_affaires;
     private $ent_date_creation;
@@ -18,6 +15,8 @@ class EntrepriseObjet
     private $ent_siret;
     private $ent_statut;
     private $ent_ville;
+    private $ent_email;
+    private $ent_telephone;
 
     private $ent_user;
 
@@ -47,6 +46,13 @@ class EntrepriseObjet
         }
     }
 
+    public function validation($donnees){
+        $donnees = trim($donnees);
+        $donnees = stripslashes($donnees);
+        $donnees = htmlspecialchars($donnees);
+        return $donnees;
+    }
+
     public function getEnt_id()
     {
         return $this->ent_id;
@@ -67,44 +73,40 @@ class EntrepriseObjet
         $this->ent_user = $ent_user;
     }
 
-    public function getEnt_adresse1()
+    public function getEnt_adresse()
     {
-        return $this->ent_adresse1;
+        return $this->ent_adresse;
     }
 
-    public function setEnt_adresse1($ent_adresse1)
+    public function setEnt_adresse($ent_adresse)
     {
-        $this->ent_adresse1 = $ent_adresse1;
+        $ent_adresse = $this->validation($ent_adresse);
+
+        $this->ent_adresse = $ent_adresse;
     }
 
-    public function getEnt_adresse4()
+    public function getEnt_telephone()
     {
-        return $this->ent_adresse4;
+        return $this->ent_telephone;
     }
 
-    public function setEnt_adresse4($ent_adresse4)
+    public function setEnt_telephone($ent_telephone)
     {
-        $this->ent_adresse4 = $ent_adresse4;
+        $ent_telephone = $this->validation($ent_telephone);
+
+        $this->ent_telephone = $ent_telephone;
     }
 
-    public function getEnt_adresse2()
+    public function getEnt_email()
     {
-        return $this->ent_adresse2;
+        return $this->ent_email;
     }
 
-    public function setEnt_adresse2($ent_adresse2)
+    public function setEnt_email($ent_email)
     {
-        $this->ent_adresse2 = $ent_adresse2;
-    }
+        $ent_email = $this->validation($ent_email);
 
-    public function getEnt_adresse3()
-    {
-        return $this->ent_adresse3;
-    }
-
-    public function setEnt_adresse3($ent_adresse3)
-    {
-        $this->ent_adresse3 = $ent_adresse3;
+        $this->ent_email = $ent_email;
     }
 
     public function getEnt_chiffre_affaires()
@@ -114,6 +116,8 @@ class EntrepriseObjet
 
     public function setEnt_chiffre_affaires($ent_chiffre_affaires)
     {
+        $ent_chiffre_affaires = $this->validation($ent_chiffre_affaires);
+
         $this->ent_chiffre_affaires = $ent_chiffre_affaires;
     }
 
@@ -124,6 +128,8 @@ class EntrepriseObjet
 
     public function setEnt_date_creation($ent_date_creation)
     {
+        $ent_date_creation = $this->validation($ent_date_creation);
+
         $this->ent_date_creation = $ent_date_creation;
     }
 
@@ -135,6 +141,8 @@ class EntrepriseObjet
 
     public function setEnt_descriptif($ent_descriptif)
     {
+        $ent_descriptif = $this->validation($ent_descriptif);
+
         $this->ent_descriptif = $ent_descriptif;
     }
 
@@ -146,6 +154,8 @@ class EntrepriseObjet
 
     public function setEnt_secteur_activite($ent_secteur_activite)
     {
+        $ent_secteur_activite = $this->ent_secteur_activite;
+
         $this->ent_secteur_activite = $ent_secteur_activite;
     }
 
@@ -156,6 +166,8 @@ class EntrepriseObjet
 
     public function setEnt_siren($ent_siren)
     {
+        $ent_siren = $this->validation($ent_siren);
+
         $this->ent_siren = $ent_siren;
     }
 
@@ -166,6 +178,8 @@ class EntrepriseObjet
 
     public function setEnt_siret($ent_siret)
     {
+        $ent_siret = $this->validation($ent_siret);
+
         $this->ent_siret = $ent_siret;
     }
 
@@ -176,6 +190,8 @@ class EntrepriseObjet
 
     public function setEnt_statut($ent_statut)
     {
+        $ent_statut = $this->validation($ent_statut);
+
         $this->ent_statut = $ent_statut;
     }
 
@@ -186,12 +202,21 @@ class EntrepriseObjet
 
     public function setEnt_ville($ent_ville)
     {
+        $ent_ville = $this->validation($ent_ville);
+
         $this->ent_ville = $ent_ville;
     }
 
     public function getEnt_nom()
     {
         return $this->ent_nom;
+    }
+
+    public function setEnt_nom($ent_nom)
+    {
+        $ent_nom = $this->validation($ent_nom);
+
+        $this->ent_nom = $ent_nom;
     }
 
     public function getAutorisationBD()
@@ -234,9 +259,6 @@ class EntrepriseObjet
         self::$fileEmpty = $msg = self::$fileEmpty . $msg;
     }
 
-    public function setEnt_nom($ent_nom)
-    {
-        $this->ent_nom = $ent_nom;
-    }
+
 
 }

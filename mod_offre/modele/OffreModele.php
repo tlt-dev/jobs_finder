@@ -258,7 +258,7 @@ class OffreModele extends Modele
 
     public function getResultatsEntretien($che_id)
     {
-        $sql = "SELECT * FROM T_Offre INNER JOIN T_Entretien ON off_id = ent_offre WHERE ent_chercheur = ? AND ent_statut = 0 OR ent_statut = 2";
+        $sql = "SELECT * FROM T_Offre INNER JOIN T_Entretien ON off_id = ent_offre WHERE ent_chercheur = ? AND (ent_statut = 0 OR ent_statut = 2)";
 
         $resultat = $this->executeRequete(
             $sql,

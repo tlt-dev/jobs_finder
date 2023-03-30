@@ -72,88 +72,66 @@ class AuthentificationControleur
 
     }
 
-    /*public function verifierUtilisateur()
+
+    public function verifierInscription()
     {
+        $user = new UserObjet($this->parametres);
 
-        //$user = new UserObjet($this->parametres);
-
-        //var_dump($user);
-        $email = $this->parametres['usr_email'];
-        $mdp = $this->parametres['usr_mot_de_passe'];
-
-        var_dump($email);
-
-        if($user = $this->authentificationModele->checkUser($email, $mdp))
-        {
-
-            $_SESSION['login'] = $user->getUsr_email();
-
-            if($user->getUsr_est_chercheur_emploi())
-            {
-
-                $new_parametres = array();
-                $new_parametres['che_id'] = $user->getUsr_id();
-                $_REQUEST['gestion'] = 'utilisateur';
-
-                $utilisateurControleur = new UtilisateurControleur($new_parametres);
-
-                $utilisateurControleur->genererAccueil();
-
-            }
-            else
-            {
-
-                $new_parametres = array();
-                $new_parametres['ent_id'] = $user->getUsr_id();
-
-                $entrepriseControleur = new EntrepriseControleur($new_parametres);
-
-                $entrepriseControleur->genererDashboard();
-
-            }
-
+        if(!$user->getAutorisationBD()){
+            echo(json_encode(array(
+                "message"=>UserObjet::getMessageErreur()
+            )));
         }else{
             echo(json_encode(array(
-                "message"=>"Le login ou le mot de passe est incorrect !",
-                "email"=>$email,
-                "mdp"=>$mdp
+                "message"=>'',
+                "usr_est_chercheur_emploi"=>$this->parametres['usr_est_chercheur_emploi'],
+                "che_nom"=>$this->parametres['che_nom'],
+                "che_prenom"=>$this->parametres['che_prenom'],
+                "ent_nom"=>$this->parametres['ent_nom'],
+                "usr_email"=>$this->parametres['usr_email'],
+                "usr_mot_de_passe"=>$this->parametres['usr_mot_de_passe']
             )));
         }
 
-    }*/
+    }
 
     public function inscription()
     {
 
         $user = new UserObjet($this->parametres);
 
-        $user->setUsr_id($this->authentificationModele->createUser($user));
-
-        if($user->getUsr_est_chercheur_emploi())
+        if($user->getAutorisationBD())
         {
+            $user->setUsr_id($this->authentificationModele->createUser($user));
 
-            $che_id = $this->authentificationModele->createChercheurEmploi($user->getUsr_id());
+            $_SESSION["login"] = $user->getUsr_email();
 
-            $new_parametres = array();
-            $new_parametres['che_id'] = $che_id;
+            if($user->getUsr_est_chercheur_emploi())
+            {
 
-            $chercheurControleur = new ChercheurControleur($new_parametres);
+                $che_id = $this->authentificationModele->createChercheurEmploi($user->getUsr_id());
 
-            $chercheurControleur->genererDashboard();
+                $new_parametres = array();
+                $new_parametres['che_id'] = $che_id;
 
-        }
-        else
-        {
+                $chercheurControleur = new ChercheurControleur($new_parametres);
 
-            $ent_id = $this->authentificationModele->createEntreprise($user->getUsr_id());
+                $chercheurControleur->genererDashboard();
 
-            $new_parametres = array();
-            $new_parametres['ent_id'] = $ent_id;
+            }
+            else
+            {
 
-            $entrepriseControleur = new EntrepriseControleur($new_parametres);
+                $ent_id = $this->authentificationModele->createEntreprise($user->getUsr_id());
 
-            $entrepriseControleur->genererDashboard();
+                $new_parametres = array();
+                $new_parametres['ent_id'] = $ent_id;
 
+                $entrepriseControleur = new EntrepriseControleur($new_parametres);
+
+                $entrepriseControleur->genererDashboard();
+
+            }
         }
 
     }

@@ -71,11 +71,18 @@ class AuthentificationModele extends Modele
             $usr_id
         ));
 
+
         $sql = "SELECT LAST_INSERT_ID()";
 
         $resultat = $this->executeRequete($sql);
 
-        return $resultat->fetch(PDO::FETCH_ASSOC)['LAST_INSERT_ID()'];
+        $che_id = $resultat->fetch(PDO::FETCH_ASSOC)['LAST_INSERT_ID()'];
+
+        mkdir("mod_chercheur/documents/".$che_id);
+
+        copy("mod_chercheur/assets/images/logo_default.png","mod_chercheur/documents/".$che_id."/logo.png");
+
+        return $che_id;
 
     }
 
@@ -93,7 +100,13 @@ class AuthentificationModele extends Modele
 
         $resultat = $this->executeRequete($sql);
 
-        return $resultat->fetch(PDO::FETCH_ASSOC)['LAST_INSERT_ID()'];
+        $ent_id = $resultat->fetch(PDO::FETCH_ASSOC)['LAST_INSERT_ID()'];
+
+        mkdir("mod_entreprise/documents/".$ent_id);
+
+        copy("mod_entreprise/assets/images/logo_default.png","mod_entreprise/documents/".$ent_id."/logo.png");
+
+        return $ent_id;
 
     }
 

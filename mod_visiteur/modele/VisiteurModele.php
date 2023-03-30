@@ -16,7 +16,10 @@ class VisiteurModele extends Modele
 
         $sql = "SELECT * from t_offre toff
         JOIN t_poste tp ON toff.off_poste=tp.pos_id
-        JOIN t_ville tv ON toff.off_ville=tv.vil_id";
+        JOIN t_ville tv ON toff.off_ville=tv.vil_id
+        JOIN t_secteur_activite tsa ON toff.off_secteur_activite=tsa.sea_id
+        JOIN t_type_contrat tco ON toff.off_type_contrat=tco.tco_id
+        JOIN t_salaire tsal ON toff.off_salaire=tsal.sal_id";
 
         return $this->executeRequete($sql)->fetchAll();
     }
@@ -62,6 +65,47 @@ class VisiteurModele extends Modele
         WHERE toff.off_id=?";
 
         return $this->executeRequete($sql,array($off_id))->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
+    public function verifyOffreFavori($off_id)
+    {
+
+        $sql = "SELECT fce_id FROM T_Favori_Chercheur_Emploi WHERE fce_offre = ?";
+
+        $resultat = $this->executeRequete($sql, array(
+            $off_id
+        ));
+
+        if($resultat->fetch(PDO::FETCH_ASSOC)){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public function addCandidature()
+    {
+
+        $sql = "INSERT INTO T_Candidature (can_offre, can_chercheur) VALUES (?,?)";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['off_id'],
+            $this->parametres['che_id']
+        ));
+
+    }
+
+    public function removeCandidature()
+    {
+
+        $sql = "DELETE FROM T_Candidature WHERE can_offre = ? AND can_chercheur = ?";
+
+        $this->executeRequete($sql, array(
+            $this->parametres['off_id'],
+            $this->parametres['che_id']
+        ));
+
     }
 
 }
